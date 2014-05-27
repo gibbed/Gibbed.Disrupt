@@ -46,6 +46,12 @@ namespace Gibbed.Disrupt.BinaryObjectInfo
                     {
                         throw new FormatException();
                     }
+
+                    if (value == false)
+                    {
+                        return new byte[0];
+                    }
+
                     return new[] { (byte)(value == true ? 1 : 0) };
                 }
 

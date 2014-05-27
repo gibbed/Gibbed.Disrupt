@@ -46,6 +46,12 @@ namespace Gibbed.Disrupt.BinaryObjectInfo
             {
                 case FieldType.Boolean:
                 {
+                    if (count == 0)
+                    {
+                        read = 0;
+                        return false;
+                    }
+
                     if (HasLeft(data, offset, count, 1) == false)
                     {
                         throw new FormatException("field type Boolean requires 1 byte");
