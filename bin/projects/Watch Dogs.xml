@@ -1,0 +1,47 @@
+<project>
+	<name>Watch Dogs</name>
+	<dependencies>
+		<dependency>Shared</dependency>
+	</dependencies>
+	<list_location>Watch Dogs</list_location>
+	<install_locations>
+		<install_location>
+			<action type="registryview" view="Registry64" hive="LocalMachine" subkey="SOFTWARE\Ubisoft\Launcher\Installs\274" value="installdir" />
+			<action type="combine">data_win64</action>
+		</install_location>
+		<install_location>
+			<action type="registryview" view="Registry32" hive="LocalMachine" subkey="SOFTWARE\Ubisoft\Launcher\Installs\274" value="installdir" />
+			<action type="combine">data_win64</action>
+		</install_location>
+		<install_location>
+			<action type="registryview" view="Registry64" hive="LocalMachine" subkey="SOFTWARE\Ubisoft\Launcher\Installs\541" value="installdir" />
+			<action type="combine">data_win64</action>
+		</install_location>
+		<install_location>
+			<action type="registryview" view="Registry32" hive="LocalMachine" subkey="SOFTWARE\Ubisoft\Launcher\Installs\541" value="installdir" />
+			<action type="combine">data_win64</action>
+		</install_location>
+		<install_location>
+			<action type="registryview" view="Registry64" hive="LocalMachine" subkey="SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\Steam App 243470" value="InstallLocation" />
+			<action type="combine">data_win64</action>
+		</install_location>
+		<install_location>
+			<action type="registryview" view="Registry32" hive="LocalMachine" subkey="SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\Steam App 243470" value="InstallLocation" />
+			<action type="combine">data_win64</action>
+		</install_location>
+		<install_location>
+			<action type="registryview" view="Registry64" hive="LocalMachine" subkey="SOFTWARE\Valve\Steam" value="InstallPath" />
+			<action type="combine">steamapps</action>
+			<action type="combine">common</action>
+			<action type="combine">Watch_Dogs</action>
+			<action type="combine">data_win64</action>
+		</install_location>
+		<install_location>
+			<action type="registryview" view="Registry32" hive="LocalMachine" subkey="SOFTWARE\Valve\Steam" value="InstallPath" />
+			<action type="combine">steamapps</action>
+			<action type="combine">common</action>
+			<action type="combine">Watch_Dogs</action>
+			<action type="combine">data_win64</action>
+		</install_location>
+	</install_locations>
+</project>
