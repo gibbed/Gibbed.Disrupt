@@ -32,7 +32,7 @@ namespace Gibbed.Disrupt.FileFormats
 
         private static ulong BaseHasher(string s)
         {
-            return Modifier(s).ToLowerInvariant().HashFNV64();
+            return Hashing.FNV64.Compute(Modifier(s).ToLowerInvariant());
         }
 
         static ProjectHelpers()
@@ -148,7 +148,7 @@ namespace Gibbed.Disrupt.FileFormats
                 return 0xFFFFFFFFu;
             }
 
-            var hash64 = s.ToLowerInvariant().HashFNV64();
+            var hash64 = Hashing.FNV64.Compute(s.ToLowerInvariant());
             if (_KnownHashOverrideLookup.ContainsKey(hash64) == true)
             {
                 return _KnownHashOverrideLookup[hash64];

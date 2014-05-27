@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{CCFBF6B8-BA2E-49C1-AFA8-B12B1F1A125D}</ProjectGuid>
+    <ProjectGuid>{10DEB201-A4BB-4400-A132-14B76366A5C4}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Gibbed.Disrupt.FileFormats</RootNamespace>
-    <AssemblyName>Gibbed.Disrupt.FileFormats</AssemblyName>
+    <RootNamespace>Gibbed.Disrupt.BinaryObjectInfo</RootNamespace>
+    <AssemblyName>Gibbed.Disrupt.BinaryObjectInfo</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -32,9 +32,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="ICSharpCode.SharpZipLib">
-      <HintPath>..\other\ICSharpCode.SharpZipLib.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -44,49 +41,45 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BigFile.cs" />
-    <Compile Include="Big\CompressionScheme.cs" />
-    <Compile Include="Big\Entry.cs" />
-    <Compile Include="Big\EntryDecompression.cs" />
-    <Compile Include="Big\EntrySerializerV7.cs" />
-    <Compile Include="Big\EntrySerializerV8.cs" />
-    <Compile Include="Big\IEntrySerializer.cs" />
-    <Compile Include="Big\Platform.cs" />
-    <Compile Include="Big\Target.cs" />
-    <Compile Include="BinaryObject.cs" />
-    <Compile Include="BinaryObjectFile.cs" />
-    <Compile Include="FileExtensions.cs" />
-    <Compile Include="Compression\LZO.cs" />
-    <Compile Include="Hashing\CRC32.cs" />
-    <Compile Include="Hashing\CRC64.cs" />
-    <Compile Include="Hashing\FNV64.cs" />
-    <Compile Include="ProjectHelpers.cs" />
+    <Compile Include="ConditionValueSource.cs" />
+    <Compile Include="Definitions\ClassDefinition.cs" />
+    <Compile Include="Definitions\EnumDefinition.cs" />
+    <Compile Include="Definitions\EnumElementDefinition.cs" />
+    <Compile Include="Definitions\FieldDefinition.cs" />
+    <Compile Include="Definitions\FriendDefinition.cs" />
+    <Compile Include="Definitions\Loaders\ClassDefinitionLoader.cs" />
+    <Compile Include="Definitions\Loaders\LoaderHelper.cs" />
+    <Compile Include="Definitions\Loaders\ObjectFileDefinitionLoader.cs" />
+    <Compile Include="Definitions\ObjectFileDefinition.cs" />
+    <Compile Include="Definitions\Raw\ClassDefinition.cs" />
+    <Compile Include="Definitions\Raw\EnumDefinition.cs" />
+    <Compile Include="Definitions\Raw\EnumElementDefinition.cs" />
+    <Compile Include="Definitions\Raw\FieldDefinition.cs" />
+    <Compile Include="Definitions\Raw\FriendDefinition.cs" />
+    <Compile Include="Definitions\Raw\ObjectFileDefinition.cs" />
+    <Compile Include="FieldType.cs" />
+    <Compile Include="FieldTypeDeserializers.cs" />
+    <Compile Include="FieldTypeHelper.cs" />
+    <Compile Include="FieldTypeSerializers.cs" />
+    <Compile Include="HashedDefinitionDictionary.cs" />
+    <Compile Include="IFileDefinition.cs" />
+    <Compile Include="IHashedDefinition.cs" />
+    <Compile Include="INamedDefinition.cs" />
+    <Compile Include="InfoManager.cs" />
+    <Compile Include="LoadException.cs" />
+    <Compile Include="NamedDefinitionDictionary.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Vector2.cs" />
-    <Compile Include="Vector3.cs" />
-    <Compile Include="Vector4.cs" />
+    <Compile Include="XmlLoadException.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Gibbed.Disrupt.FileFormats\Gibbed.Disrupt.FileFormats.csproj">
+      <Project>{CCFBF6B8-BA2E-49C1-AFA8-B12B1F1A125D}</Project>
+      <Name>Gibbed.Disrupt.FileFormats</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Gibbed.IO\Gibbed.IO.csproj">
       <Project>{047857BA-DAA3-4CA7-AFB8-A1B082B28C6A}</Project>
       <Name>Gibbed.IO</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Gibbed.ProjectData\Gibbed.ProjectData.csproj">
-      <Project>{F27A289E-3376-4653-89F3-D19C1ECABF33}</Project>
-      <Name>Gibbed.ProjectData</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\XCompression\XCompression.csproj">
-      <Project>{03D070D7-1D00-4C1A-9EDF-3437FAEA0CE6}</Project>
-      <Name>XCompression</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="lzo_32.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="lzo_64.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -20,36 +20,25 @@
  *    distribution.
  */
 
-using System;
+using System.Collections.Generic;
+using System.Xml.Serialization;
 
-namespace Gibbed.Disrupt.FileFormats
+namespace Gibbed.Disrupt.BinaryObjectInfo.Definitions.Raw
 {
-    public static class StringHelpers
+    public class EnumDefinition
     {
-        public static ulong HashFNV64(this string input)
+        public EnumDefinition()
         {
-            return input.HashFNV64(0xCBF29CE484222325ul);
+            this.Elements = new List<EnumElementDefinition>();
         }
 
-        public static ulong HashFNV64(this string input, ulong seed)
-        {
-            if (input == null)
-            {
-                throw new ArgumentNullException("input");
-            }
+        [XmlIgnore]
+        public string Path { get; set; }
 
-            if (input.Length == 0)
-            {
-                return 0;
-            }
+        [XmlAttribute("name")]
+        public string Name { get; set; }
 
-            var hash = seed;
-            foreach (char t in input)
-            {
-                hash *= 0x100000001B3ul;
-                hash ^= t;
-            }
-            return hash;
-        }
+        [XmlElement("element")]
+        public List<EnumElementDefinition> Elements { get; set; }
     }
 }
