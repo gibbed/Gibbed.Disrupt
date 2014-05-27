@@ -399,8 +399,6 @@ namespace Gibbed.Disrupt.BinaryObjectInfo
 
                 case FieldType.Rml:
                 {
-                    throw new NotImplementedException();
-                    /*
                     var rml = new XmlResourceFile
                     {
                         Root = ConvertXml.Program.ReadNode(nav.SelectSingleNode("rml/*"))
@@ -412,7 +410,6 @@ namespace Gibbed.Disrupt.BinaryObjectInfo
                         temp.Position = 0;
                         return temp.ReadBytes((uint)temp.Length);
                     }
-                    */
                 }
 
                 case FieldType.ComputeHash32:

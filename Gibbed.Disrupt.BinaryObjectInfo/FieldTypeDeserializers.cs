@@ -547,8 +547,6 @@ namespace Gibbed.Disrupt.BinaryObjectInfo
                         throw new FormatException("field type Rml requires at least 5 bytes");
                     }
 
-                    throw new NotImplementedException();
-                    /*
                     var rez = new XmlResourceFile();
                     using (var input = new MemoryStream(data, 0, data.Length, false))
                     {
@@ -559,7 +557,6 @@ namespace Gibbed.Disrupt.BinaryObjectInfo
                     writer.WriteStartElement("rml");
                     ConvertXml.Program.WriteNode(writer, rez.Root);
                     writer.WriteEndElement();
-                    */
                     break;
                 }
 
