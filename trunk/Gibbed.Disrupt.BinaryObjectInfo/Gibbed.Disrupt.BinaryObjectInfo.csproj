@@ -72,6 +72,10 @@
     <Compile Include="XmlLoadException.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Gibbed.Disrupt.ConvertXml\Gibbed.Disrupt.ConvertXml.csproj">
+      <Project>{C4F19C22-D5E0-41FC-ADAD-B7E2D65AC143}</Project>
+      <Name>Gibbed.Disrupt.ConvertXml</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Gibbed.Disrupt.FileFormats\Gibbed.Disrupt.FileFormats.csproj">
       <Project>{CCFBF6B8-BA2E-49C1-AFA8-B12B1F1A125D}</Project>
       <Name>Gibbed.Disrupt.FileFormats</Name>
