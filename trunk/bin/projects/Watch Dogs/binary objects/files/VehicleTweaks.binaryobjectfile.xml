@@ -1,0 +1,7 @@
+<file name="VehicleTweaks">
+	<object name="lib">
+		<object hash="72DE4948">
+			<inherit name="CTweaks" />
+		</object>
+	</object>
+</file>

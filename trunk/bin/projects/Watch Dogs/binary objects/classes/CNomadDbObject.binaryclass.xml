@@ -1,0 +1,7 @@
+<class name="CNomadDbObject">
+	<inherit name="CNomadObject" />
+	<field name="hidSingleObject" type="Boolean" />
+	<field name="text_hidName" type="String"  />
+	<field name="hidName" type="Hash32"  />
+	<field name="hidKey" type="Hash32"  />
+</class>
