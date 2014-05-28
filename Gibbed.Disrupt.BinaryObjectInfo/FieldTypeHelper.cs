@@ -108,9 +108,19 @@ namespace Gibbed.Disrupt.BinaryObjectInfo
                     return "String";
                 }
 
-                case FieldType.Enum:
+                case FieldType.Enum8:
                 {
-                    return "Enum";
+                    return "Enum8";
+                }
+
+                case FieldType.Enum16:
+                {
+                    return "Enum16";
+                }
+
+                case FieldType.Enum32:
+                {
+                    return "Enum32";
                 }
 
                 case FieldType.Hash32:

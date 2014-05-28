@@ -358,7 +358,81 @@ namespace Gibbed.Disrupt.BinaryObjectInfo
                     return Serialize(fieldType, nav.Value);
                 }
 
-                case FieldType.Enum:
+                case FieldType.Enum8:
+                {
+                    var enumDef = fieldDef != null ? fieldDef.Enum : null;
+
+                    var text = nav.Value;
+                    var elementDef = enumDef != null
+                                         ? enumDef.Elements.FirstOrDefault(ed => ed.Name == text)
+                                         : null;
+
+                    byte value;
+                    if (elementDef != null)
+                    {
+                        value = (byte)elementDef.Value;
+                    }
+                    else
+                    {
+                        if (TryParseUInt8(nav.Value, out value) == false)
+                        {
+                            if (enumDef == null)
+                            {
+                                throw new FormatException(
+                                    string.Format(
+                                        "could not parse enum value '{0}' as an UInt8 (perhaps enum definition is missing?)",
+                                        nav.Value));
+                            }
+
+                            throw new FormatException(
+                                string.Format(
+                                    "could not parse enum value '{0}' as an UInt8 (perhaps enum element definition is missing from {1}?)",
+                                    nav.Value,
+                                    enumDef.Name));
+                        }
+                    }
+
+                    return new[] { value };
+                }
+
+                case FieldType.Enum16:
+                {
+                    var enumDef = fieldDef != null ? fieldDef.Enum : null;
+
+                    var text = nav.Value;
+                    var elementDef = enumDef != null
+                                         ? enumDef.Elements.FirstOrDefault(ed => ed.Name == text)
+                                         : null;
+
+                    short value;
+                    if (elementDef != null)
+                    {
+                        value = (short)elementDef.Value;
+                    }
+                    else
+                    {
+                        if (TryParseInt16(nav.Value, out value) == false)
+                        {
+                            if (enumDef == null)
+                            {
+                                throw new FormatException(
+                                    string.Format(
+                                        "could not parse enum value '{0}' as an Int16 (perhaps enum definition is missing?)",
+                                        nav.Value));
+                            }
+
+                            throw new FormatException(
+                                string.Format(
+                                    "could not parse enum value '{0}' as an Int16 (perhaps enum element definition is missing from {1}?)",
+                                    nav.Value,
+                                    enumDef.Name));
+                        }
+                    }
+
+                    return BitConverter.GetBytes(value);
+                }
+
+                case FieldType.Enum32:
                 {
                     var enumDef = fieldDef != null ? fieldDef.Enum : null;
 
