@@ -253,11 +253,51 @@ namespace Gibbed.Disrupt.BinaryObjectInfo
                     return Encoding.UTF8.GetString(data, offset, length);
                 }
 
-                case FieldType.Enum:
+                case FieldType.Enum8:
                 {
+                    if (count == 0)
+                    {
+                        read = 0;
+                        return (byte)0;
+                    }
+
+                    if (HasLeft(data, offset, count, 1) == false)
+                    {
+                        throw new FormatException("field type Enum8 requires 1 byte");
+                    }
+
+                    read = 1;
+                    return data[offset];
+                }
+
+                case FieldType.Enum16:
+                {
+                    if (count == 0)
+                    {
+                        read = 0;
+                        return (short)0;
+                    }
+
+                    if (HasLeft(data, offset, count, 2) == false)
+                    {
+                        throw new FormatException("field type Enum16 requires 2 bytes");
+                    }
+
+                    read = 2;
+                    return BitConverter.ToInt16(data, offset);
+                }
+
+                case FieldType.Enum32:
+                {
+                    if (count == 0)
+                    {
+                        read = 0;
+                        return 0;
+                    }
+
                     if (HasLeft(data, offset, count, 4) == false)
                     {
-                        throw new FormatException("field type Enum requires 4 bytes");
+                        throw new FormatException("field type Enum32 requires 4 bytes");
                     }
 
                     read = 4;
@@ -528,7 +568,43 @@ namespace Gibbed.Disrupt.BinaryObjectInfo
                     break;
                 }
 
-                case FieldType.Enum:
+                case FieldType.Enum8:
+                {
+                    var value = Deserialize<byte>(fieldDef.Type, data, 0, data.Length, out read);
+
+                    if (fieldDef.Enum != null)
+                    {
+                        var enumDef = fieldDef.Enum.Elements.FirstOrDefault(ed => ed.Value == value);
+                        if (enumDef != null)
+                        {
+                            writer.WriteString(enumDef.Name);
+                            break;
+                        }
+                    }
+
+                    writer.WriteString(value.ToString(CultureInfo.InvariantCulture));
+                    break;
+                }
+
+                case FieldType.Enum16:
+                {
+                    var value = Deserialize<short>(fieldDef.Type, data, 0, data.Length, out read);
+
+                    if (fieldDef.Enum != null)
+                    {
+                        var enumDef = fieldDef.Enum.Elements.FirstOrDefault(ed => ed.Value == value);
+                        if (enumDef != null)
+                        {
+                            writer.WriteString(enumDef.Name);
+                            break;
+                        }
+                    }
+
+                    writer.WriteString(value.ToString(CultureInfo.InvariantCulture));
+                    break;
+                }
+
+                case FieldType.Enum32:
                 {
                     var value = Deserialize<int>(fieldDef.Type, data, 0, data.Length, out read);
 
