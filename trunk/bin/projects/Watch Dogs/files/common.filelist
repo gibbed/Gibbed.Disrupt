@@ -1,4 +1,4 @@
-; 6544/10237 (63%)
+; 6554/10237 (64%)
 domino\library\common\checkpointrace.checkpointcontroller.debug.lua
 domino\library\common\checkpointrace.checkpointcontroller.lua
 domino\library\common\cinematicprep.cinematicprep.debug.lua
@@ -5435,8 +5435,10 @@ domino\user\windycity\world_team\worldteam_aishowcase_sbernard.main.debug.lua
 domino\user\windycity\world_team\worldteam_aishowcase_sbernard.main.lua
 domino\user\windycity\world_team\worldteam_aishowcase_sboudon.main.debug.lua
 domino\user\windycity\world_team\worldteam_aishowcase_sboudon.main.lua
+engine\ActionMaps\InputActionMapBenchmark.xml
 engine\ActionMaps\InputActionMapCommon.xml
 engine\ActionMaps\InputActionMapConsole.xml
+engine\ActionMaps\InputActionMapIGE.xml
 engine\ActionMaps\InputActionMapMulti.xml
 engine\ActionMaps\InputActionMapSingle.xml
 engine\ActionMaps\Presets\PS3\Default.xml
@@ -6472,12 +6474,20 @@ graphics\Minimap_E3\minimapInfo.xml
 graphics\Minimap_E3\WindyCity_Water_MINIMAPDOTS.xbg
 graphics\terrain\water\watercloud_n.xbt
 languages\main_brazilian.loc
+languages\main_czech.loc
+languages\main_danish.loc
 languages\main_dutch.loc
 languages\main_english.loc
+languages\main_finnish.loc
 languages\main_french.loc
 languages\main_german.loc
+languages\main_hungarian.loc
 languages\main_italian.loc
+languages\main_norwegian.loc
+languages\main_polish.loc
+languages\main_portugueseportugal.loc
 languages\main_spanish.loc
+languages\main_swedish.loc
 Music\Music.rml
 Profiler\ProfilerTable.rml
 SoundBinary\000229b2.spk
