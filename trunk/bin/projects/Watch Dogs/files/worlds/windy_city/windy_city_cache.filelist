@@ -1,4 +1,4 @@
-; 2862/97498 (2%)
+; 2863/97498 (2%)
 domino\library\common\checkpointrace.checkpointcontroller.lua
 domino\library\common\common_hud.protect_vip.lua
 domino\library\common\current_gen.globals.lua
@@ -2859,5 +2859,6 @@ move\decisiontrees\mobs\ai_attractors\a02-m04_female_fulb-npc-attractor-idle-tex
 move\decisiontrees\mobs\ai_attractors\drvr_male_fulb_npc-attractor-lean-back-railing_000f_unaware.move.bin
 move\decisiontrees\mobs\ai_attractors\drvr_male_fulb_npc-attractor-look-in-bin_000f_unaware.move.bin
 move\decisiontrees\mobs\ai_enticers\twohandedweapon\drvr_male_fulb_npc-enticer-lean-block_000f_unaware_rifle_none.move.bin
+UI\supertextures\platform\platform_lib_buttons.bfd
 worlds\windy_city\generated\windy_city.mapsdata.fcb
 worlds\windy_city\generated\windy_city.omnis.fcb

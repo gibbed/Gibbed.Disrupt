@@ -1,4 +1,4 @@
-; 3987/162504 (2%)
+; 3992/162504 (2%)
 dialog\dialogmanagerindices.dat
 domino\library\common\checkpointrace.checkpointcontroller.lua
 domino\library\common\cinematicprep.cinematicprep.lua
@@ -3978,7 +3978,12 @@ UI\Fire\sources\videos\dominovideos\onscreen\a01_m03_sc030_tablet.bik
 UI\Fire\sources\videos\dominovideos\onscreen\a01_m10_sc020_cin_phonescr.bik
 UI\Fire\sources\videos\dominovideos\onscreen\a03_m06_axiomoff_blumeglitch.bik
 UI\Fire\sources\videos\dominovideos\onscreen\a03_m06_axiomoff_blumeglitch2.bik
+UI\Fonts\DFGGothicP-W5_Japanese.ffd
+UI\Fonts\DFPHeiMedium-B5_ChineseTrad.ffd
 UI\Fonts\HelveticaNeueLT_W1G_65_Md_Default.ffd
+UI\Fonts\MDMorrisM_PS3_Korean.ffd
+UI\Fonts\WD_Tech_Plain_Default.ffd
+UI\supertextures\platform\platform_lib_buttons.bfd
 UI\supertextures\temp_idle.bfd
 worlds\windy_city\generated\entitylibrary.fcb
 worlds\windy_city\generated\windy_city.game.xml
