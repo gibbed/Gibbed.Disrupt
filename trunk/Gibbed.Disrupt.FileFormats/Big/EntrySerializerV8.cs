@@ -20,7 +20,6 @@
  *    distribution.
  */
 
-using System;
 using System.IO;
 using Gibbed.IO;
 
@@ -41,7 +40,22 @@ namespace Gibbed.Disrupt.FileFormats.Big
 
         public void Serialize(Stream output, Entry entry, Endian endian)
         {
-            throw new NotImplementedException();
+            var a = entry.NameHash;
+
+            uint b = 0;
+            b |= (entry.UncompressedSize & 0x1FFFFFFFu) << 2;
+            b |= (uint)(((byte)entry.CompressionScheme << 0) & 0x00000007u);
+
+            uint c = 0;
+            c |= (uint)(entry.Offset & 0x00000007u) << 29;
+            c |= (entry.CompressedSize & 0x1FFFFFFFu) << 0;
+
+            var d = (uint)((entry.Offset >> 3) & 0x1FFFFFFF);
+
+            output.WriteValueU32(a, endian);
+            output.WriteValueU32(b, endian);
+            output.WriteValueU32(c, endian);
+            output.WriteValueU32(d, endian);
         }
 
         public void Deserialize(Stream input, Endian endian, out Entry entry)

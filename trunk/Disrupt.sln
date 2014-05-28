@@ -23,6 +23,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gibbed.Disrupt.BinaryObject
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gibbed.Disrupt.ConvertXml", "Gibbed.Disrupt.ConvertXml\Gibbed.Disrupt.ConvertXml.csproj", "{C4F19C22-D5E0-41FC-ADAD-B7E2D65AC143}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gibbed.Disrupt.Pack", "Gibbed.Disrupt.Pack\Gibbed.Disrupt.Pack.csproj", "{A088D736-23C1-4C8B-99A2-5ADD421B14F6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -133,6 +135,16 @@ Global
 		{C4F19C22-D5E0-41FC-ADAD-B7E2D65AC143}.Release|Mixed Platforms.Build.0 = Release|x86
 		{C4F19C22-D5E0-41FC-ADAD-B7E2D65AC143}.Release|x86.ActiveCfg = Release|x86
 		{C4F19C22-D5E0-41FC-ADAD-B7E2D65AC143}.Release|x86.Build.0 = Release|x86
+		{A088D736-23C1-4C8B-99A2-5ADD421B14F6}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{A088D736-23C1-4C8B-99A2-5ADD421B14F6}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{A088D736-23C1-4C8B-99A2-5ADD421B14F6}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{A088D736-23C1-4C8B-99A2-5ADD421B14F6}.Debug|x86.ActiveCfg = Debug|x86
+		{A088D736-23C1-4C8B-99A2-5ADD421B14F6}.Debug|x86.Build.0 = Debug|x86
+		{A088D736-23C1-4C8B-99A2-5ADD421B14F6}.Release|Any CPU.ActiveCfg = Release|x86
+		{A088D736-23C1-4C8B-99A2-5ADD421B14F6}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{A088D736-23C1-4C8B-99A2-5ADD421B14F6}.Release|Mixed Platforms.Build.0 = Release|x86
+		{A088D736-23C1-4C8B-99A2-5ADD421B14F6}.Release|x86.ActiveCfg = Release|x86
+		{A088D736-23C1-4C8B-99A2-5ADD421B14F6}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
