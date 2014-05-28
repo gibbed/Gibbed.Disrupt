@@ -142,7 +142,7 @@ namespace Gibbed.Disrupt.FileFormats
 
                 if (magic == 0x00014C53)
                 {
-                    return new Tuple<string, string>("misc", "ls");
+                    return new Tuple<string, string>("languages", "loc");
                 }
             }
 
