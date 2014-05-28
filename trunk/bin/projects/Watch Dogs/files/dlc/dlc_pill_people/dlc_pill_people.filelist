@@ -1,2 +1,12 @@
-; 1/209 (0%)
+; 11/209 (5%)
+graphics\_materials\chumeau-M-20130731153119.material.bin
+graphics\_materials\chumeau-M-20130731153841.material.bin
+graphics\_materials\chumeau-M-20130731155834.material.bin
+graphics\_materials\cmasquilliere-M-20130307163411.material.bin
+graphics\_textures\_pills\07_people\07_people_maze.xbt
+graphics\_textures\_pills\07_people\07_peopleflare.xbt
 sequences\07_Pills\People\07_people_end.cseq
+sequences\07_pills\people\07_startpill_people.cseq
+sequences\07_pills\people\07_startpillpostfx_people.cseq
+sequences\07_pills_peoplescan.cseq
+sequences\07_pills_peoplescan_perk.cseq
