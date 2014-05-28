@@ -196,9 +196,9 @@ namespace Gibbed.Disrupt.Pack
                             continue;
                         }
 
-                        if (partName.Length > 16)
+                        if (partName.Length > 8)
                         {
-                            partName = partName.Substring(0, 16);
+                            partName = partName.Substring(0, 8);
                         }
 
                         pendingEntry.Name = null;
