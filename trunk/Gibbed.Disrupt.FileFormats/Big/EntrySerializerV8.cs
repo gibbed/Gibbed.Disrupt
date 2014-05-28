@@ -43,7 +43,7 @@ namespace Gibbed.Disrupt.FileFormats.Big
             var a = entry.NameHash;
 
             uint b = 0;
-            b |= (entry.UncompressedSize & 0x1FFFFFFFu) << 2;
+            b |= (entry.UncompressedSize & 0x1FFFFFFFu) << 3;
             b |= (uint)(((byte)entry.CompressionScheme << 0) & 0x00000007u);
 
             uint c = 0;
