@@ -90,7 +90,50 @@ namespace Gibbed.Disrupt.FileFormats
 
         public void Serialize(Stream output)
         {
-            throw new NotImplementedException();
+            var version = this.Version;
+
+            if (version < 7 || version > 8)
+            {
+                throw new FormatException("unsupported version");
+            }
+
+            var target = this._Target;
+            var platform = this._Platform;
+            var flags02 = this._Unknown70;
+
+            if (target != Big.Target.Any &&
+                target != Big.Target.Win32 &&
+                target != Big.Target.Xbox360 &&
+                target != Big.Target.PS3 &&
+                target != Big.Target.Win64)
+            {
+                throw new FormatException("unsupported or invalid platform");
+            }
+
+            if (IsValidTargetPlatform(target, platform, flags02) == false)
+            {
+                throw new FormatException("invalid flags");
+            }
+
+            var endian = this.Endian;
+
+            output.WriteValueU32(_Signature, Endian.Little);
+            output.WriteValueS32(version, Endian.Little);
+
+            uint flags = 0;
+            flags |= (uint)((byte)target & 0xFF) << 0;
+            flags |= (uint)((byte)platform & 0xFF) << 8;
+            flags |= (uint)(flags02 & 0xFF) << 16;
+            output.WriteValueU32(flags, Endian.Little);
+
+            var entrySerializer = this.GetEntrySerializer();
+            output.WriteValueS32(this.Entries.Count, Endian.Little);
+            foreach (var entry in this.Entries)
+            {
+                entrySerializer.Serialize(output, entry, endian);
+            }
+
+            output.WriteValueU32(0, Endian.Little);
         }
 
         public void Deserialize(Stream input)

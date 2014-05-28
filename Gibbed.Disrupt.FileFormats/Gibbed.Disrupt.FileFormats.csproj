@@ -47,6 +47,7 @@
     <Compile Include="BigFile.cs" />
     <Compile Include="Big\CompressionScheme.cs" />
     <Compile Include="Big\Entry.cs" />
+    <Compile Include="Big\EntryCompression.cs" />
     <Compile Include="Big\EntryDecompression.cs" />
     <Compile Include="Big\EntrySerializerV7.cs" />
     <Compile Include="Big\EntrySerializerV8.cs" />
