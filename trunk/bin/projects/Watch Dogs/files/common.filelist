@@ -1,4 +1,4 @@
-; 6678/10237 (65%)
+; 6701/10237 (65%)
 credits\pc\credits.xml
 domino\library\common\checkpointrace.checkpointcontroller.debug.lua
 domino\library\common\checkpointrace.checkpointcontroller.lua
@@ -6517,6 +6517,12 @@ music\music.rml
 profiler\profilertable.rml
 soundbinary\000229b2.spk
 soundbinary\000229b3.spk
+soundbinary\000231f1.spk
+soundbinary\00031e0f.spk
+soundbinary\00031ecd.spk
+soundbinary\00031ed3.spk
+soundbinary\00031ed4.spk
+soundbinary\00031ee4.spk
 soundbinary\2fffffff.spk
 soundbinary\soundidlinelinks.slid
 ui\fire\bin\alarmclock.feu
@@ -6642,6 +6648,23 @@ ui\fire\sources\textures\nexus_items\vote\dc_parker_002.xbt
 ui\fire\sources\textures\nexus_items\vote\dc_pontiac_001.xbt
 ui\fire\sources\textures\nexus_items\vote\dc_pontiac_002.xbt
 ui\fire\sources\textures\nexus_items\vote\dc_theward_001.xbt
+ui\fire\sources\textures\nexus_items\vote\racescreenshots_10.xbt
+ui\fire\sources\textures\nexus_items\vote\racescreenshots_11.xbt
+ui\fire\sources\textures\nexus_items\vote\racescreenshots_14.xbt
+ui\fire\sources\textures\nexus_items\vote\racescreenshots_15.xbt
+ui\fire\sources\textures\nexus_items\vote\racescreenshots_16.xbt
+ui\fire\sources\textures\nexus_items\vote\racescreenshots_17.xbt
+ui\fire\sources\textures\nexus_items\vote\racescreenshots_18.xbt
+ui\fire\sources\textures\nexus_items\vote\racescreenshots_19.xbt
+ui\fire\sources\textures\nexus_items\vote\racescreenshots_2.xbt
+ui\fire\sources\textures\nexus_items\vote\racescreenshots_20.xbt
+ui\fire\sources\textures\nexus_items\vote\racescreenshots_21.xbt
+ui\fire\sources\textures\nexus_items\vote\racescreenshots_24.xbt
+ui\fire\sources\textures\nexus_items\vote\racescreenshots_4.xbt
+ui\fire\sources\textures\nexus_items\vote\racescreenshots_5.xbt
+ui\fire\sources\textures\nexus_items\vote\racescreenshots_7.xbt
+ui\fire\sources\textures\nexus_items\vote\racescreenshots_8.xbt
+ui\fire\sources\textures\nexus_items\vote\racescreenshots_9.xbt
 ui\fire\sources\textures\nexus_profiler\object\logo_ctos.xbt
 ui\fire\sources\textures\nexus_profiler\object\phonecameraapp.xbt
 ui\fonts\dfggothicp-w5_japanese.ffd

@@ -1,4 +1,4 @@
-; 20/78 (25%)
+; 31/78 (39%)
 domino\user\windycity\side_missions\ulc_sony\mission_01\ulc_sony_m01.activation.lua
 domino\user\windycity\side_missions\ulc_sony\mission_01\ulc_sony_m01.main.lua
 domino\user\windycity\side_missions\ulc_sony\mission_02\ulc_sony_m02.activation.lua
@@ -8,6 +8,17 @@ domino\user\windycity\side_missions\ulc_sony\mission_03\ulc_sony_m03.main.lua
 domino\user\windycity\side_missions\ulc_sony\mission_03\ulc_sony_m03.spawnroadblock.lua
 domino\user\windycity\side_missions\ulc_sony\mission_04\ulc_sony_m04.activation.lua
 domino\user\windycity\side_missions\ulc_sony\mission_04\ulc_sony_m04.main.lua
+graphics\_materials\jmarcoux-m-20130618095359.material.bin
+graphics\_materials\jmarcoux-m-20130618095408.material.bin
+graphics\_materials\jmarcoux-m-20130618095418.material.bin
+graphics\_materials\jmarcoux-m-20130820084856.material.bin
+graphics\_materials\jmarcoux-m-20140117111207.material.bin
+graphics\_materials\jmarcoux-m-20140117111525.material.bin
+graphics\_materials\liushibo-m-305201358315206.material.bin
+graphics\_materials\slacoste-m-20130821135825.material.bin
+graphics\_materials\slacoste-m-20130821140140.material.bin
+graphics\_materials\slacoste-m-20130821140207.material.bin
+graphics\_materials\slacoste-m-20130821140235.material.bin
 graphics\characters\kits\unlockablecontent\male\legs\ulc_m_leg_white01\ulc_m_leg_white01.xbg
 ui\fire\sources\textures\nexus_drivingjobs\mission prompts\interceptortargets\interceptortargets_06.xbt
 ui\fire\sources\textures\nexus_drivingjobs\mission prompts\interceptortargets\interceptortargets_17.xbt
