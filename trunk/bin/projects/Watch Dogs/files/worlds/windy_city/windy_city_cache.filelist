@@ -1,4 +1,4 @@
-; 46070/97498 (47%)
+; 46099/97498 (47%)
 animations\07_pills\alone\07_alonegenerator_break.mab
 animations\07_pills\alone\07_alonegenerator_broken_idle.mab
 animations\07_pills\alone\07_alonegenerator_work_idle.mab
@@ -17657,6 +17657,7 @@ graphics\characters\_common\animations\vehicles\speedbike\male_fulb_bike-pickup-
 graphics\characters\_common\animations\vehicles\speedbike\male_fulb_bike-pickup-right-towards_nowep_chopper.mab
 graphics\characters\_common\animations\vehicles\speedbike\male_fulb_bike-pickup-right-towards_nowep_sbike.mab
 graphics\characters\_common\animations\vehicles\speedbike\male_fulb_bike-steering-layer_nowep_chopper.mab
+graphics\characters\_common\facial\generated\00090a06.dpax
 graphics\characters\_common\singlebone_ref.skeleton
 graphics\characters\alieninvasion\hunter\alien_hunter_s.xbt
 graphics\characters\alieninvasion\hunter\pelvis_ref.skeleton
@@ -35377,6 +35378,7 @@ sequences\windy_city\memory\a01_f02_lenasgrave_subtitle.cseq
 sequences\windy_city\memory\a01_f02_lenasgrave_whiteout.cseq
 sequences\windy_city\side_missions\driving_missions\a01_d00-sc070_cin-drive_quinn_intro\a01_d00-sc070_cin_loop.cseq
 soundbinary\00012baf.spk
+soundbinary\00017076.spk
 soundbinary\00019a81.spk
 soundbinary\00019be9.spk
 soundbinary\00019c03.spk
@@ -35538,6 +35540,33 @@ soundbinary\000371db.spk
 soundbinary\0003740b.spk
 soundbinary\00037634.spk
 soundbinary\0003765b.spk
+soundbinary\00051f5f.spk
+soundbinary\000599a4.spk
+soundbinary\00059b78.spk
+soundbinary\0005a0a1.spk
+soundbinary\0005af44.spk
+soundbinary\0005fb5b.spk
+soundbinary\0005fbbe.spk
+soundbinary\0005fc96.spk
+soundbinary\00096df7.spk
+soundbinary\00099219.spk
+soundbinary\00099246.spk
+soundbinary\0009931e.spk
+soundbinary\000995ba.spk
+soundbinary\000a75cf.spk
+soundbinary\000a9452.spk
+soundbinary\000a94a2.spk
+soundbinary\000a9655.spk
+soundbinary\000be9b2.spk
+soundbinary\0010d8ec.spk
+soundbinary\0010dc7d.spk
+soundbinary\001132ce.spk
+soundbinary\001132cf.spk
+soundbinary\001132d5.spk
+soundbinary\0011336c.spk
+soundbinary\0011336d.spk
+soundbinary\00113a57.spk
+soundbinary\00113a58.spk
 ui\fire\sources\textures\nexus_profiler\object\elevator.xbt
 ui\fire\sources\textures\nexus_profiler\object\phonecamera.xbt
 ui\fire\sources\textures\nexus_profiler\object\speaker.xbt
