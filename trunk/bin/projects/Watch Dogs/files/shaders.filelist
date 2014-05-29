@@ -1,12 +1,12 @@
 ; 51/775 (6%)
-engine\shaders\CustomSemantics.inc.fx
-engine\shaders\FastInitData.bin
+engine\shaders\customsemantics.inc.fx
+engine\shaders\fastinitdata.bin
 engine\shaders\materialdescriptors\alonebarrier.xml
 engine\shaders\materialdescriptors\background.xml
 engine\shaders\materialdescriptors\character.xml
 engine\shaders\materialdescriptors\cloth.xml
 engine\shaders\materialdescriptors\decal.xml
-engine\shaders\materialdescriptors\Dots.xml
+engine\shaders\materialdescriptors\dots.xml
 engine\shaders\materialdescriptors\driverbuilding.xml
 engine\shaders\materialdescriptors\drivercargeneric.xml
 engine\shaders\materialdescriptors\drivercarpaint.xml
@@ -29,7 +29,7 @@ engine\shaders\materialdescriptors\hair.xml
 engine\shaders\materialdescriptors\highlight.xml
 engine\shaders\materialdescriptors\leaf.xml
 engine\shaders\materialdescriptors\neonsign.xml
-engine\shaders\materialdescriptors\Rain.xml
+engine\shaders\materialdescriptors\rain.xml
 engine\shaders\materialdescriptors\realtreedriverleaf.xml
 engine\shaders\materialdescriptors\realtreedrivertrunk.xml
 engine\shaders\materialdescriptors\realtreetrunk.xml
@@ -37,16 +37,16 @@ engine\shaders\materialdescriptors\road.xml
 engine\shaders\materialdescriptors\skin.xml
 engine\shaders\materialdescriptors\starsphere.xml
 engine\shaders\materialdescriptors\template.xml
-engine\shaders\materialdescriptors\UI\_LEParams.xml
+engine\shaders\materialdescriptors\ui\_leparams.xml
 engine\shaders\materialdescriptors\unlit.xml
 engine\shaders\materialdescriptors\vehicle.xml
 engine\shaders\materialdescriptors\vehicle_light_halo.xml
-engine\shaders\materialdescriptors\VolumeAmbientOcclusion.xml
+engine\shaders\materialdescriptors\volumeambientocclusion.xml
 engine\shaders\materialdescriptors\water.xml
 engine\shaders\materialdescriptors\waterflow.xml
 engine\shaders\materialdescriptors\waterriver.xml
 engine\shaders\materialdescriptors\weapon.xml
 engine\shaders\materialdescriptors\windowlight.xml
-engine\shaders\meta\CommonOptions.xml
-engine\shaders\SamplerStates.xml
-engine\shaders\TextureProfiles.xml
+engine\shaders\meta\commonoptions.xml
+engine\shaders\samplerstates.xml
+engine\shaders\textureprofiles.xml
