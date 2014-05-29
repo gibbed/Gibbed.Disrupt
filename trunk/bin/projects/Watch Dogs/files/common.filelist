@@ -1,4 +1,4 @@
-; 6669/10237 (65%)
+; 6670/10237 (65%)
 credits\pc\credits.xml
 domino\library\common\checkpointrace.checkpointcontroller.debug.lua
 domino\library\common\checkpointrace.checkpointcontroller.lua
@@ -6654,6 +6654,7 @@ ui\supertextures\lib_icons_color.xbt
 ui\supertextures\lib_icons_greenalpha.bfd
 ui\supertextures\lib_icons_greenalpha.xbt
 ui\supertextures\loading.bfd
+ui\supertextures\menu_chess.bfd
 ui\supertextures\menu_grid.bfd
 ui\supertextures\menu_grid.xbt
 ui\supertextures\menu_poker.bfd
