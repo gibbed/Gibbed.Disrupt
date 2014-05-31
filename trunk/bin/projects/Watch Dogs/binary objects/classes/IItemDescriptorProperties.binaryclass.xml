@@ -1,0 +1,3 @@
+<class name="IItemDescriptorProperties">
+	<inherit name="CNomadObject" />
+</class>

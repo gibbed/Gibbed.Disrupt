@@ -1,0 +1,8 @@
+<class name="CItemDescriptorProgressionProperties">
+	<inherit name="IItemDescriptorProperties" />
+	<object name="ProgressionNodeRequirements">
+		<object name="ProgressionNodeRequirements">
+			<field name="progressionnoderequirementProgressionNodeRequirement" type="BinHex" />
+		</object>
+	</object>
+</class>

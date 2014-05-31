@@ -1,0 +1,12 @@
+<class name="CCurveObj">
+	<inherit name="CNomadObject" />
+	<object name="Knots">
+		<object name="Knot">
+			<field name="Value" type="Vector4" />
+			<field name="Info" type="Vector4" />
+			<field name="Type" type="UInt8" />
+		</object>
+	</object>
+	<field name="hidNumKnots" type="UInt8" />
+	<field name="hidAllowedTypes" type="Int32" />
+</class>

@@ -1,0 +1,10 @@
+<class name="CItemDescriptorCar">
+	<inherit name="CItemDescriptor" />
+	<field name="fTopSpeed" type="Float32" />
+	<field name="fAcceleration" type="Float32" />
+	<field name="fToughness" type="Float32" />
+	<field name="fHandling" type="Float32" />
+	<field name="bIsOffroad" type="Boolean" />
+	<field name="bUnlockableOnEnter" type="Boolean" />
+	<field name="bLockedByDefault" type="Boolean" />
+</class>

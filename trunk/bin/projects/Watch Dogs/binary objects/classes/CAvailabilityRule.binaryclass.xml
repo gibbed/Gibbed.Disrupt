@@ -1,0 +1,3 @@
+<class name="CAvailabilityRule">
+	<inherit name="CNomadObject" />
+</class>

@@ -1,0 +1,33 @@
+<class name="CULCContentDb">
+	<inherit name="CNomadDbObjectNamed" />
+	<field name="selUlcCode" type="Enum8">
+		<enum name="enumUlcCode">
+			<element name="Mission Platinum (The Palace)">0</element>
+			<element name="Mission Gold (Signature Shot)">1</element>
+			<element name="Mission Silver (Breakthrough)">2</element>
+			<element name="Mission Sony Exclusive (4 Mission Pack)">3</element>
+			<element name="Weapon 1920s Vintage Gun">4</element>
+			<element name="Weapon Cyberpunk Gun">5</element>
+			<element name="Skin 1920s Chicago">6</element>
+			<element name="Skin Cyperpunk">7</element>
+			<element name="Skin DedSec">8</element>
+			<element name="Skin Blume">9</element>
+			<element name="Skin Chicago Club">10</element>
+			<element name="Skin Gold - Black Viceroys">11</element>
+			<element name="Skin Sony Exclusive - White Hat Hacker">12</element>
+			<element name="Perk DedSec Hacking Boost">13</element>
+			<element name="Perk Blume Weapon Specialist">14</element>
+			<element name="Perk South Club Driving Master">15</element>
+			<element name="Perk Platinum - ATM Boost">16</element>
+			<element name="Perk Silver - Vehicle Expert">17</element>
+			<element name="Weapon R33B Gun">18</element>
+			<element name="Weapon MPA412 Gun">19</element>
+			<element name="Invalid">20</element>
+		</enum>
+	</field>
+	<object name="AccessIds">
+		<object name="accessidAccessIds">
+			<field name="accessidAccessIds" type="Hash32" />
+		</object>
+	</object>
+</class>
