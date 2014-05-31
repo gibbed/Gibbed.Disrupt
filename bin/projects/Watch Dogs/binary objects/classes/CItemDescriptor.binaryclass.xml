@@ -1,0 +1,24 @@
+<class name="CItemDescriptor">
+	<inherit name="CNomadObject" />
+	<object name="GenericProperties">
+		<inherit name="CItemDescriptorGenericProperties" />
+	</object>
+	<object name="RewardProperties">
+		<inherit name="CItemDescriptorRewardProperties" />
+	</object>
+	<object name="ShopProperties">
+		<inherit name="CItemDescriptorShopProperties" />
+	</object>
+	<object name="AssetsProperties">
+		<inherit name="CItemDescriptorAssetsProperties" />
+	</object>
+	<object name="RespawnProperties">
+	</object>
+	<object name="RegenerationProperties">
+	</object>
+	<object name="ProgressionProperties">
+		<inherit name="CItemDescriptorProgressionProperties" />
+	</object>
+	<field name="text_SpecificItemFor" type="String" />
+	<field name="SpecificItemFor" type="Hash32" />
+</class>

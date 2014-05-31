@@ -1,0 +1,12 @@
+<class name="CItemDbObject">
+	<inherit name="CNomadDbObjectNamed" />
+	<field name="text_itemdescriptorItemDescriptor" type="String" />
+	<field name="itemdescriptorItemDescriptor" type="Hash32" />
+	<field name="itemsBaseItem" type="BinHex" />
+	<object name="ItemDescriptor">
+		<inherit name="CItemDescriptorCar"
+		         condition_field="^itemdescriptorItemDescriptor"
+		         condition_type="ComputeHash32"
+		         condition_value="ItemDescriptorCar" />
+	</object>
+</class>

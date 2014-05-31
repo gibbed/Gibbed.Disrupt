@@ -1,0 +1,9 @@
+<class name="CItemDescriptorAssetsProperties">
+	<inherit name="IItemDescriptorProperties" />
+	<field name="sItemTextureName" type="String" />
+	<field name="sItemIconTextureName" type="String" />
+	<field name="sItemDescriptionTextureName" type="String" />
+	<field name="text_archItemArchetype" type="String" />
+	<field name="archItemArchetype" type="BinHex" />
+	<field name="tiledbobjectPDATileDbObject" type="BinHex" />
+</class>

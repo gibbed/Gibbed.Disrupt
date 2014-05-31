@@ -1,0 +1,11 @@
+<class name="CCollectibleContainer">
+	<inherit name="CNomadObject" />
+	<field name="CollectibleDBObject" type="BinHex" />
+	<object name="CollectibleItems">
+		<object name="CollectibleItem">
+			<field name="iRepeatedEntryId" type="BinHex" />
+			<field name="itemsItemDBObject" type="BinHex" />
+			<field name="iAmountLeft" type="BinHex" />
+		</object>
+	</object>
+</class>

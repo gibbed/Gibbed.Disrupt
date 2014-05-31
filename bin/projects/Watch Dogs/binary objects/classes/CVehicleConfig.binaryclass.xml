@@ -1,0 +1,147 @@
+<class name="CVehicleConfig">
+	<inherit name="CNomadDbObjectNamed" />
+	<object name="Detection">
+		<object name="ConeAndRadiusConfig">
+			<object name="Default">
+				<field name="fAutoDetectionRadiusDeprecated" type="Float32" />
+				<object name="curveAutoDetectionRadius">
+					<inherit name="CCurveObj" />
+				</object>
+				<field name="fFrontAngleLOS" type="Float32" />
+				<field name="fBackAngleLOS" type="Float32" />
+			</object>
+			<object name="InCombat">
+				<field name="fAutoDetectionRadiusInCombatDeprecated" type="Float32" />
+				<object name="curveAutoDetectionRadiusInCombat">
+					<inherit name="CCurveObj" />
+				</object>
+				<field name="fFrontAngleLOSInCombat" type="Float32" />
+				<field name="fBackAngleLOSInCombat" type="Float32" />
+			</object>
+		</object>
+		<object name="RangeModifierConfig">
+			<field name="fMediumRange" type="Float32" />
+			<field name="fCloseRange" type="Float32" />
+			<field name="fPersonalRange" type="Float32" />
+			<field name="fDetectionRadiusRatioOnBackup" type="Float32" />
+			<field name="fDetectionRadiusRatioOnBlackout" type="Float32" />
+			<field name="fReputationModifer" type="Float32" />
+		</object>
+		<object name="FOVDetection">
+			<object name="FOVFront">
+				<inherit name="CFOVDetectionConfig" />
+			</object>
+			<object name="FOVFrontCombat">
+				<inherit name="CFOVDetectionConfig" />
+			</object>
+			<object name="FOVRear">
+				<inherit name="CFOVDetectionConfig" />
+			</object>
+			<object name="FOVRearCombat">
+				<inherit name="CFOVDetectionConfig" />
+			</object>
+			<object name="FOVSpotlight">
+				<inherit name="CFOVDetectionConfig" />
+			</object>
+			<object name="FOVSpotlightCombat">
+				<inherit name="CFOVDetectionConfig" />
+			</object>
+			<object name="FOVSides">
+				<inherit name="CFOVDetectionConfig" />
+			</object>
+			<object name="FOVSidesCombat">
+				<inherit name="CFOVDetectionConfig" />
+			</object>
+			<object name="Chopper">
+				<object name="FOVDown">
+					<inherit name="CFOVDetectionConfig" />
+				</object>
+				<object name="FOVDownCombat">
+					<inherit name="CFOVDetectionConfig" />
+				</object>
+			</object>
+			<object name="curveTargetSpeedVsMaxDepthModifierCurve" desc="X = Player speed in KMh, Y = Max Depth modifier">
+				<inherit name="CCurveObj" />
+			</object>
+		</object>
+		<object name="Chopper">
+			<field name="EnableFOVDownDetection" type="Boolean" />
+			<field name="FOVDownPitchDegrees" type="Float32" />
+			<field name="FOVFrontPitchDegrees" type="Float32" />
+			<field name="EnableFOVRearDetection" type="Boolean" />
+			<field name="EnableFOVFrontTracking" type="Boolean" />
+			<field name="EnableFOVRearTracking" type="Boolean" />
+			<field name="bUseHelicopterVision" type="Boolean" />
+		</object>
+	</object>
+	<object name="SafeDriving">
+		<field name="vehiclesafedrivingcfgNormal" type="Hash32" />
+		<field name="vehiclesafedrivingcfgStressed" type="Hash32" />
+	</object>
+	<object name="GaugeModifier">
+		<field name="fGaugeTimeToReachTopAlert" type="Float32" />
+		<field name="fGaugeTimeToReachBottomAlert" type="Float32" />
+		<field name="fGaugeTimeToReachTopPlayerBlackoutModifier" type="Float32" />
+		<field name="fGaugeTimeToReachBottomPlayerBlackoutModifier" type="Float32" />
+		<field name="fGaugeTimeToReachTopPlayerBackupModifier" type="Float32" />
+		<object name="curveGaugeMaxDepthFOVvsTimeModifierCurve" desc="X = FOV max depth ratio (1.0 = max FOV depth distance, 0 = min FOV depth distance, Y = gauge time to reach top multiplier">
+			<inherit name="CCurveObj" />
+		</object>
+		<object name="curveGaugeAngleToTargetvsTimeModifierCurve" desc="X = angle in degrees between FOV dir and target (high angle = slower detection), Y = gauge time to reach top multiplier">
+			<inherit name="CCurveObj" />
+		</object>
+		<object name="Stimulus">
+			<field name="fGaugeTimeToReachTopGunFireModifier" type="Float32" />
+			<field name="fGaugeTimeToReachTopWeaponInHandsModifier" type="Float32" />
+			<field name="fGaugeTimeToReachTopCollisionModifier" type="Float32" />
+		</object>
+	</object>
+	<object name="TireBlowoutBhv">
+		<field name="bAmplifyDamage" type="Boolean" />
+		<field name="fEnginePowerBoostFactor" type="Float32" />
+		<object name="Swerve">
+			<field name="fMinSpeedToSwerve_kmh" type="Float32" />
+			<object name="curveGripRatioOverTime" desc="X=time in sec since the bhv is started, Y=Grip ratio">
+				<inherit name="CCurveObj" />
+			</object>
+			<object name="curveCenterOfMassZOffsetOverTime" desc="X=time in sec since the bhv is started, Y=Center of Mass Z Offset">
+				<inherit name="CCurveObj" />
+			</object>
+			<object name="curveBreakRatioOverTime" desc="X=time in sec since the bhv is started, Y=Break Ratio">
+				<inherit name="CCurveObj" />
+			</object>
+			<object name="curveAccelerationRatioOverTime" desc="X=time in sec since the bhv is started, Y=Acceleration Ratio">
+				<inherit name="CCurveObj" />
+			</object>
+			<object name="curveSteerTime" desc="X=steer switch counter, 0=first steering dir, 1=second steering dir, Y=time to steer in this direction">
+				<inherit name="CCurveObj" />
+			</object>
+			<object name="curveSteeringAngleDegOverTime" desc="X=steer switch counter, 0=first steering dir, 1=second steering dir, Y=steering angle in degree">
+				<inherit name="CCurveObj" />
+			</object>
+		</object>
+		<object name="SpintOut">
+			<field name="fMinSpeedToSpinOut_kmh" type="Float32" />
+			<field name="fTireGripRatio" type="Float32" />
+			<field name="fCenterMassZOffset" type="Float32" />
+		</object>
+		<object name="DrivingWithDeflatedTire">
+			<field name="fImmobilizedDriveTime" desc="Time to drive on deflated tire when starting to drive with a immobilized vehicle" type="Float32" />
+			<field name="fSlowSpeedDriveTime" desc="Time to drive on deflated tire when the vehicle is already moving slowly" type="Float32" />
+			<field name="fSlowSpeedKmh" desc="Max speed to drive with deflated tire" type="Float32" />
+		</object>
+	</object>
+	<object name="OutOfControl">
+		<field name="vehicleoutofcontrolconfigConfig" desc="out of control bhv: AI vehicle lost control when player hit it with enough force" type="Hash32" />
+	</object>
+	<object name="AmplifiedDamage">
+		<object name="curveBollardAmplifiedDamageVSWeight" desc="X=vehicle weight in lbs, Y=AmplifiedDamageRatio">
+			<inherit name="CCurveObj" />
+		</object>
+	</object>
+	<object name="HardCollision">
+		<field name="fCooldown" desc="Time the AI stay stunned after an hard collision" type="Float32" />
+		<field name="fMinRealtiveCollisionSpeedInKmh" desc="Min relative collision speed to be considered hard" type="Float32" />
+		<field name="fSpeedLostRatio" desc="The speed ratio lost on collision. AI stop if lost too much speed after the collision" type="Float32" />
+	</object>
+</class>

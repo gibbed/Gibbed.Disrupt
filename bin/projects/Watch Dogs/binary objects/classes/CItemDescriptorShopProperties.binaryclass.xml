@@ -1,0 +1,10 @@
+<class name="CItemDescriptorShopProperties">
+	<inherit name="IItemDescriptorProperties" />
+	<field name="uiItemPrice" desc="Item price in shops" type="BinHex" /><!-- UInt32 -->
+	<field name="uiItemNbToAdd" type="UInt8" />
+	<field name="itemcategoryItemCategory" type="BinHex" />
+	<field name="accessidRequiredId" type="BinHex" />
+	<field name="accessidAccessIdToLockItemInShop" desc="Item is locked in shop buy list until the accessId is owned/unlocked by the player" type="BinHex" />
+	<field name="bAllowTrade" type="Boolean" />
+	<field name="bPromotionalItem" type="Boolean" />
+</class>
