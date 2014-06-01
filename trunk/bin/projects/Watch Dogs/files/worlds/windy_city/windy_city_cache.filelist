@@ -1,4 +1,4 @@
-; 46099/97498 (47%)
+; 46101/97498 (47%)
 animations\07_pills\alone\07_alonegenerator_break.mab
 animations\07_pills\alone\07_alonegenerator_broken_idle.mab
 animations\07_pills\alone\07_alonegenerator_work_idle.mab
@@ -13532,6 +13532,7 @@ graphics\_textures\architectural\_interrior\hideout\interiorhideoutgrey_01_d.xbt
 graphics\_textures\architectural\_interrior\limbic\lbc_lightred_anim_d.xbt
 graphics\_textures\architectural\_interrior\lockerroom\lr_blood_d.xbt
 graphics\_textures\architectural\_interrior\nikkihouse\drawings_nikki_m.xbt
+graphics\_textures\architectural\_interrior\white 8x8_d.xbt
 graphics\_textures\architectural\07_pontiac_hub_cable_01_d.xbt
 graphics\_textures\cubemap\cubemap_prison_sasb.xbt
 graphics\_textures\cubemap\cubemapjazzbar_03_d.xbt
@@ -13615,6 +13616,7 @@ graphics\_textures\objects\_exterior_furniture\06_toy_mechanicalhorse_01_d.xbt
 graphics\_textures\objects\_industrial\plastic_caps_paint_kit_01_d.xbt
 graphics\_textures\objects\_interior\_bar\bar_bottlenormals_01_n.xbt
 graphics\_textures\objects\_interior\_bar\bar_fabric_m.xbt
+graphics\_textures\objects\_interior\_bar\bar_white 8x8_d.xbt
 graphics\_textures\objects\_interior\_bar\barbottles_d.xbt
 graphics\_textures\objects\_interior\_bar\signatures_d.xbt
 graphics\_textures\objects\_interior\_bar\slot_panel_fade_01_d.xbt
