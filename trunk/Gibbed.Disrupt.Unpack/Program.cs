@@ -44,6 +44,7 @@ namespace Gibbed.Disrupt.Unpack
         {
             bool showHelp = false;
             bool extractUnknowns = true;
+            bool onlyUnknowns = false;
             bool extractFiles = true;
             string filterPattern = null;
             bool overwriteFiles = false;
@@ -54,6 +55,7 @@ namespace Gibbed.Disrupt.Unpack
                 { "o|overwrite", "overwrite existing files", v => overwriteFiles = v != null },
                 { "nf|no-files", "don't extract files", v => extractFiles = v == null },
                 { "nu|no-unknowns", "don't extract unknown files", v => extractUnknowns = v == null },
+                { "ou|only-unknowns", "only extract unknown files", v => onlyUnknowns = v != null },
                 { "f|filter=", "only extract files using pattern", v => filterPattern = v },
                 { "v|verbose", "be verbose", v => verbose = v != null },
                 { "h|help", "show this message and exit", v => showHelp = v != null },
@@ -153,7 +155,13 @@ namespace Gibbed.Disrupt.Unpack
                             current++;
 
                             string entryName;
-                            if (GetEntryName(input, fat, entry, hashes, extractUnknowns, out entryName) == false)
+                            if (GetEntryName(input,
+                                             fat,
+                                             entry,
+                                             hashes,
+                                             extractUnknowns,
+                                             onlyUnknowns,
+                                             out entryName) == false)
                             {
                                 continue;
                             }
@@ -218,6 +226,7 @@ namespace Gibbed.Disrupt.Unpack
                                          Big.Entry entry,
                                          ProjectData.HashList<uint> hashes,
                                          bool extractUnknowns,
+                                         bool onlyUnknowns,
                                          out string entryName)
         {
             entryName = hashes[entry.NameHash];
@@ -274,6 +283,11 @@ namespace Gibbed.Disrupt.Unpack
             }
             else
             {
+                if (onlyUnknowns == true)
+                {
+                    return false;
+                }
+
                 entryName = FilterEntryName(entryName);
             }
 
