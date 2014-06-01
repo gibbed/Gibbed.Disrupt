@@ -27,9 +27,12 @@ namespace Gibbed.Disrupt.FileFormats.Hashing
         public static ulong Compute(string value)
         {
             ulong hash = 0ul;
-            for (int i = 0; i < value.Length; i++)
+            if (value != null)
             {
-                hash = _Table[(byte)hash ^ (byte)value[i]] ^ (hash >> 8);
+                for (int i = 0; i < value.Length; i++)
+                {
+                    hash = _Table[(byte)hash ^ (byte)value[i]] ^ (hash >> 8);
+                }
             }
             return hash;
         }
