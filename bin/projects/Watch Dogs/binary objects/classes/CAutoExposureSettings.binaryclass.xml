@@ -1,0 +1,35 @@
+<class name="CAutoExposureSettings">
+	<field name="fPercentile" type="Float32" />
+	<field name="fTargetLuminance" type="Float32" />
+	<field name="fSpeed" type="Float32" />
+	<field name="fMinimumExposureValue" type="Float32" />
+	<field name="fMaximumExposureValue" type="Float32" />
+	<field name="selLuminanceComputationMethod" desc="Method for computing current luminance" type="Enum8">
+		<enum>
+			<element name="Histogram threshold">0</element>
+			<element name="Histogram average">1</element>
+			<element name="Histogram average with automatic luminance target">2</element>
+			<element name="GPU average">3</element>
+		</enum>
+	</field>
+	<object name="curvePercentile" desc="Percent of pixel that need to be below the target luminance">
+		<inherit name="CCurveObj" />
+	</object>
+	<object name="curveTargetLuminance" desc="Exposed target luminance">
+		<inherit name="CCurveObj" />
+	</object>
+	<object name="curveSpeed" desc="Speed of eye adaptation in second according the time of the day.">
+		<inherit name="CCurveObj" />
+	</object>
+	<object name="curveSpeedMultipler" desc="Scale for the speed of the eye adaptation according to the (local player) velocity (in meter per second).">
+		<inherit name="CCurveObj" />
+	</object>
+	<object name="curveMinimumExposureValue">
+		<inherit name="CCurveObj" />
+	</object>
+	<object name="curveMaximumExposureValue">
+		<inherit name="CCurveObj" />
+	</object>
+	<field name="fScreenPercentX" desc="Percentage of the center of the width of the screen to take into account" type="Float32" />
+	<field name="fScreenPercentY" desc="Percentage of the center of the height of the screen to take into account" type="Float32" />
+</class>

@@ -1,0 +1,194 @@
+<class name="CEnvironmentLightingSettings">
+	<inherit name="CNomadDbObjectNamed" />
+	<object name="gradSunLightColor">
+		<inherit name="CGradientColor" />
+	</object>
+	<field name="bSunLightColorOverride" type="Boolean" />
+	<object name="gradMoonLightColor" desc="Colour of the moon lighting (currently only used by light probes)">
+		<inherit name="CGradientColor" />
+	</object>
+	<field name="bMoonLightColorOverride" type="Boolean" />
+	<object name="curveSunLightIntensity">
+		<inherit name="CCurveObj" />
+	</object>
+	<field name="bSunLightIntensityOverride" type="Boolean" />
+	<object name="curveMoonLightIntensity" desc="Strength of the moon lighting (currently only used by light probes)">
+		<inherit name="CCurveObj" />
+	</object>
+	<field name="bMoonLightIntensityOverride" type="Boolean" />
+	<object name="gradPaintedGIColor">
+		<inherit name="CGradientColor" />
+	</object>
+	<field name="bPaintedGIColorOverride" type="Boolean" />
+	<object name="curvePaintedGIIntensity">
+		<inherit name="CCurveObj" />
+	</object>
+	<field name="bPaintedGIIntensityOverride" type="Boolean" />
+	<field name="fAmbientDirectionalContrast" type="Float32" />
+	<object name="curveAmbientDirectionalContrast">
+		<inherit name="CCurveObj" />
+	</object>
+	<field name="bAmbientDirectionalContrastOverride" type="Boolean" />
+	<object name="gradAmbientSkyColor">
+		<inherit name="CGradientColor" />
+	</object>
+	<field name="bAmbientSkyColorOverride" type="Boolean" />
+	<field name="fAmbientSkyColorMultiplier" type="Float32" />
+	<object name="curveAmbientSkyIntensity">
+		<inherit name="CCurveObj" />
+	</object>
+	<field name="bAmbientSkyIntensityOverride" type="Boolean" />
+	<object name="gradAmbientGroundColor">
+		<inherit name="CGradientColor" />
+	</object>
+	<field name="bAmbientGroundColorOverride" type="Boolean" />
+	<field name="fAmbientGroundColorMultiplier" type="Float32" />
+	<object name="curveAmbientGroundIntensity">
+		<inherit name="CCurveObj" />
+	</object>
+	<field name="bAmbientGroundIntensityOverride" type="Boolean" />
+	<object name="gradAmbientSunFrontColor">
+		<inherit name="CGradientColor" />
+	</object>
+	<field name="bAmbientSunFrontColorOverride" type="Boolean" />
+	<field name="fAmbientSunFrontColorMultiplier" type="Float32" />
+	<object name="curveAmbientSunFrontIntensity">
+		<inherit name="CCurveObj" />
+	</object>
+	<field name="bAmbientSunFrontIntensityOverride" type="Boolean" />
+	<object name="gradAmbientSunBackColor">
+		<inherit name="CGradientColor" />
+	</object>
+	<field name="bAmbientSunBackColorOverride" type="Boolean" />
+	<field name="fAmbientSunBackColorMultiplier" type="Float32" />
+	<object name="curveAmbientSunBackIntensity">
+		<inherit name="CCurveObj" />
+	</object>
+	<field name="bAmbientSunBackIntensityOverride" type="Boolean" />
+	<object name="curveWorldShadowContribution">
+		<inherit name="CCurveObj" />
+	</object>
+	<field name="bWorldShadowContributionOverride" type="Boolean" />
+	<object name="curveStaticReflectionIntensity">
+		<inherit name="CCurveObj" />
+	</object>
+	<field name="bStaticReflectionIntensityOverride" type="Boolean" />
+	<object name="curveStaticReflectionIntensityDay" desc="Intensity of the daytime static reflection cubemap.">
+		<inherit name="CCurveObj" />
+	</object>
+	<field name="bStaticReflectionIntensityDayOverride" type="Boolean" />
+	<object name="curveStaticReflectionIntensityNight" desc="Intensity of the nighttime static reflection cubemap.">
+		<inherit name="CCurveObj" />
+	</object>
+	<field name="bStaticReflectionIntensityNightOverride" type="Boolean" />
+	<field name="fStaticReflectionGIDayInfluence" desc="The degree to which the global illumination affects the daytime static reflections" type="Float32" />
+	<field name="bStaticReflectionGIDayInfluenceOverride" type="Boolean" />
+	<field name="fStaticReflectionGINightInfluence" desc="The degree to which the global illumination affects the nighttime static reflections" type="Float32" />
+	<field name="bStaticReflectionGINightInfluenceOverride" type="Boolean" />
+	<object name="curveDynamicReflectionGIInfluence" desc="The degree to which the global illumination affects the dynamic reflections">
+		<inherit name="CCurveObj" />
+	</object>
+	<field name="bDynamicReflectionGIInfluenceOverride" type="Boolean" />
+	<object name="curveRimLightIntensity">
+		<inherit name="CCurveObj" />
+	</object>
+	<field name="bRimLightIntensityOverride" type="Boolean" />
+	<object name="curveGlobalLightsIntensity0">
+		<inherit name="CCurveObj" />
+	</object>
+	<field name="bGlobalLightsIntensity0Override" type="Boolean" />
+	<object name="curveGlobalLightsIntensity1">
+		<inherit name="CCurveObj" />
+	</object>
+	<field name="bGlobalLightsIntensity1Override" type="Boolean" />
+	<object name="curveGlobalLightsIntensity2">
+		<inherit name="CCurveObj" />
+	</object>
+	<field name="bGlobalLightsIntensity3Override" type="Boolean" />
+	<object name="curveGlobalLightsIntensity3">
+		<inherit name="CCurveObj" />
+	</object>
+	<field name="bGlobalLightsIntensity2Override" type="Boolean" />
+	<object name="curveProbeSkyBounceMultiplier" desc="Strength multiplier for sky bounce contribution in the probe lighting">
+		<inherit name="CCurveObj" />
+	</object>
+	<field name="bProbeSkyBounceMultiplierOverride" type="Boolean" />
+	<object name="curveProbeSkyDirectMultiplier" desc="Strength multiplier for sky direct contribution in the probe lighting">
+		<inherit name="CCurveObj" />
+	</object>
+	<field name="bProbeSkyDirectMultiplierOverride" type="Boolean" />
+	<object name="curveProbeSunBounceMultiplier" desc="Strength multiplier for sun bounce contribution in the probe lighting">
+		<inherit name="CCurveObj" />
+	</object>
+	<field name="bProbeSunBounceMultiplierOverride" type="Boolean" />
+	<object name="curveProbeSaturation" desc="LEGACY: Overall colour saturation of the probe lighting, excluding local lights">
+		<inherit name="CCurveObj" />
+	</object>
+	<field name="bProbeSaturationOverride" type="Boolean" />
+	<object name="curveProbeSkySaturation" desc="Colour saturation of the sky direct and sky bounce contributions in the probe lighting">
+		<inherit name="CCurveObj" />
+	</object>
+	<field name="bProbeSkySaturationOverride" type="Boolean" />
+	<object name="curveProbeScale" desc="Overall strength multiplier for the probe lighting">
+		<inherit name="CCurveObj" />
+	</object>
+	<field name="bProbeScaleOverride" type="Boolean" />
+	<object name="curveProbeLocalLightsMultiplier" desc="Strength multiplier for local lights' contributions to the probe lighting">
+		<inherit name="CCurveObj" />
+	</object>
+	<field name="bProbeLocalLightsMultiplierOverride" type="Boolean" />
+	<object name="curveProbeLocalLightsMultiplierInterior" desc="Strength multiplier for local lights' contributions to the probe lighting in interior GI boxes">
+		<inherit name="CCurveObj" />
+	</object>
+	<field name="bProbeLocalLightsMultiplierInteriorOverride" type="Boolean" />
+	<object name="curveProbeBackgroundAmbientStrength" desc="Strength of the default ambient used beyond the draw distance of the probe lighting">
+		<inherit name="CCurveObj" />
+	</object>
+	<field name="bProbeBackgroundAmbientStrengthOverride" type="Boolean" />
+	<field name="fProbeMinAmbientLimitsMultiplier" desc="Multiplier for the minimum ambient limits of the probe lighting." type="Float32" />
+	<field name="bProbeMinAmbientLimitsMultiplierOverride" type="Boolean" />
+	<object name="curveExposureValue">
+		<inherit name="CCurveObj" />
+	</object>
+	<field name="bExposureValueOverride" type="Boolean" />
+	<field name="fExposedWhitePoint" type="Float32" />
+	<field name="bExposedWhitePointOverride" type="Boolean" />
+	<object name="AutoExposure">
+		<inherit name="CAutoExposureSettings" />
+	</object>
+	<field name="bAutoExposureOverride" type="Boolean" />
+	<object name="AmbientOcclusion">
+		<object name="curveWorldAOMultiply">
+			<inherit name="CCurveObj" />
+		</object>
+		<field name="bWorldAOMultiplyOverride" type="Boolean" />
+		<object name="curveVertexAOMultiply">
+			<inherit name="CCurveObj" />
+		</object>
+		<field name="bVertexAOMultiplyOverride" type="Boolean" />
+	</object>
+	<field name="fSunShadowInertiaStartAngle" desc="Angle at which the sun shadow projector starts to lag behind the sun light (in degrees)." type="Float32" />
+	<field name="bSunShadowInertiaStartAngleOverride" type="Boolean" />
+	<field name="fSunShadowInertiaEndAngle" desc="Minimum angle the sun shadow projector will use, to avoid horizontal shadows (in degrees)." type="Float32" />
+	<field name="bSunShadowInertiaEndAngleOverride" type="Boolean" />
+	<field name="fSunLensFlareVisibility" desc="Visibility of the sun lens flare." type="Float32" />
+	<field name="bSunLensFlareVisibilityOverride" type="Boolean" />
+	<object name="curveLightHDRMul">
+		<inherit name="CCurveObj" />
+	</object>
+	<object name="gradWorldAmbientColor">
+		<inherit name="CGradientColor" />
+	</object>
+	<object name="gradAmbientSkyColorGrad">
+		<inherit name="CGradientColor" />
+	</object>
+	<object name="gradAmbientGroundColorGrad">
+		<inherit name="CGradientColor" />
+	</object>
+	<object name="gradAmbientSunFrontColorGrad">
+		<inherit name="CGradientColor" />
+	</object>
+	<object name="gradAmbientSunBackColorGrad">
+		<inherit name="CGradientColor" />
+	</object>
+</class>
