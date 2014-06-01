@@ -20,17 +20,14 @@
  *    distribution.
  */
 
-using System.Xml.Serialization;
-
-namespace Gibbed.Disrupt.BinaryObjectInfo.Definitions.Raw
+namespace Gibbed.Disrupt.BinaryObjectInfo.FieldHandlers.Ids
 {
-    public class EnumElementDefinition
+    internal class PathIdHandler : BaseHandler
     {
-        [XmlAttribute("name")]
-        public string Name { get; set; }
-
-        //[XmlAttribute("value")]
-        [XmlText]
-        public long Value { get; set; }
+        protected override uint Hash(string text)
+        {
+            text = FileFormats.ProjectHelpers.Modifier(text);
+            return FileFormats.ProjectHelpers.Hasher(text);
+        }
     }
 }

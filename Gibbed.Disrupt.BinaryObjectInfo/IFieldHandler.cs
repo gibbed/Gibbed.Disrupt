@@ -20,17 +20,22 @@
  *    distribution.
  */
 
-using System.Xml.Serialization;
+using System.Xml;
+using System.Xml.XPath;
+using Gibbed.Disrupt.BinaryObjectInfo.Definitions;
 
-namespace Gibbed.Disrupt.BinaryObjectInfo.Definitions.Raw
+namespace Gibbed.Disrupt.BinaryObjectInfo
 {
-    public class EnumElementDefinition
+    internal interface IFieldHandler
     {
-        [XmlAttribute("name")]
-        public string Name { get; set; }
+        byte[] Import(FieldDefinition def, FieldType arrayFieldType, XPathNavigator nav);
 
-        //[XmlAttribute("value")]
-        [XmlText]
-        public long Value { get; set; }
+        void Export(FieldDefinition def,
+                    FieldType arrayFieldType,
+                    byte[] buffer,
+                    int offset,
+                    int count,
+                    XmlWriter writer,
+                    out int read);
     }
 }

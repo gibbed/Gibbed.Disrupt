@@ -22,36 +22,31 @@
 
 namespace Gibbed.Disrupt.BinaryObjectInfo
 {
-    // Don't forget to update FieldTypeHelper if you add something here.
     public enum FieldType
     {
         Invalid = 0,
         BinHex,
-        Boolean,
-        UInt8,
+
+        Boolean, // bool
+        UInt8, // unsigned char
         Int8,
-        UInt16,
-        Int16,
-        UInt32,
-        Int32,
-        UInt64,
-        Int64,
-        Float32,
-        Float64,
-        Vector2,
-        Vector3,
-        Vector4,
-        String,
-        Enum8,
-        Enum16,
-        Enum32,
-        Hash32,
-        Hash64,
-        Id32,
-        Id64,
+        UInt16, // unsigned short
+        Int16, // signed short
+        UInt32, // unsigned int
+        Int32, // signed int
+        UInt64, // unsigned long long
+        Int64, // signed long long
+        Float, // float
+        Vector2, // ndVec2
+        Vector3, // ndVec3
+        Vector4, // ndVec4
+        String, // ndString
+        Enum, // enum
+        StringId, // CStringID
+        NoCaseStringId, // CNoCaseStringID
+        PathId, // CPathID
+
         Rml,
-        ComputeHash32,
-        ComputeHash64,
         Array32,
     }
 }

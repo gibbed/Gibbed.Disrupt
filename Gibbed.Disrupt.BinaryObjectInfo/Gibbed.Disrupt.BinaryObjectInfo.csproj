@@ -57,11 +57,13 @@
     <Compile Include="Definitions\Raw\FieldDefinition.cs" />
     <Compile Include="Definitions\Raw\FriendDefinition.cs" />
     <Compile Include="Definitions\Raw\ObjectFileDefinition.cs" />
+    <Compile Include="FieldHandlers\BinHexHandler.cs" />
+    <Compile Include="FieldHandlers\Ids\BaseHandler.cs" />
+    <Compile Include="IValueHandler.cs" />
+    <Compile Include="FieldHandling.cs" />
     <Compile Include="FieldType.cs" />
-    <Compile Include="FieldTypeDeserializers.cs" />
-    <Compile Include="FieldTypeHelper.cs" />
-    <Compile Include="FieldTypeSerializers.cs" />
     <Compile Include="HashedDefinitionDictionary.cs" />
+    <Compile Include="IFieldHandler.cs" />
     <Compile Include="IFileDefinition.cs" />
     <Compile Include="IHashedDefinition.cs" />
     <Compile Include="INamedDefinition.cs" />
@@ -69,6 +71,30 @@
     <Compile Include="LoadException.cs" />
     <Compile Include="NamedDefinitionDictionary.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="FieldHandlers\Array32Handler.cs" />
+    <Compile Include="FieldHandlers\Helpers.cs" />
+    <Compile Include="FieldHandlers\Ints\Int8Handler.cs" />
+    <Compile Include="FieldHandlers\RmlHandler.cs" />
+    <Compile Include="FieldHandlers\UInts\UInt64Handler.cs" />
+    <Compile Include="ValueHandler.cs" />
+    <Compile Include="FieldHandlers\EnumHandler.cs" />
+    <Compile Include="FieldHandlers\FloatHandler.cs" />
+    <Compile Include="FieldHandlers\Ints\Int64Handler.cs" />
+    <Compile Include="FieldHandlers\Ids\NoCaseStringIdHandler.cs" />
+    <Compile Include="FieldHandlers\Ids\PathIdHandler.cs" />
+    <Compile Include="FieldHandlers\Ids\StringIdHandler.cs" />
+    <Compile Include="FieldHandlers\StringHandler.cs" />
+    <Compile Include="FieldHandlers\UInts\BaseHandler.cs" />
+    <Compile Include="FieldHandlers\BooleanHandler.cs" />
+    <Compile Include="FieldHandlers\Ints\Int16Handler.cs" />
+    <Compile Include="FieldHandlers\Ints\Int32Handler.cs" />
+    <Compile Include="FieldHandlers\Ints\BaseHandler.cs" />
+    <Compile Include="FieldHandlers\UInts\UInt16Handler.cs" />
+    <Compile Include="FieldHandlers\UInts\UInt32Handler.cs" />
+    <Compile Include="FieldHandlers\UInts\UInt8Handler.cs" />
+    <Compile Include="FieldHandlers\Vector2Handler.cs" />
+    <Compile Include="FieldHandlers\Vector3Handler.cs" />
+    <Compile Include="FieldHandlers\Vector4Handler.cs" />
     <Compile Include="XmlLoadException.cs" />
   </ItemGroup>
   <ItemGroup>

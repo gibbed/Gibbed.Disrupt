@@ -24,6 +24,6 @@ namespace Gibbed.Disrupt.BinaryObjectInfo
 {
     internal interface IFileDefinition
     {
-        string Path { get; set;  }
+        string Path { get; set; }
     }
 }
