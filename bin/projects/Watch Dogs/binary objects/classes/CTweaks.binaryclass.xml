@@ -1,7 +1,7 @@
 <class name="CTweaks">
 	<inherit name="CNomadDbObjectNamed" />
 	<field name="vehiclegoingstraighttweak" type="BinHex" />
-	<field name="fSuspensionDampingSpeedMaxAcceleration" type="Float32" />
+	<field name="fSuspensionDampingSpeedMaxAcceleration" type="Float" />
 	<field name="bInterpolateinput" type="Boolean" />
 	<field name="bUseSuspProjWithContactNormalAndChassisUp" type="Boolean" />
 	<field name="bUseNewSuspensionProjection" type="Boolean" />
@@ -22,84 +22,84 @@
 		<field name="bUseJumpHelper" type="Boolean" />
 		<object name="ActiveJumpHelper">
 		</object>
-		<field name="fMinimumActivationAirTime" type="Float32" />
-		<field name="fPitchVelocityDamping" type="Float32" />
-		<field name="fRollVelocityDamping" type="Float32" />
-		<field name="fYawVelocityDamping" type="Float32" />
-		<field name="fMaximumPitchAcceleration" type="Float32" />
-		<field name="fMaximumRollAcceleration" type="Float32" />
-		<field name="fMaximumYawAcceleration" type="Float32" />
+		<field name="fMinimumActivationAirTime" type="Float" />
+		<field name="fPitchVelocityDamping" type="Float" />
+		<field name="fRollVelocityDamping" type="Float" />
+		<field name="fYawVelocityDamping" type="Float" />
+		<field name="fMaximumPitchAcceleration" type="Float" />
+		<field name="fMaximumRollAcceleration" type="Float" />
+		<field name="fMaximumYawAcceleration" type="Float" />
 	</object>
-	<field name="fBrakeSteerReduction" type="Float32" />
-	<field name="fBrakeSteerReductionMaxSpeed" type="Float32" />
+	<field name="fBrakeSteerReduction" type="Float" />
+	<field name="fBrakeSteerReductionMaxSpeed" type="Float" />
 	<field name="bUseHandBrakeYawHelper" type="Boolean" />
-	<field name="fHandBrakeYawHelperAcc" type="Float32" />
-	<field name="fHandBrakeYawHelperMaxTime" type="Float32" />
+	<field name="fHandBrakeYawHelperAcc" type="Float" />
+	<field name="fHandBrakeYawHelperMaxTime" type="Float" />
 	<field name="bUseHandBrakeLoadBasedTorque" type="Boolean" />
 	<field name="bUseNormalBrakeLoadBasedTorque" type="Boolean" />
 	<object name="ChassisInertiaScale">
-		<field name="fChassisPitchInertiaScale" type="Float32" />
-		<field name="fChassisRollInertiaScale" type="Float32" />
-		<field name="fChassisYawInertiaScale" type="Float32" />
+		<field name="fChassisPitchInertiaScale" type="Float" />
+		<field name="fChassisRollInertiaScale" type="Float" />
+		<field name="fChassisYawInertiaScale" type="Float" />
 	</object>
 	<object name="LaunchHelper">
 		<field name="bUseLaunchHelper" desc="Helper with the purpose to add a feeling of a power when launching from standstill." type="Boolean" />
 		<object name="ActiveLaunchParams">
 		</object>
-		<field name="fLongFrictionReductionRatio" desc="Tyre friction scale. Units: Dimensionless." type="Float32" />
-		<field name="fTyreTemperatureIncreaseRatio" desc="Tyre temperature increase scaling. Units: Dimensionless." type="Float32" />
-		<field name="fFadeoutTime" desc="Time that the helper will fadeout. Units: Seconds." type="Float32" />
-		<field name="fFullEffectTime" desc="Time during the helper is fully active. Units: Seconds." type="Float32" />
-		<field name="fMinimumSpeedStandStill" desc="Vehicle needs to be under this speed to trigger standstill. Units: km/h." type="Float32" />
-		<field name="fMinimumStandStillTimeForLaunch" desc="Minimum time to remain standstill to allow the helper activation. Units: Seconds." type="Float32" />
+		<field name="fLongFrictionReductionRatio" desc="Tyre friction scale. Units: Dimensionless." type="Float" />
+		<field name="fTyreTemperatureIncreaseRatio" desc="Tyre temperature increase scaling. Units: Dimensionless." type="Float" />
+		<field name="fFadeoutTime" desc="Time that the helper will fadeout. Units: Seconds." type="Float" />
+		<field name="fFullEffectTime" desc="Time during the helper is fully active. Units: Seconds." type="Float" />
+		<field name="fMinimumSpeedStandStill" desc="Vehicle needs to be under this speed to trigger standstill. Units: km/h." type="Float" />
+		<field name="fMinimumStandStillTimeForLaunch" desc="Minimum time to remain standstill to allow the helper activation. Units: Seconds." type="Float" />
 		<field name="bUseBurnoutOscillation" desc="Helper to add an oscillation, when performing a burnout." type="Boolean" />
 		<object name="BurnoutOscillationParams">
 		</object>
-		<field name="fOscillationAmplitude" desc="Oscillation ampligude of lateral slip. Units : Degrees" type="Float32" />
-		<field name="fOscillationPeriod" desc="Oscillation period of lateral slip. Units : Seconds" type="Float32" />
-		<field name="fOscillationOffset" desc="Constant added to lateral slip oscillation. Units : Degrees" type="Float32" />
+		<field name="fOscillationAmplitude" desc="Oscillation ampligude of lateral slip. Units : Degrees" type="Float" />
+		<field name="fOscillationPeriod" desc="Oscillation period of lateral slip. Units : Seconds" type="Float" />
+		<field name="fOscillationOffset" desc="Constant added to lateral slip oscillation. Units : Degrees" type="Float" />
 	</object>
 	<field name="bUseCenterOfMassHeightForTyreForcePos" desc="Will modify tyre force position so the Z component is the same as the center of mass." type="Boolean" />
 	<object name="DriftHelper">
 		<field name="bUseDriftHelper" desc="Gear shift will be blocked if longitudinal slip is above this value." type="Boolean" />
-		<field name="fNoGearShiftSlipThreshold" desc="Gear shift will be blocked if longitudinal slip is above this value." type="Float32" />
-		<field name="fLateralFrictionScaleUnderTarget" desc="Friction scale used when drift angle is zero. Lerping towards 1 when approaching drift target angle." type="Float32" />
-		<field name="fLateralFrictionScaleAboveTarget" desc="Friction scale used when drift angle is larger than drift target angle. Lerping from 1 (on target), to this value when current angle is 2x target angle." type="Float32" />
-		<field name="fLateralFrictionScaleAboveTargetNoSteer" desc="Friction scale used when drift angle is larger than drift target angle and there's no steering input (going straight). Lerping from 1 (on target), to this value when current angle is 2x target angle." type="Float32" />
-		<field name="fLateralFrictionMaxScale" desc="Max limit for friction scale to avoid that vehicle tip over.'" type="Float32" />
-		<field name="fTargetDriftAngle" desc="Target drift angle that the helper will try to reach when active." type="Float32" />
-		<field name="fEngineTorqueScale" desc="Engine torque scale while the helper is active." type="Float32" />
-		<field name="fSteeringTimeBeforeHelperActivation" desc="Time is accumulated when steer input is higher than 0.9. If the total time goes over this value, the helper is activated." type="Float32" />
-		<field name="fMaxSteerTimeLimit" type="Float32" />
-		<field name="fDriftRatioForEngineBoostStart" desc="[Engine Torque Scale] begins to be applied if drift ratio is above this. Drift ratio = 0 if straight line, 1 if on [Target Drift Angle] or above. Does not affect friction." type="Float32" />
-		<field name="fDriftRatioForEngineBoostFull" desc="[Engine Torque Scale] is applied fully if drift ratio is above this. Drift ratio = 0 if straight line, 1 if on [Target Drift Angle] or above. Does not affect friction." type="Float32" />
-		<field name="fSteerPoolIncreaseRate" desc="Rate at which the use of steer is converted to friction change. Does not affect engine scale." type="Float32" />
-		<field name="fSteerToFrictionIncreaseRate" type="Float32" />
-		<field name="fSteerPoolDecayRate" desc="Decay rate at which the &lt;steer pool&gt; is decreased. Does not affect engine scale." type="Float32" />
-		<field name="fSteerToFrictionLeakRate" desc="Rate at which the &lt;Steer to friction&gt; pool is decreased" type="Float32" />
-		<field name="fStayActivatedTimeBuffer" desc="If helper has been deactivated shorter than this time, it will be reactivated immediately if steering is used." type="Float32" />
-		<field name="fReentryTime" desc="If helper has been deactivated shorter than this time, it will be reactivated immediatly if steering is used." type="Float32" />
+		<field name="fNoGearShiftSlipThreshold" desc="Gear shift will be blocked if longitudinal slip is above this value." type="Float" />
+		<field name="fLateralFrictionScaleUnderTarget" desc="Friction scale used when drift angle is zero. Lerping towards 1 when approaching drift target angle." type="Float" />
+		<field name="fLateralFrictionScaleAboveTarget" desc="Friction scale used when drift angle is larger than drift target angle. Lerping from 1 (on target), to this value when current angle is 2x target angle." type="Float" />
+		<field name="fLateralFrictionScaleAboveTargetNoSteer" desc="Friction scale used when drift angle is larger than drift target angle and there's no steering input (going straight). Lerping from 1 (on target), to this value when current angle is 2x target angle." type="Float" />
+		<field name="fLateralFrictionMaxScale" desc="Max limit for friction scale to avoid that vehicle tip over.'" type="Float" />
+		<field name="fTargetDriftAngle" desc="Target drift angle that the helper will try to reach when active." type="Float" />
+		<field name="fEngineTorqueScale" desc="Engine torque scale while the helper is active." type="Float" />
+		<field name="fSteeringTimeBeforeHelperActivation" desc="Time is accumulated when steer input is higher than 0.9. If the total time goes over this value, the helper is activated." type="Float" />
+		<field name="fMaxSteerTimeLimit" type="Float" />
+		<field name="fDriftRatioForEngineBoostStart" desc="[Engine Torque Scale] begins to be applied if drift ratio is above this. Drift ratio = 0 if straight line, 1 if on [Target Drift Angle] or above. Does not affect friction." type="Float" />
+		<field name="fDriftRatioForEngineBoostFull" desc="[Engine Torque Scale] is applied fully if drift ratio is above this. Drift ratio = 0 if straight line, 1 if on [Target Drift Angle] or above. Does not affect friction." type="Float" />
+		<field name="fSteerPoolIncreaseRate" desc="Rate at which the use of steer is converted to friction change. Does not affect engine scale." type="Float" />
+		<field name="fSteerToFrictionIncreaseRate" type="Float" />
+		<field name="fSteerPoolDecayRate" desc="Decay rate at which the &lt;steer pool&gt; is decreased. Does not affect engine scale." type="Float" />
+		<field name="fSteerToFrictionLeakRate" desc="Rate at which the &lt;Steer to friction&gt; pool is decreased" type="Float" />
+		<field name="fStayActivatedTimeBuffer" desc="If helper has been deactivated shorter than this time, it will be reactivated immediately if steering is used." type="Float" />
+		<field name="fReentryTime" desc="If helper has been deactivated shorter than this time, it will be reactivated immediatly if steering is used." type="Float" />
 		<field name="bNoTractionControl" desc="If this flag is ON, the traction control will NOT be used while the helper is active." type="Boolean" />
-		<field name="fFadeInTime" desc="Fade in time of the helper. Applied to friction and engine scaling." type="Float32" />
-		<field name="fFullEffectTimeFromSteer" type="Float32" />
-		<field name="fFadeOutTime" desc="Fade out time of the helper. Applied to friction and engine scaling." type="Float32" />
-		<field name="fDeactivationTime" desc="Fade out time of the helper. Applied to friction and engine scaling" type="Float32" />
+		<field name="fFadeInTime" desc="Fade in time of the helper. Applied to friction and engine scaling." type="Float" />
+		<field name="fFullEffectTimeFromSteer" type="Float" />
+		<field name="fFadeOutTime" desc="Fade out time of the helper. Applied to friction and engine scaling." type="Float" />
+		<field name="fDeactivationTime" desc="Fade out time of the helper. Applied to friction and engine scaling" type="Float" />
 		<object name="OneEighty">
-			<field name="fHandbrakeTimeThreshold" desc="Handbrake pressed time required to enter 180 state." type="Float32" />
-			<field name="fDriftAngleTarget180" desc="Drift angle target used when in a 180 state." type="Float32" />
-			<field name="fTimeToReachTargetDriftAngle" desc="Time it takes to switch between normal target drift angle, and 180 specific target angle." type="Float32" />
-			<field name="fStayActiveTimeAfterHandbrakeRelease" desc="Time it will stay in 180 state after handbrake has been released." type="Float32" />
-			<field name="fFirstGearEngineScale" desc="When 180 is reached within drift helper, the first gear will get this engine boost, until it upshifts. Overrides clutch torque scale. Disabled if value 1 is used." type="Float32" />
+			<field name="fHandbrakeTimeThreshold" desc="Handbrake pressed time required to enter 180 state." type="Float" />
+			<field name="fDriftAngleTarget180" desc="Drift angle target used when in a 180 state." type="Float" />
+			<field name="fTimeToReachTargetDriftAngle" desc="Time it takes to switch between normal target drift angle, and 180 specific target angle." type="Float" />
+			<field name="fStayActiveTimeAfterHandbrakeRelease" desc="Time it will stay in 180 state after handbrake has been released." type="Float" />
+			<field name="fFirstGearEngineScale" desc="When 180 is reached within drift helper, the first gear will get this engine boost, until it upshifts. Overrides clutch torque scale. Disabled if value 1 is used." type="Float" />
 		</object>
 		<field name="bUseFrictionModOnlyWithCounterSteerAboveTarget" desc="With this flag ON, friction will only be modified above target IF countersteering." type="Boolean" />
 		<object name="AboveTargetParams">
 		</object>
-		<field name="fAboveTargetFrictionFadeTime" desc="Transition time between normal friction scale ABOVE TARGET (countersteering), and no friction scale (not countersteer -> target friction scale = 1)" type="Float32" />
+		<field name="fAboveTargetFrictionFadeTime" desc="Transition time between normal friction scale ABOVE TARGET (countersteering), and no friction scale (not countersteer -> target friction scale = 1)" type="Float" />
 	</object>
 	<object name="AntiDriftHelper">
 		<field name="bUseAntiDriftHelper" desc="When the steering input is lower than 0.2, rear wheel axle will get friction boost. Note that this helper is exclusive with the Drift and Launch helpers." type="Boolean" />
 		<object name="AntiDriftParams">
-			<field name="fRearAxleFrictionScale" desc="When the helper is active, rear axle gets this friction boost." type="Float32" />
+			<field name="fRearAxleFrictionScale" desc="When the helper is active, rear axle gets this friction boost." type="Float" />
 		</object>
 	</object>
 	<object name="CollisionResponseModifiers">
@@ -108,15 +108,15 @@
 		<field name="vec2StaticType" desc="Scaling applied to static object type. First parameter is inertia scale. Second parameter is mass scale. Example: Value of (2,2) will decrease mass/inertia by half." type="Vector2" />
 	</object>
 	<object name="VehicleCollisionHelper">
-		<field name="fLateralTolerancePercentage" desc="Lateral vehicle length percentage where the collision helper will be active. Example: Ratio is 0.5, lateral length is 1 meter = 0.25 meter on each side." type="Float32" />
-		<field name="fVerticalTolerancePercentage" desc="Vertical vehicle length percentage where the collision helper will be active. Example: Ratio is 0.5, vertical length is 1 meter = 0.25 meter on each side." type="Float32" />
-		<field name="fFrontalDetectionLength" desc="Distance in front of the vehicle it will check to see if there's an obsctacle." type="Float32" />
-		<field name="fBoxShapeForwardOffset" desc="Forward distance offset of the helper box shape position. Shape needs to overlap chassis AABB because of deformation." type="Float32" />
+		<field name="fLateralTolerancePercentage" desc="Lateral vehicle length percentage where the collision helper will be active. Example: Ratio is 0.5, lateral length is 1 meter = 0.25 meter on each side." type="Float" />
+		<field name="fVerticalTolerancePercentage" desc="Vertical vehicle length percentage where the collision helper will be active. Example: Ratio is 0.5, vertical length is 1 meter = 0.25 meter on each side." type="Float" />
+		<field name="fFrontalDetectionLength" desc="Distance in front of the vehicle it will check to see if there's an obsctacle." type="Float" />
+		<field name="fBoxShapeForwardOffset" desc="Forward distance offset of the helper box shape position. Shape needs to overlap chassis AABB because of deformation." type="Float" />
 	</object>
-	<field name="fVehicleSoftDampingFactor" desc="Factor used when forcing the damping to be softer when driving slow or when non player vehicles are colliding. This factor is used to control how far toward Vehicle Soft Damping Target Frequency (PhysConfig DB) the damping is changed." type="Float32" />
+	<field name="fVehicleSoftDampingFactor" desc="Factor used when forcing the damping to be softer when driving slow or when non player vehicles are colliding. This factor is used to control how far toward Vehicle Soft Damping Target Frequency (PhysConfig DB) the damping is changed." type="Float" />
 	<object name="Adrenaline">
-		<field name="fSteerScale" desc="Steering speed is scaled by this during adrenaline." type="Float32" />
-		<field name="fYawInertiaScale" desc="Chassis yaw inertia is scaled by this while in adrenaline mode." type="Float32" />
-		<field name="fFrictionScale" desc="Tyre friction scale applied while in adrenaline mode." type="Float32" />
+		<field name="fSteerScale" desc="Steering speed is scaled by this during adrenaline." type="Float" />
+		<field name="fYawInertiaScale" desc="Chassis yaw inertia is scaled by this while in adrenaline mode." type="Float" />
+		<field name="fFrictionScale" desc="Tyre friction scale applied while in adrenaline mode." type="Float" />
 	</object>
 </class>

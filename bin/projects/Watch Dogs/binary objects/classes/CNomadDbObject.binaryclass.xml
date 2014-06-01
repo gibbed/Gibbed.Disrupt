@@ -2,6 +2,6 @@
 	<inherit name="CNomadObject" />
 	<field name="hidSingleObject" type="Boolean" />
 	<field name="text_hidName" type="String"  />
-	<field name="hidName" type="Hash32"  />
-	<field name="hidKey" type="Hash32"  />
+	<field name="hidName" type="StringId"  />
+	<field name="hidKey" type="StringId"  />
 </class>

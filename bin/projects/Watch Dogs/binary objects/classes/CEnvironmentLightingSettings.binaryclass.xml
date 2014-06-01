@@ -24,7 +24,7 @@
 		<inherit name="CCurveObj" />
 	</object>
 	<field name="bPaintedGIIntensityOverride" type="Boolean" />
-	<field name="fAmbientDirectionalContrast" type="Float32" />
+	<field name="fAmbientDirectionalContrast" type="Float" />
 	<object name="curveAmbientDirectionalContrast">
 		<inherit name="CCurveObj" />
 	</object>
@@ -33,7 +33,7 @@
 		<inherit name="CGradientColor" />
 	</object>
 	<field name="bAmbientSkyColorOverride" type="Boolean" />
-	<field name="fAmbientSkyColorMultiplier" type="Float32" />
+	<field name="fAmbientSkyColorMultiplier" type="Float" />
 	<object name="curveAmbientSkyIntensity">
 		<inherit name="CCurveObj" />
 	</object>
@@ -42,7 +42,7 @@
 		<inherit name="CGradientColor" />
 	</object>
 	<field name="bAmbientGroundColorOverride" type="Boolean" />
-	<field name="fAmbientGroundColorMultiplier" type="Float32" />
+	<field name="fAmbientGroundColorMultiplier" type="Float" />
 	<object name="curveAmbientGroundIntensity">
 		<inherit name="CCurveObj" />
 	</object>
@@ -51,7 +51,7 @@
 		<inherit name="CGradientColor" />
 	</object>
 	<field name="bAmbientSunFrontColorOverride" type="Boolean" />
-	<field name="fAmbientSunFrontColorMultiplier" type="Float32" />
+	<field name="fAmbientSunFrontColorMultiplier" type="Float" />
 	<object name="curveAmbientSunFrontIntensity">
 		<inherit name="CCurveObj" />
 	</object>
@@ -60,7 +60,7 @@
 		<inherit name="CGradientColor" />
 	</object>
 	<field name="bAmbientSunBackColorOverride" type="Boolean" />
-	<field name="fAmbientSunBackColorMultiplier" type="Float32" />
+	<field name="fAmbientSunBackColorMultiplier" type="Float" />
 	<object name="curveAmbientSunBackIntensity">
 		<inherit name="CCurveObj" />
 	</object>
@@ -81,9 +81,9 @@
 		<inherit name="CCurveObj" />
 	</object>
 	<field name="bStaticReflectionIntensityNightOverride" type="Boolean" />
-	<field name="fStaticReflectionGIDayInfluence" desc="The degree to which the global illumination affects the daytime static reflections" type="Float32" />
+	<field name="fStaticReflectionGIDayInfluence" desc="The degree to which the global illumination affects the daytime static reflections" type="Float" />
 	<field name="bStaticReflectionGIDayInfluenceOverride" type="Boolean" />
-	<field name="fStaticReflectionGINightInfluence" desc="The degree to which the global illumination affects the nighttime static reflections" type="Float32" />
+	<field name="fStaticReflectionGINightInfluence" desc="The degree to which the global illumination affects the nighttime static reflections" type="Float" />
 	<field name="bStaticReflectionGINightInfluenceOverride" type="Boolean" />
 	<object name="curveDynamicReflectionGIInfluence" desc="The degree to which the global illumination affects the dynamic reflections">
 		<inherit name="CCurveObj" />
@@ -145,13 +145,13 @@
 		<inherit name="CCurveObj" />
 	</object>
 	<field name="bProbeBackgroundAmbientStrengthOverride" type="Boolean" />
-	<field name="fProbeMinAmbientLimitsMultiplier" desc="Multiplier for the minimum ambient limits of the probe lighting." type="Float32" />
+	<field name="fProbeMinAmbientLimitsMultiplier" desc="Multiplier for the minimum ambient limits of the probe lighting." type="Float" />
 	<field name="bProbeMinAmbientLimitsMultiplierOverride" type="Boolean" />
 	<object name="curveExposureValue">
 		<inherit name="CCurveObj" />
 	</object>
 	<field name="bExposureValueOverride" type="Boolean" />
-	<field name="fExposedWhitePoint" type="Float32" />
+	<field name="fExposedWhitePoint" type="Float" />
 	<field name="bExposedWhitePointOverride" type="Boolean" />
 	<object name="AutoExposure">
 		<inherit name="CAutoExposureSettings" />
@@ -167,11 +167,11 @@
 		</object>
 		<field name="bVertexAOMultiplyOverride" type="Boolean" />
 	</object>
-	<field name="fSunShadowInertiaStartAngle" desc="Angle at which the sun shadow projector starts to lag behind the sun light (in degrees)." type="Float32" />
+	<field name="fSunShadowInertiaStartAngle" desc="Angle at which the sun shadow projector starts to lag behind the sun light (in degrees)." type="Float" />
 	<field name="bSunShadowInertiaStartAngleOverride" type="Boolean" />
-	<field name="fSunShadowInertiaEndAngle" desc="Minimum angle the sun shadow projector will use, to avoid horizontal shadows (in degrees)." type="Float32" />
+	<field name="fSunShadowInertiaEndAngle" desc="Minimum angle the sun shadow projector will use, to avoid horizontal shadows (in degrees)." type="Float" />
 	<field name="bSunShadowInertiaEndAngleOverride" type="Boolean" />
-	<field name="fSunLensFlareVisibility" desc="Visibility of the sun lens flare." type="Float32" />
+	<field name="fSunLensFlareVisibility" desc="Visibility of the sun lens flare." type="Float" />
 	<field name="bSunLensFlareVisibilityOverride" type="Boolean" />
 	<object name="curveLightHDRMul">
 		<inherit name="CCurveObj" />

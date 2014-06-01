@@ -4,9 +4,11 @@
 		<object name="Knot">
 			<field name="Value" type="Vector4" />
 			<field name="Info" type="Vector4" />
-			<field name="Type" type="UInt8" />
+			<field name="Type" type="Enum">
+				<enum>
+				</enum>
+			</field>
 		</object>
 	</object>
-	<field name="hidNumKnots" type="UInt8" />
-	<field name="hidAllowedTypes" type="Int32" />
+	<field name="hidNumKnots" type="UInt32" />
 </class>

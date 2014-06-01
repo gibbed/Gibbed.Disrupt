@@ -1,10 +1,10 @@
 <class name="CAutoExposureSettings">
-	<field name="fPercentile" type="Float32" />
-	<field name="fTargetLuminance" type="Float32" />
-	<field name="fSpeed" type="Float32" />
-	<field name="fMinimumExposureValue" type="Float32" />
-	<field name="fMaximumExposureValue" type="Float32" />
-	<field name="selLuminanceComputationMethod" desc="Method for computing current luminance" type="Enum8">
+	<field name="fPercentile" type="Float" />
+	<field name="fTargetLuminance" type="Float" />
+	<field name="fSpeed" type="Float" />
+	<field name="fMinimumExposureValue" type="Float" />
+	<field name="fMaximumExposureValue" type="Float" />
+	<field name="selLuminanceComputationMethod" desc="Method for computing current luminance" type="Enum">
 		<enum>
 			<element name="Histogram threshold">0</element>
 			<element name="Histogram average">1</element>
@@ -30,6 +30,6 @@
 	<object name="curveMaximumExposureValue">
 		<inherit name="CCurveObj" />
 	</object>
-	<field name="fScreenPercentX" desc="Percentage of the center of the width of the screen to take into account" type="Float32" />
-	<field name="fScreenPercentY" desc="Percentage of the center of the height of the screen to take into account" type="Float32" />
+	<field name="fScreenPercentX" desc="Percentage of the center of the width of the screen to take into account" type="Float" />
+	<field name="fScreenPercentY" desc="Percentage of the center of the height of the screen to take into account" type="Float" />
 </class>

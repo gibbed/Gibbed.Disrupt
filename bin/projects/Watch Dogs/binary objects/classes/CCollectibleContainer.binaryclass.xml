@@ -3,9 +3,9 @@
 	<field name="CollectibleDBObject" type="BinHex" />
 	<object name="CollectibleItems">
 		<object name="CollectibleItem">
-			<field name="iRepeatedEntryId" type="BinHex" />
+			<field name="iRepeatedEntryId" type="Int32" />
 			<field name="itemsItemDBObject" type="BinHex" />
-			<field name="iAmountLeft" type="BinHex" />
+			<field name="iAmountLeft" type="Int32" />
 		</object>
 	</object>
 </class>

@@ -15,8 +15,8 @@
 	</object>
 	<object name="ShiftPoints">
 		<object name="ShiftPoint">
-			<field name="disGearDownShiftRpm" type="Float32" />
-			<field name="disGearUpShiftRpm" type="Float32" />
+			<field name="disGearDownShiftRpm" type="Float" />
+			<field name="disGearUpShiftRpm" type="Float" />
 		</object>
 	</object>
 </class>

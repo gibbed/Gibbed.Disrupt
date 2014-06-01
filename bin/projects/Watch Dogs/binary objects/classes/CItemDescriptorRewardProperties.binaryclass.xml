@@ -1,6 +1,6 @@
 <class name="CItemDescriptorRewardProperties">
 	<inherit name="IItemDescriptorProperties" />
-	<field name="selLootingFeedbackType" type="Enum8">
+	<field name="selLootingFeedbackType" type="Enum">
 		<enum name="enumLootingFeedbackType">
 			<element name="NoPanel">0</element>
 			<element name="ARPanel">1</element>
