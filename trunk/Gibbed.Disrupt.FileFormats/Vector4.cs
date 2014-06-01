@@ -31,6 +31,14 @@ namespace Gibbed.Disrupt.FileFormats
         public float Z;
         public float W;
 
+        public Vector4(float x, float y, float z, float w)
+        {
+            this.X = x;
+            this.Y = y;
+            this.Z = z;
+            this.W = w;
+        }
+
         public override string ToString()
         {
             return string.Format("{0},{1},{2},{3}",
@@ -81,13 +89,7 @@ namespace Gibbed.Disrupt.FileFormats
 
         public object Clone()
         {
-            return new Vector4()
-            {
-                X = this.X,
-                Y = this.Y,
-                Z = this.Z,
-                W = this.W,
-            };
+            return new Vector4(this.X, this.Y, this.Z, this.W);
         }
     }
 }
