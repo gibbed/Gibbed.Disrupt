@@ -29,6 +29,12 @@ namespace Gibbed.Disrupt.FileFormats
         public float X;
         public float Y;
 
+        public Vector2(float x, float y)
+        {
+            this.X = x;
+            this.Y = y;
+        }
+
         public override string ToString()
         {
             return string.Format("{0},{1}",
@@ -71,11 +77,7 @@ namespace Gibbed.Disrupt.FileFormats
 
         public object Clone()
         {
-            return new Vector2()
-            {
-                X = this.X,
-                Y = this.Y,
-            };
+            return new Vector2(this.X, this.Y);
         }
     }
 }
