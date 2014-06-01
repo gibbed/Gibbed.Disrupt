@@ -20,5 +20,5 @@
 		<inherit name="CItemDescriptorProgressionProperties" />
 	</object>
 	<field name="text_SpecificItemFor" type="String" />
-	<field name="SpecificItemFor" type="Hash32" />
+	<field name="SpecificItemFor" type="StringId" />
 </class>

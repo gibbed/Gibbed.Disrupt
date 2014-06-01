@@ -3,7 +3,7 @@
 	<object name="ItemAvailability">
 		<inherit name="CAvailabilityRuleGroup" />
 	</object>
-	<field name="selEquippableType" type="Enum8">
+	<field name="selEquippableType" type="Enum">
 		<enum name="enumEquippableType">
 			<element name="Not_Equippable">-1</element>
 			<element name="One_Handed">0</element>
@@ -28,10 +28,10 @@
 	<object name="locstridItemLongDescriptionId">
 		<inherit name="LocalizationId" />
 	</object>
-	<field name="uiItemMaxNbToOwn" type="Int8" min="1" max="999999" />
-	<field name="uiItemNbToAdd" type="Int8" />
+	<field name="uiItemMaxNbToOwn" type="UInt32" min="1" max="999999" />
+	<field name="uiItemNbToAdd" type="UInt32" />
 	<field name="hackingparametersHackingConfigOverride" type="BinHex" />
-	<field name="selQualityLevelType" type="Enum8">
+	<field name="selQualityLevelType" type="Enum">
 		<enum name="enumQualityLevelType">
 			<element name="None">0</element>
 			<element name="Average">1</element>
@@ -40,5 +40,5 @@
 		</enum>
 	</field>
 	<field name="accessidAccessIdToGiveItem" desc="Item will be given to the player when the accessId is acquire/unlocked by the player" type="BinHex"></field>
-	<field name="bAutoGiveItemFromAccessId" desc="Auto give the item into player',27h,'s inventory using the accessIdToGive." type="Boolean" />
+	<field name="bAutoGiveItemFromAccessId" desc="Auto give the item into player's inventory using the accessIdToGive." type="Boolean" />
 </class>

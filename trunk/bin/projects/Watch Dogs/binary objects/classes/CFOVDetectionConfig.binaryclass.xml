@@ -1,18 +1,18 @@
 <class name="CFOVDetectionConfig">
-	<field name="fLateralBase" type="Float32" />
-	<field name="fLateralMidRatio" type="Float32" />
-	<field name="fLateralMax" type="Float32" />
-	<field name="fHeightBase" type="Float32" />
-	<field name="fHeightMidRatio" type="Float32" />
-	<field name="fHeightMaxDeprecated" type="Float32" />
-	<field name="fDeadZone" type="Float32" />
-	<field name="fZOffset" type="Float32" />
+	<field name="fLateralBase" type="Float" />
+	<field name="fLateralMidRatio" type="Float" />
+	<field name="fLateralMax" type="Float" />
+	<field name="fHeightBase" type="Float" />
+	<field name="fHeightMidRatio" type="Float" />
+	<field name="fHeightMaxDeprecated" type="Float" />
+	<field name="fDeadZone" type="Float" />
+	<field name="fZOffset" type="Float" />
 	<object name="curveMaxDepthByTimeOfDayCurve">
 		<inherit name="CCurveObj" />
 	</object>
 	<object name="curveMaxHeightByTimeOfDayCurve">
 		<inherit name="CCurveObj" />
 	</object>
-	<field name="fMinDistToUseBodyDir" type="Float32" />
-	<field name="fMaxDistToUseMobileElementDir" type="Float32" />
+	<field name="fMinDistToUseBodyDir" type="Float" />
+	<field name="fMaxDistToUseMobileElementDir" type="Float" />
 </class>

@@ -2,8 +2,8 @@
 	<inherit name="CNomadObject" />
 	<object name="Knots">
 		<object name="Knot">
-			<field name="Position" type="Float32" />
-			<field name="Color" type="BinHex" />
+			<field name="Position" type="Float" />
+			<field name="Color" type="UInt32" />
 		</object>
 	</object>
 </class>

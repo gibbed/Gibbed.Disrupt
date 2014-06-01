@@ -1,13 +1,13 @@
 <class name="CColorGradingSettings">
 	<inherit name="CNomadDbObjectNamed" />
-	<field name="fColorRemapRed" type="Float32" />
+	<field name="fColorRemapRed" type="Float" />
 	<field name="bColorRemapRedOverride" type="Boolean" />
-	<field name="fColorRemapGreen" type="Float32" />
+	<field name="fColorRemapGreen" type="Float" />
 	<field name="bColorRemapGreenOverride" type="Boolean" />
-	<field name="fCcolorRemapBlue" type="Float32" />
+	<field name="fCcolorRemapBlue" type="Float" />
 	<field name="bCcolorRemapBlueOverride" type="Boolean" />
-	<field name="fContrast" type="Float32" />
+	<field name="fContrast" type="Float" />
 	<field name="bContrastOverride" type="Boolean" />
-	<field name="fSaturation" type="Float32" />
+	<field name="fSaturation" type="Float" />
 	<field name="bSaturationOverride" type="Boolean" />
 </class>

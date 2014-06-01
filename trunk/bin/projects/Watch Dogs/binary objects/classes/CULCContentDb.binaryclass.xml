@@ -1,6 +1,6 @@
 <class name="CULCContentDb">
 	<inherit name="CNomadDbObjectNamed" />
-	<field name="selUlcCode" type="Enum8">
+	<field name="selUlcCode" type="Enum">
 		<enum name="enumUlcCode">
 			<element name="Mission Platinum (The Palace)">0</element>
 			<element name="Mission Gold (Signature Shot)">1</element>
@@ -27,7 +27,7 @@
 	</field>
 	<object name="AccessIds">
 		<object name="accessidAccessIds">
-			<field name="accessidAccessIds" type="Hash32" />
+			<field name="accessidAccessIds" type="StringId" />
 		</object>
 	</object>
 </class>

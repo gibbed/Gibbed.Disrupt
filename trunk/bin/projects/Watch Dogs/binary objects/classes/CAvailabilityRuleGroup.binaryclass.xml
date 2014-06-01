@@ -1,6 +1,6 @@
 <class name="CAvailabilityRuleGroup">
 	<inherit name="CAvailabilityRule" />
-	<field name="selRulesOperator" type="Enum8">
+	<field name="selRulesOperator" type="Enum">
 		<enum name="enumRulesOperator">
 			<element name="AND">0</element>
 			<element name="OR">1</element>
@@ -11,7 +11,7 @@
 	</field>
 	<object name="AvailabilityRules">
 		<object name="AvailabilityRule">
-			<field name="availabilityruleRuleType" type="Int32" />
+			<field name="availabilityruleRuleType" type="StringId" />
 		</object>
 	</object>
 </class>

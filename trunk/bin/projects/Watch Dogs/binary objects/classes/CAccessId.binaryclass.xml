@@ -1,6 +1,6 @@
 <class name="CAccessId">
 	<inherit name="CNomadDbObjectNamed" />
 	<field name="text_sAccessId" type="String" />
-	<field name="sAccessId" type="BinHex" />
+	<field name="sAccessId" type="StringId" />
 	<field name="bIsNotPowerCollectedIfLocked" type="Boolean" />
 </class>
