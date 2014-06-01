@@ -20,17 +20,12 @@
  *    distribution.
  */
 
-using System.Xml.Serialization;
+using Gibbed.Disrupt.BinaryObjectInfo.Definitions;
 
-namespace Gibbed.Disrupt.BinaryObjectInfo.Definitions.Raw
+namespace Gibbed.Disrupt.BinaryObjectInfo
 {
-    public class EnumElementDefinition
+    internal interface IValueHandler
     {
-        [XmlAttribute("name")]
-        public string Name { get; set; }
-
-        //[XmlAttribute("value")]
-        [XmlText]
-        public long Value { get; set; }
+        byte[] Import(FieldDefinition def, FieldType arrayType, string text);
     }
 }

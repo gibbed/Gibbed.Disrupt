@@ -70,9 +70,9 @@ namespace Gibbed.Disrupt.BinaryObjectInfo.Definitions.Loaders
                 Name = raw.Name,
                 Aliases =
                     new ReadOnlyCollection<string>(
-                        new[] {raw.Name.ToLowerInvariant()}.Concat(raw.Aliases.Select(a => a.ToLowerInvariant()))
-                                                           .Distinct()
-                                                           .ToList()),
+                        new[] { raw.Name.ToLowerInvariant() }.Concat(raw.Aliases.Select(a => a.ToLowerInvariant()))
+                                                             .Distinct()
+                                                             .ToList()),
                 Object = classDef,
             };
         }

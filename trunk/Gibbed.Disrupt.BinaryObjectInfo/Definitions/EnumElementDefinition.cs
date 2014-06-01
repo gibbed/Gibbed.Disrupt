@@ -25,6 +25,6 @@ namespace Gibbed.Disrupt.BinaryObjectInfo.Definitions
     public class EnumElementDefinition
     {
         public string Name { get; internal set; }
-        public int Value { get; internal set; }
+        public long Value { get; internal set; }
     }
 }

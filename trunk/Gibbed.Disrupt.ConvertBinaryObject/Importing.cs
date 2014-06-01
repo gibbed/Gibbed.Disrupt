@@ -108,7 +108,7 @@ namespace Gibbed.Disrupt.ConvertBinaryObject
                 }
 
                 var fieldDef = objectDef != null ? objectDef.GetFieldDefinition(fieldNameHash, chain) : null;
-                var data = FieldTypeSerializers.Serialize(fieldDef, fieldType, arrayFieldType, fields.Current);
+                var data = FieldHandling.Import(fieldDef, fieldType, arrayFieldType, fields.Current);
                 node.Fields.Add(fieldNameHash, data);
             }
 
@@ -235,7 +235,9 @@ namespace Gibbed.Disrupt.ConvertBinaryObject
             }
 
             name = string.IsNullOrWhiteSpace(nameAttribute) == false ? nameAttribute : null;
-            hash = name != null ? FileFormats.Hashing.CRC32.Compute(name) : uint.Parse(hashAttribute, NumberStyles.AllowHexSpecifier);
+            hash = name != null
+                       ? FileFormats.Hashing.CRC32.Compute(name)
+                       : uint.Parse(hashAttribute, NumberStyles.AllowHexSpecifier);
         }
     }
 }

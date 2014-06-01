@@ -116,8 +116,9 @@ namespace Gibbed.Disrupt.ConvertBinaryObject
                                              ? objectDef.GetObjectDefinition(library.NameHash, null)
                                              : null;
 
-                        var libraryName = FieldTypeDeserializers.Deserialize<string>(FieldType.String,
-                                                                                     library.Fields[NameHash]);
+                        var libraryName = FieldHandling.Deserialize<string>(null,
+                                                                            FieldType.String,
+                                                                            library.Fields[NameHash]);
                         var unsanitizedLibraryName = libraryName;
 
                         libraryName = libraryName.Replace('/', Path.DirectorySeparatorChar);
@@ -166,9 +167,9 @@ namespace Gibbed.Disrupt.ConvertBinaryObject
                                                   ? libraryDef.GetObjectDefinition(item.NameHash, null)
                                                   : null;
 
-                                var itemName =
-                                    FieldTypeDeserializers.Deserialize<string>(FieldType.String,
-                                                                               item.Fields[NameHash]);
+                                var itemName = FieldHandling.Deserialize<string>(null,
+                                                                                 FieldType.String,
+                                                                                 item.Fields[NameHash]);
                                 itemName = itemName.Replace('/', Path.DirectorySeparatorChar);
                                 itemName = itemName.Replace('\\', Path.DirectorySeparatorChar);
 
@@ -302,9 +303,9 @@ namespace Gibbed.Disrupt.ConvertBinaryObject
                                           ? objectDef.GetObjectDefinition(item.NameHash, null)
                                           : null;
 
-                        var itemName =
-                            FieldTypeDeserializers.Deserialize<string>(FieldType.String,
-                                                                       item.Fields[TextHidNameHash]);
+                        var itemName = FieldHandling.Deserialize<string>(null,
+                                                                         FieldType.String,
+                                                                         item.Fields[TextHidNameHash]);
                         itemName = itemName.Replace('/', Path.DirectorySeparatorChar);
                         itemName = itemName.Replace('\\', Path.DirectorySeparatorChar);
 
@@ -399,9 +400,9 @@ namespace Gibbed.Disrupt.ConvertBinaryObject
                                           ? objectDef.GetObjectDefinition(item.NameHash, null)
                                           : null;
 
-                        var itemName =
-                            FieldTypeDeserializers.Deserialize<string>(FieldType.String,
-                                                                       item.Fields[NameHash]);
+                        var itemName = FieldHandling.Deserialize<string>(null,
+                                                                         FieldType.String,
+                                                                         item.Fields[NameHash]);
                         itemName = itemName.Replace('/', Path.DirectorySeparatorChar);
                         itemName = itemName.Replace('\\', Path.DirectorySeparatorChar);
 
@@ -489,8 +490,9 @@ namespace Gibbed.Disrupt.ConvertBinaryObject
             {
                 if (node.Fields.ContainsKey(def.ClassFieldHash.Value) == true)
                 {
-                    var hash = FieldTypeDeserializers.Deserialize<uint>(FieldType.UInt32,
-                                                                        node.Fields[def.ClassFieldHash.Value]);
+                    var hash = FieldHandling.Deserialize<uint>(null,
+                                                               FieldType.UInt32,
+                                                               node.Fields[def.ClassFieldHash.Value]);
                     def = infoManager.GetClassDefinition(hash);
                 }
             }
@@ -535,19 +537,27 @@ namespace Gibbed.Disrupt.ConvertBinaryObject
 
                     if (fieldDef == null)
                     {
-                        writer.WriteAttributeString("type", FieldType.BinHex.GetString());
+                        writer.WriteAttributeString("type", FieldHandling.GetTypeName(FieldType.BinHex));
                         writer.WriteBinHex(kv.Value, 0, kv.Value.Length);
                     }
                     else
                     {
-                        writer.WriteAttributeString("type", fieldDef.Type.GetString());
+                        writer.WriteAttributeString("type", FieldHandling.GetTypeName(fieldDef.Type));
 
                         if (fieldDef.ArrayType != FieldType.Invalid)
                         {
-                            writer.WriteAttributeString("array_type", fieldDef.ArrayType.GetString());
+                            writer.WriteAttributeString("array_type", FieldHandling.GetTypeName(fieldDef.ArrayType));
                         }
 
-                        FieldTypeDeserializers.Deserialize(writer, fieldDef, kv.Value);
+                        int read;
+                        FieldHandling.Export(fieldDef,
+                                             fieldDef.Type,
+                                             fieldDef.ArrayType,
+                                             kv.Value,
+                                             0,
+                                             kv.Value.Length,
+                                             writer,
+                                             out read);
                     }
 
                     writer.WriteEndElement();

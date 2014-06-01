@@ -76,6 +76,8 @@ namespace Gibbed.Disrupt.BinaryObjectInfo.Definitions
                 return this._FieldLookup[hash];
             }
 
+            var chainArray = chain != null ? chain.ToArray() : null;
+
             foreach (var friend in this.Friends)
             {
                 if (string.IsNullOrEmpty(friend.ConditionField) == false)
@@ -86,20 +88,20 @@ namespace Gibbed.Disrupt.BinaryObjectInfo.Definitions
                     }
 
                     byte[] fieldData;
-                    var hasFieldData = GetFieldData(friend.ConditionField, chain, out fieldData);
+                    var hasFieldData = GetFieldData(friend.ConditionField, chainArray, out fieldData);
                     if (hasFieldData == false)
                     {
                         continue;
                     }
 
-                    var conditionData = FieldTypeSerializers.Serialize(friend.ConditionType, friend.ConditionValue);
+                    var conditionData = FieldHandling.Import(null, friend.ConditionType, friend.ConditionValue);
                     if (fieldData.SequenceEqual(conditionData) == false)
                     {
                         continue;
                     }
                 }
 
-                var def = friend.Class.GetFieldDefinition(hash, chain);
+                var def = friend.Class.GetFieldDefinition(hash, chainArray);
                 if (def != null)
                 {
                     return def;
@@ -121,6 +123,8 @@ namespace Gibbed.Disrupt.BinaryObjectInfo.Definitions
                 return this._ObjectLookup[hash];
             }
 
+            var chainArray = chain != null ? chain.ToArray() : null;
+
             foreach (var friend in this.Friends)
             {
                 if (string.IsNullOrEmpty(friend.ConditionField) == false)
@@ -131,20 +135,20 @@ namespace Gibbed.Disrupt.BinaryObjectInfo.Definitions
                     }
 
                     byte[] fieldData;
-                    var hasFieldData = GetFieldData(friend.ConditionField, chain, out fieldData);
+                    var hasFieldData = GetFieldData(friend.ConditionField, chainArray, out fieldData);
                     if (hasFieldData == false)
                     {
                         continue;
                     }
 
-                    var conditionData = FieldTypeSerializers.Serialize(friend.ConditionType, friend.ConditionValue);
+                    var conditionData = FieldHandling.Import(null, friend.ConditionType, friend.ConditionValue);
                     if (fieldData.SequenceEqual(conditionData) == false)
                     {
                         continue;
                     }
                 }
 
-                var def = friend.Class.GetObjectDefinition(hash, chain);
+                var def = friend.Class.GetObjectDefinition(hash, chainArray);
                 if (def != null)
                 {
                     return def;
