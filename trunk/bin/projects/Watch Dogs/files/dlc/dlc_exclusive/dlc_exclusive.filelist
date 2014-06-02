@@ -1,4 +1,4 @@
-; 49/78 (62%)
+; 50/78 (64%)
 domino\user\windycity\side_missions\ulc_sony\mission_01\ulc_sony_m01.activation.debug.lua
 domino\user\windycity\side_missions\ulc_sony\mission_01\ulc_sony_m01.activation.lua
 domino\user\windycity\side_missions\ulc_sony\mission_01\ulc_sony_m01.main.debug.lua
@@ -37,6 +37,7 @@ ui\fire\sources\textures\nexus_drivingjobs\mission prompts\interceptortargets\in
 ui\fire\sources\textures\nexus_drivingjobs\mission prompts\interceptortargets\interceptortargets_09.xbt
 ui\fire\sources\textures\nexus_drivingjobs\mission prompts\interceptortargets\interceptortargets_17.xbt
 worlds\windy_city\generated\dlc\dlc_exclusive\combinedmovefile.bin
+worlds\windy_city\generated\dlc\dlc_exclusive\dlc_exclusive_depload.dat
 worlds\windy_city\generated\dlc\dlc_exclusive\dlc_exclusive_deploadnewparticles.rml
 worlds\windy_city\generated\dlc\dlc_exclusive\entitylibrary_rt.fcb
 worlds\windy_city\generated\dlc\dlc_exclusive\spawnpointlist.xml

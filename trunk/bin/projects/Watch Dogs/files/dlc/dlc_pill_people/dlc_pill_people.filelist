@@ -1,4 +1,4 @@
-; 78/209 (37%)
+; 79/209 (37%)
 graphics\_materials\chumeau-m-20130731153119.material.bin
 graphics\_materials\chumeau-m-20130731153841.material.bin
 graphics\_materials\chumeau-m-20130731155834.material.bin
@@ -73,6 +73,7 @@ soundbinary\000de6a8.sbao
 soundbinary\000ec929.sbao
 soundbinary\000f927d.sbao
 worlds\windy_city\generated\dlc\dlc_pill_people\combinedmovefile.bin
+worlds\windy_city\generated\dlc\dlc_pill_people\dlc_pill_people_depload.dat
 worlds\windy_city\generated\dlc\dlc_pill_people\dlc_pill_people_deploadnewparticles.rml
 worlds\windy_city\generated\dlc\dlc_pill_people\entitylibrary_rt.fcb
 worlds\windy_city\generated\dlc\dlc_pill_people\spawnpointlist.xml
