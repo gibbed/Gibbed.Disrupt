@@ -56,7 +56,7 @@ namespace Gibbed.Disrupt.BinaryObjectInfo.FieldHandlers.Ints
             var bytes = GetBytes(this.ToInt64(value));
             if (bytes.Length > this.MaximumBytes)
             {
-                throw new InvalidOperationException();
+                throw new InvalidOperationException("too many bytes for type");
             }
             return bytes;
         }

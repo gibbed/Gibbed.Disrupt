@@ -179,7 +179,7 @@ namespace Gibbed.Disrupt.FileFormats
                     size = ReadCount(input, out isOffset, endian);
                     if (isOffset == true)
                     {
-                        throw new FormatException();
+                        throw new FormatException("offset to offset isn't supported");
                     }
 
                     value = input.ReadBytes(size);

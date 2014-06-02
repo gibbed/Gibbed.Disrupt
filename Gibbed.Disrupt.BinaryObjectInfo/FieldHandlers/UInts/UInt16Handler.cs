@@ -43,7 +43,7 @@ namespace Gibbed.Disrupt.BinaryObjectInfo.FieldHandlers.UInts
             ushort value;
             if (Helpers.TryParseUInt16(text, out value) == false)
             {
-                throw new FormatException();
+                throw new FormatException("failed to parse UInt16");
             }
             return value;
         }

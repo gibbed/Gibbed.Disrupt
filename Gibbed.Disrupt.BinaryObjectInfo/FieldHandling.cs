@@ -71,7 +71,7 @@ namespace Gibbed.Disrupt.BinaryObjectInfo
         {
             if (_TypeNames.ContainsKey(type) == false)
             {
-                throw new NotSupportedException();
+                throw new NotSupportedException("unknown type");
             }
 
             return _TypeNames[type];
@@ -81,7 +81,7 @@ namespace Gibbed.Disrupt.BinaryObjectInfo
         {
             if (def != null && def.Type != type)
             {
-                throw new ArgumentException();
+                throw new ArgumentException("type mismatch", "def");
             }
 
             if (_Handlers.ContainsKey(type) == false)
@@ -107,7 +107,7 @@ namespace Gibbed.Disrupt.BinaryObjectInfo
 
             if (def != null && def.Type != type)
             {
-                throw new ArgumentException();
+                throw new ArgumentException("type mismatch", "def");
             }
 
             if (_Handlers.ContainsKey(type) == false)
@@ -128,7 +128,7 @@ namespace Gibbed.Disrupt.BinaryObjectInfo
         {
             if (def != null && def.Type != type)
             {
-                throw new ArgumentException();
+                throw new ArgumentException("type mismatch", "def");
             }
 
             if (_Handlers.ContainsKey(type) == false)
@@ -186,7 +186,7 @@ namespace Gibbed.Disrupt.BinaryObjectInfo
 
             if (def != null && def.Type != type)
             {
-                throw new ArgumentException();
+                throw new ArgumentException("type mismatch", "def");
             }
 
             if (_Handlers.ContainsKey(type) == false)

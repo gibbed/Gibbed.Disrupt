@@ -51,22 +51,22 @@ namespace Gibbed.Disrupt.BinaryObjectInfo.FieldHandlers
 
             if (Helpers.TryParseFloat32(parts[0], out x) == false)
             {
-                throw new FormatException();
+                throw new FormatException("failed to parse Float X");
             }
 
             if (Helpers.TryParseFloat32(parts[1], out y) == false)
             {
-                throw new FormatException();
+                throw new FormatException("failed to parse Float Y");
             }
 
             if (Helpers.TryParseFloat32(parts[2], out z) == false)
             {
-                throw new FormatException();
+                throw new FormatException("failed to parse Float Z");
             }
 
             if (Helpers.TryParseFloat32(parts[3], out w) == false)
             {
-                throw new FormatException();
+                throw new FormatException("failed to parse Float W");
             }
 
             return new Vector4(x, y, z, w);

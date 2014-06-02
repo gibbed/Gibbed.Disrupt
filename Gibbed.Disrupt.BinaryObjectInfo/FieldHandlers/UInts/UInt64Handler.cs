@@ -43,7 +43,7 @@ namespace Gibbed.Disrupt.BinaryObjectInfo.FieldHandlers.UInts
             ulong value;
             if (Helpers.TryParseUInt64(text, out value) == false)
             {
-                throw new FormatException();
+                throw new FormatException("failed to parse UInt64");
             }
             return value;
         }

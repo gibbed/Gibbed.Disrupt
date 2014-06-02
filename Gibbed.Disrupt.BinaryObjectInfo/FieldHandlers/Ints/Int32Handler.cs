@@ -43,7 +43,7 @@ namespace Gibbed.Disrupt.BinaryObjectInfo.FieldHandlers.Ints
             int value;
             if (Helpers.TryParseInt32(text, out value) == false)
             {
-                throw new FormatException();
+                throw new FormatException("failed to parse Int32");
             }
             return value;
         }

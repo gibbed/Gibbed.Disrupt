@@ -55,7 +55,7 @@ namespace Gibbed.Disrupt.FileFormats
             if (actualNodeCount != totalNodeCount ||
                 actualAttributeCount != totalAttributeCount)
             {
-                throw new FormatException();
+                throw new FormatException("count mismatch");
             }
 
             var stringTableData = new byte[stringTableSize];
@@ -218,7 +218,7 @@ namespace Gibbed.Disrupt.FileFormats
 
                 if (this.Unknown != 0)
                 {
-                    throw new FormatException();
+                    throw new FormatException("don't know how to handle a non-zero unknown");
                 }
 
                 this.NameIndex = ReadValuePackedU32(input, endian);
@@ -310,7 +310,7 @@ namespace Gibbed.Disrupt.FileFormats
 
             if (value == 0xFE)
             {
-                throw new FormatException();
+                throw new FormatException("offsets are not supported");
             }
 
             return input.ReadValueU32(endian);
