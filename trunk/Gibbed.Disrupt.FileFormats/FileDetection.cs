@@ -25,7 +25,7 @@ using System.Text;
 
 namespace Gibbed.Disrupt.FileFormats
 {
-    public static class FileExtensions
+    public static class FileDetection
     {
         public static Tuple<string, string> Detect(byte[] guess, int read)
         {
@@ -137,7 +137,7 @@ namespace Gibbed.Disrupt.FileFormats
 
                 if (magic == 0x47454F4D)
                 {
-                    return new Tuple<string, string>("gfx", "geom");
+                    return new Tuple<string, string>("gfx", "xbg");
                 }
 
                 if (magic == 0x00014C53)

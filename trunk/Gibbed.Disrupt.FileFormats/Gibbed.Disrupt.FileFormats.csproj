@@ -56,7 +56,7 @@
     <Compile Include="Big\Target.cs" />
     <Compile Include="BinaryObject.cs" />
     <Compile Include="BinaryObjectFile.cs" />
-    <Compile Include="FileExtensions.cs" />
+    <Compile Include="FileDetection.cs" />
     <Compile Include="Compression\LZO.cs" />
     <Compile Include="Hashing\CRC32.cs" />
     <Compile Include="Hashing\CRC64.cs" />

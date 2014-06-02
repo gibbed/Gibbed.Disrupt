@@ -262,7 +262,7 @@ namespace Gibbed.Disrupt.Unpack
                         }
                     }
 
-                    var tuple = FileExtensions.Detect(guess, Math.Min(guess.Length, read));
+                    var tuple = FileDetection.Detect(guess, Math.Min(guess.Length, read));
                     type = tuple != null ? tuple.Item1 : "unknown";
                     extension = tuple != null ? tuple.Item2 : null;
                 }
