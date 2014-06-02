@@ -52,7 +52,7 @@ namespace Gibbed.Disrupt.FileFormats.Big
             }
             else
             {
-                throw new NotImplementedException();
+                throw new NotImplementedException("unimplemented compression scheme");
             }
         }
 
@@ -61,7 +61,7 @@ namespace Gibbed.Disrupt.FileFormats.Big
             var compressedBytes = new byte[entry.CompressedSize];
             if (input.Read(compressedBytes, 0, compressedBytes.Length) != compressedBytes.Length)
             {
-                throw new EndOfStreamException();
+                throw new EndOfStreamException("could not read all compressed bytes");
             }
 
             var uncompressedBytes = new byte[entry.UncompressedSize];
@@ -75,12 +75,12 @@ namespace Gibbed.Disrupt.FileFormats.Big
                                                     ref actualUncompressedLength);
             if (result != Compression.LZO.ErrorCode.Success)
             {
-                throw new FormatException(string.Format("LZO decompression failure ({0})", result));
+                throw new InvalidOperationException(string.Format("LZO decompression failure ({0})", result));
             }
 
             if (actualUncompressedLength != uncompressedBytes.Length)
             {
-                throw new FormatException("LZO decompression failure (uncompressed size mismatch)");
+                throw new InvalidOperationException("LZO decompression failure (uncompressed size mismatch)");
             }
 
             output.Write(uncompressedBytes, 0, uncompressedBytes.Length);
@@ -90,7 +90,7 @@ namespace Gibbed.Disrupt.FileFormats.Big
         {
             if (entry.CompressedSize < 16)
             {
-                throw new FormatException();
+                throw new EndOfStreamException("not enough data for zlib compressed data");
             }
 
             var sizes = new ushort[8];
@@ -144,7 +144,7 @@ namespace Gibbed.Disrupt.FileFormats.Big
 
             if (left > 0)
             {
-                throw new InvalidOperationException();
+                throw new InvalidOperationException("did not decompress enough data");
             }
         }
 
@@ -153,25 +153,25 @@ namespace Gibbed.Disrupt.FileFormats.Big
             var magic = input.ReadValueU32(Endian.Big);
             if (magic != 0x0FF512EE)
             {
-                throw new FormatException();
+                throw new FormatException("invalid magic");
             }
 
             var version = input.ReadValueU32(Endian.Big);
             if (version != 0x01030000)
             {
-                throw new FormatException();
+                throw new FormatException("invalid version");
             }
 
             var unknown08 = input.ReadValueU32(Endian.Big);
             if (unknown08 != 0)
             {
-                throw new FormatException();
+                throw new FormatException("don't know how to handle a non-zero unknown08");
             }
 
             var unknown0C = input.ReadValueU32(Endian.Big);
             if (unknown0C != 0)
             {
-                throw new FormatException();
+                throw new FormatException("don't know how to handle a non-zero unknown0C");
             }
 
             var windowSize = input.ReadValueU32(Endian.Big);
@@ -187,12 +187,12 @@ namespace Gibbed.Disrupt.FileFormats.Big
                 largestUncompressedChunkSize < 0 ||
                 largestCompressedChunkSize < 0)
             {
-                throw new FormatException();
+                throw new FormatException("bad size value");
             }
 
             if (uncompressedSize != entry.UncompressedSize)
             {
-                throw new FormatException();
+                throw new InvalidOperationException("uncompressed size mismatch");
             }
 
             var uncompressedBytes = new byte[largestUncompressedChunkSize];
@@ -207,12 +207,12 @@ namespace Gibbed.Disrupt.FileFormats.Big
                     if (compressedChunkSize < 0 ||
                         compressedChunkSize > largestCompressedChunkSize)
                     {
-                        throw new FormatException();
+                        throw new InvalidOperationException("compressed size mismatch");
                     }
 
                     if (input.Read(compressedBytes, 0, compressedChunkSize) != compressedChunkSize)
                     {
-                        throw new EndOfStreamException();
+                        throw new EndOfStreamException("could not read all compressed bytes");
                     }
 
                     var uncompressedChunkSize = (int)Math.Min(largestUncompressedChunkSize, remaining);
@@ -227,12 +227,12 @@ namespace Gibbed.Disrupt.FileFormats.Big
                                                     ref actualUncompressedChunkSize);
                     if (result != XCompression.ErrorCode.None)
                     {
-                        throw new FormatException(string.Format("XCompression decompression failure ({0})", result));
+                        throw new InvalidOperationException(string.Format("XCompression decompression failure ({0})", result));
                     }
 
                     if (actualUncompressedChunkSize != uncompressedChunkSize)
                     {
-                        throw new FormatException("XCompression decompression failure (uncompressed size mismatch)");
+                        throw new InvalidOperationException("XCompression decompression failure (uncompressed size mismatch)");
                     }
 
                     output.Write(uncompressedBytes, 0, actualUncompressedChunkSize);

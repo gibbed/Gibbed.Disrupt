@@ -247,7 +247,7 @@ namespace Gibbed.Disrupt.Pack
             }
             else
             {
-                throw new InvalidOperationException();
+                throw new InvalidOperationException("unknown target");
             }
 
             using (var output = File.Create(datPath))

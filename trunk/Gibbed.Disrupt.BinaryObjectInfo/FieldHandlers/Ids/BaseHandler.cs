@@ -43,7 +43,7 @@ namespace Gibbed.Disrupt.BinaryObjectInfo.FieldHandlers.Ids
                               CultureInfo.InvariantCulture,
                               out value) == false)
             {
-                throw new FormatException();
+                throw new FormatException("failed to parse hex Id");
             }
             return (int)value;
         }

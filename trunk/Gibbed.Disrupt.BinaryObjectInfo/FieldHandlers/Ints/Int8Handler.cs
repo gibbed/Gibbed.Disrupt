@@ -43,7 +43,7 @@ namespace Gibbed.Disrupt.BinaryObjectInfo.FieldHandlers.Ints
             sbyte value;
             if (Helpers.TryParseInt8(text, out value) == false)
             {
-                throw new FormatException();
+                throw new FormatException("failed to parse Int8");
             }
             return value;
         }

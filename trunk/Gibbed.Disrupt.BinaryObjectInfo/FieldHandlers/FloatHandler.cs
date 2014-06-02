@@ -39,7 +39,7 @@ namespace Gibbed.Disrupt.BinaryObjectInfo.FieldHandlers
             float value;
             if (Helpers.TryParseFloat32(text, out value) == false)
             {
-                throw new FormatException();
+                throw new FormatException("failed to parse Float");
             }
             return value;
         }

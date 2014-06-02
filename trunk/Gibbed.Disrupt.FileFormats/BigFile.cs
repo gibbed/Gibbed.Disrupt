@@ -187,19 +187,17 @@ namespace Gibbed.Disrupt.FileFormats
             for (uint i = 0; i < entryCount; i++)
             {
                 Big.Entry entry;
-                entrySerializer.Deserialize(input, endian, out entry);
+                entrySerializer.Deserialize(input, Endian.Little, out entry);
                 this._Entries.Add(entry);
             }
 
             uint localizationCount = input.ReadValueU32(Endian.Little);
             for (uint i = 0; i < localizationCount; i++)
             {
-                throw new NotImplementedException();
-
                 var nameLength = input.ReadValueU32(Endian.Little);
                 if (nameLength > 32)
                 {
-                    throw new ArgumentOutOfRangeException();
+                    throw new FormatException("bad length for localization name");
                 }
                 var nameBytes = input.ReadBytes(nameLength);
                 var unknownValue = input.ReadValueU64(Endian.Little);
@@ -268,6 +266,18 @@ namespace Gibbed.Disrupt.FileFormats
                 }
 
                 if (unknown70 != 0x32)
+                {
+                    return false;
+                }
+            }
+            else if (target == Big.Target.Xbox360)
+            {
+                if (platform != (Big.Platform)5)
+                {
+                    return false;
+                }
+
+                if (unknown70 != 0x37)
                 {
                     return false;
                 }

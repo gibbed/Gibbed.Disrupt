@@ -44,7 +44,7 @@ namespace Gibbed.Disrupt.BinaryObjectInfo.FieldHandlers
             bool value;
             if (bool.TryParse(text, out value) == false)
             {
-                throw new FormatException();
+                throw new FormatException("failed to parse Boolean");
             }
             return value;
         }
