@@ -1,4 +1,4 @@
-; 380/775 (49%)
+; 386/775 (49%)
 engine\shaders\ambient.inc.fx
 engine\shaders\artisticconstants.inc.fx
 engine\shaders\bits.inc.fx
@@ -77,6 +77,12 @@ engine\shaders\materialdescriptors\skin.xml
 engine\shaders\materialdescriptors\starsphere.xml
 engine\shaders\materialdescriptors\template.xml
 engine\shaders\materialdescriptors\ui\_leparams.xml
+engine\shaders\materialdescriptors\ui\clothwrinkletargetparts.xml
+engine\shaders\materialdescriptors\ui\dataclasses.xml
+engine\shaders\materialdescriptors\ui\reflectancegroup.xml
+engine\shaders\materialdescriptors\ui\reflectiongroup.xml
+engine\shaders\materialdescriptors\ui\specularpowergroup.xml
+engine\shaders\materialdescriptors\ui\vegetationanimationgroup.xml
 engine\shaders\materialdescriptors\unlit.xml
 engine\shaders\materialdescriptors\vehicle.xml
 engine\shaders\materialdescriptors\vehicle_light_halo.xml

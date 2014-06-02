@@ -1,4 +1,4 @@
-; 45/78 (57%)
+; 49/78 (62%)
 domino\user\windycity\side_missions\ulc_sony\mission_01\ulc_sony_m01.activation.debug.lua
 domino\user\windycity\side_missions\ulc_sony\mission_01\ulc_sony_m01.activation.lua
 domino\user\windycity\side_missions\ulc_sony\mission_01\ulc_sony_m01.main.debug.lua
@@ -36,6 +36,10 @@ graphics\characters\kits\unlockablecontent\male\legs\ulc_m_leg_white01\ulc_m_leg
 ui\fire\sources\textures\nexus_drivingjobs\mission prompts\interceptortargets\interceptortargets_06.xbt
 ui\fire\sources\textures\nexus_drivingjobs\mission prompts\interceptortargets\interceptortargets_09.xbt
 ui\fire\sources\textures\nexus_drivingjobs\mission prompts\interceptortargets\interceptortargets_17.xbt
+worlds\windy_city\generated\dlc\dlc_exclusive\combinedmovefile.bin
+worlds\windy_city\generated\dlc\dlc_exclusive\dlc_exclusive_deploadnewparticles.rml
+worlds\windy_city\generated\dlc\dlc_exclusive\entitylibrary_rt.fcb
+worlds\windy_city\generated\dlc\dlc_exclusive\spawnpointlist.xml
 worlds\windy_city\generated\wlu\wlu_data_ulc_sony_m01.xml.data.fcb
 worlds\windy_city\generated\wlu\wlu_data_ulc_sony_m01_activation.xml.data.fcb
 worlds\windy_city\generated\wlu\wlu_data_ulc_sony_m02.xml.data.fcb
