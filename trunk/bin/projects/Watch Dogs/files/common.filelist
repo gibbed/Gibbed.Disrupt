@@ -1,4 +1,4 @@
-; 8171/10237 (79%)
+; 8211/10237 (80%)
 credits\pc\credits.xml
 domino\library\common\checkpointrace.checkpointcontroller.debug.lua
 domino\library\common\checkpointrace.checkpointcontroller.lua
@@ -6959,6 +6959,7 @@ ui\fire\sources\textures\nexus_cityhotspots\tiles\plain_3x1_popup_right.xbt
 ui\fire\sources\textures\nexus_drinkinggame\buttonshadow.xbt
 ui\fire\sources\textures\nexus_drinkinggame\chainlink.xbt
 ui\fire\sources\textures\nexus_drinkinggame\combodiamond_wht.xbt
+ui\fire\sources\textures\nexus_drinkinggame\drinkingame_gridgrade.xbt
 ui\fire\sources\textures\nexus_drinkinggame\drinkinggame_cyclearrow.xbt
 ui\fire\sources\textures\nexus_drinkinggame\drinkinggame_stick_backing.xbt
 ui\fire\sources\textures\nexus_drinkinggame\drinkinggame_stick_circle.xbt
@@ -7319,16 +7320,28 @@ ui\fire\sources\textures\nexus_items\cityhotspots\locationspopup_colour\97_v_all
 ui\fire\sources\textures\nexus_items\cityhotspots\locationspopup_colour\98_birthplace_of_the_chicago_south_club.xbt
 ui\fire\sources\textures\nexus_items\cityhotspots\locationspopup_colour\99_hanson_park_club_massacre.xbt
 ui\fire\sources\textures\nexus_items\companionboard\road_signdot_01_d.xbt
+ui\fire\sources\textures\nexus_items\contracts\missions\tilebg_decoy_1.xbt
 ui\fire\sources\textures\nexus_items\contracts\missions\tilebg_decoy_2.xbt
 ui\fire\sources\textures\nexus_items\contracts\missions\tilebg_decoy_3.xbt
+ui\fire\sources\textures\nexus_items\contracts\missions\tilebg_decoy_4.xbt
 ui\fire\sources\textures\nexus_items\contracts\missions\tilebg_getaway_1.xbt
 ui\fire\sources\textures\nexus_items\contracts\missions\tilebg_getaway_2.xbt
+ui\fire\sources\textures\nexus_items\contracts\missions\tilebg_getaway_5.xbt
+ui\fire\sources\textures\nexus_items\contracts\missions\tilebg_getaway_6.xbt
+ui\fire\sources\textures\nexus_items\contracts\missions\tilebg_getaway_8.xbt
 ui\fire\sources\textures\nexus_items\contracts\missions\tilebg_interceptor_1.xbt
+ui\fire\sources\textures\nexus_items\contracts\missions\tilebg_interceptor_13.xbt
+ui\fire\sources\textures\nexus_items\contracts\missions\tilebg_interceptor_14.xbt
+ui\fire\sources\textures\nexus_items\contracts\missions\tilebg_interceptor_19.xbt
 ui\fire\sources\textures\nexus_items\contracts\missions\tilebg_interceptor_2.xbt
 ui\fire\sources\textures\nexus_items\contracts\missions\tilebg_interceptor_5.xbt
+ui\fire\sources\textures\nexus_items\contracts\missions\tilebg_interceptor_7.xbt
 ui\fire\sources\textures\nexus_items\contracts\missions\tilebg_transporter_1.xbt
 ui\fire\sources\textures\nexus_items\contracts\missions\tilebg_transporter_2.xbt
 ui\fire\sources\textures\nexus_items\contracts\missions\tilebg_transporter_3.xbt
+ui\fire\sources\textures\nexus_items\contracts\missions\tilebg_transporter_5.xbt
+ui\fire\sources\textures\nexus_items\contracts\missions\tilebg_transporter_6.xbt
+ui\fire\sources\textures\nexus_items\contracts\missions\tilebg_transporter_7.xbt
 ui\fire\sources\textures\nexus_items\hud\deadavatar_antialias.xbt
 ui\fire\sources\textures\nexus_items\indicator\autotakedown.xbt
 ui\fire\sources\textures\nexus_items\indicator\goldrush_icon_indicator.xbt
@@ -7628,6 +7641,7 @@ ui\fire\sources\textures\nexus_items\shop\wpn_1911.xbt
 ui\fire\sources\textures\nexus_items\shop\wpn_1911_specops.xbt
 ui\fire\sources\textures\nexus_items\shop\wpn_2xsawedoff.xbt
 ui\fire\sources\textures\nexus_items\shop\wpn_416.xbt
+ui\fire\sources\textures\nexus_items\shop\wpn_416_sigsprayer.xbt
 ui\fire\sources\textures\nexus_items\shop\wpn_417.xbt
 ui\fire\sources\textures\nexus_items\shop\wpn_ace.xbt
 ui\fire\sources\textures\nexus_items\shop\wpn_acr.xbt
@@ -7639,6 +7653,7 @@ ui\fire\sources\textures\nexus_items\shop\wpn_d50_uplaygold.xbt
 ui\fire\sources\textures\nexus_items\shop\wpn_g106.xbt
 ui\fire\sources\textures\nexus_items\shop\wpn_gl94.xbt
 ui\fire\sources\textures\nexus_items\shop\wpn_goblin.xbt
+ui\fire\sources\textures\nexus_items\shop\wpn_goblin_specops.xbt
 ui\fire\sources\textures\nexus_items\shop\wpn_ied.xbt
 ui\fire\sources\textures\nexus_items\shop\wpn_ied_proxy.xbt
 ui\fire\sources\textures\nexus_items\shop\wpn_m1014.xbt
@@ -7663,6 +7678,7 @@ ui\fire\sources\textures\nexus_items\shop\wpn_smg11_specops.xbt
 ui\fire\sources\textures\nexus_items\shop\wpn_sr25.xbt
 ui\fire\sources\textures\nexus_items\shop\wpn_svd.xbt
 ui\fire\sources\textures\nexus_items\shop\wpn_u100.xbt
+ui\fire\sources\textures\nexus_items\shop\wpn_ulc_m1smg_sig_gold.xbt
 ui\fire\sources\textures\nexus_items\shop\wpn_vector_45acp_specops.xbt
 ui\fire\sources\textures\nexus_items\shop\wpn_vector45acp.xbt
 ui\fire\sources\textures\nexus_items\songs\audiodrops\audiodrop_aiden.xbt
@@ -7678,6 +7694,7 @@ ui\fire\sources\textures\nexus_items\songs\audiodrops\audiodrop_rose.xbt
 ui\fire\sources\textures\nexus_items\songs\audiodrops\audiodrop_serialkiller.xbt
 ui\fire\sources\textures\nexus_items\songs\audiodrops\audiodrop_weapon.xbt
 ui\fire\sources\textures\nexus_items\songs\gods_of_fashion.xbt
+ui\fire\sources\textures\nexus_items\songs\vindictives_alarmclocks.xbt
 ui\fire\sources\textures\nexus_items\techtree\generic_achievement.xbt
 ui\fire\sources\textures\nexus_items\techtree\generic_skill.xbt
 ui\fire\sources\textures\nexus_items\techtree\pills_alone_perks_alphawaveemitter.xbt
@@ -7890,6 +7907,29 @@ ui\fire\sources\textures\nexus_shell\hinttile2.xbt
 ui\fire\sources\textures\nexus_shell\shell_ctosicon.xbt
 ui\fire\sources\textures\nexus_shell\shell_icon.xbt
 ui\fire\sources\textures\nexus_shell\shell_wirelessicon.xbt
+ui\fire\sources\textures\nexus_slotmachines\slotmachine_buttonhighlight.xbt
+ui\fire\sources\textures\nexus_slotmachines\slotmachine_iconbase.xbt
+ui\fire\sources\textures\nexus_slotmachines\slotmachine_iconssingle_bar_baseball.xbt
+ui\fire\sources\textures\nexus_slotmachines\slotmachine_iconssingle_bar_biker.xbt
+ui\fire\sources\textures\nexus_slotmachines\slotmachine_iconssingle_bar_vegas.xbt
+ui\fire\sources\textures\nexus_slotmachines\slotmachine_iconssingle_bell_baseball.xbt
+ui\fire\sources\textures\nexus_slotmachines\slotmachine_iconssingle_bell_biker.xbt
+ui\fire\sources\textures\nexus_slotmachines\slotmachine_iconssingle_bell_vegas.xbt
+ui\fire\sources\textures\nexus_slotmachines\slotmachine_iconssingle_cherry_baseball.xbt
+ui\fire\sources\textures\nexus_slotmachines\slotmachine_iconssingle_cherry_biker.xbt
+ui\fire\sources\textures\nexus_slotmachines\slotmachine_iconssingle_cherry_vegas.xbt
+ui\fire\sources\textures\nexus_slotmachines\slotmachine_iconssingle_lemon_baseball.xbt
+ui\fire\sources\textures\nexus_slotmachines\slotmachine_iconssingle_lemon_biker.xbt
+ui\fire\sources\textures\nexus_slotmachines\slotmachine_iconssingle_lemon_vegas.xbt
+ui\fire\sources\textures\nexus_slotmachines\slotmachine_iconssingle_melon_baseball.xbt
+ui\fire\sources\textures\nexus_slotmachines\slotmachine_iconssingle_melon_biker.xbt
+ui\fire\sources\textures\nexus_slotmachines\slotmachine_iconssingle_melon_vegas.xbt
+ui\fire\sources\textures\nexus_slotmachines\slotmachine_iconssingle_orange_baseball.xbt
+ui\fire\sources\textures\nexus_slotmachines\slotmachine_iconssingle_orange_biker.xbt
+ui\fire\sources\textures\nexus_slotmachines\slotmachine_iconssingle_orange_vegas.xbt
+ui\fire\sources\textures\nexus_slotmachines\slotmachine_iconssingle_seven_baseball.xbt
+ui\fire\sources\textures\nexus_slotmachines\slotmachine_iconssingle_seven_biker.xbt
+ui\fire\sources\textures\nexus_slotmachines\slotmachine_iconssingle_seven_vegas.xbt
 ui\fire\sources\textures\nexus_songsneak\blocktexture.xbt
 ui\fire\sources\textures\nexus_songsneak\songsneak_logo.xbt
 ui\fire\sources\textures\nexus_songsneak\wd_ss_bg.xbt
