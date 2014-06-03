@@ -1,4 +1,4 @@
-; 8167/10237 (79%)
+; 8171/10237 (79%)
 credits\pc\credits.xml
 domino\library\common\checkpointrace.checkpointcontroller.debug.lua
 domino\library\common\checkpointrace.checkpointcontroller.lua
@@ -7511,6 +7511,7 @@ ui\fire\sources\textures\nexus_items\shelly\appicons\musicplayer.xbt
 ui\fire\sources\textures\nexus_items\shelly\appicons\nvzn.xbt
 ui\fire\sources\textures\nexus_items\shelly\appicons\pillstore.xbt
 ui\fire\sources\textures\nexus_items\shelly\appicons\resultshacking.xbt
+ui\fire\sources\textures\nexus_items\shelly\appicons\resultstailing.xbt
 ui\fire\sources\textures\nexus_items\shelly\appicons\songsneak.xbt
 ui\fire\sources\textures\nexus_items\shelly\appicons\talkfeed.xbt
 ui\fire\sources\textures\nexus_items\shelly\apps\fixerapp\ulcblume.xbt
@@ -7539,10 +7540,12 @@ ui\fire\sources\textures\nexus_items\shelly\headers\cloth_techture.xbt
 ui\fire\sources\textures\nexus_items\shelly\headers\cloth_walker.xbt
 ui\fire\sources\textures\nexus_items\shelly\headers\dbr_weaponsmiths.xbt
 ui\fire\sources\textures\nexus_items\shelly\headers\default.xbt
+ui\fire\sources\textures\nexus_items\shelly\headers\pawn_goodgoods.xbt
 ui\fire\sources\textures\nexus_items\shelly\headers\pawn_papabpawn.xbt
 ui\fire\sources\textures\nexus_items\shelly\headers\pawnedoff.xbt
 ui\fire\sources\textures\nexus_items\shelly\headers\pharma_pharmingtons.xbt
 ui\fire\sources\textures\nexus_items\shelly\headers\wpn_illegal.xbt
+ui\fire\sources\textures\nexus_items\shelly\headers\wpn_pawnee.xbt
 ui\fire\sources\textures\nexus_items\shop\aiden\aiden_kit_00.xbt
 ui\fire\sources\textures\nexus_items\shop\aiden\aiden_kit_01.xbt
 ui\fire\sources\textures\nexus_items\shop\aiden\aiden_kit_02.xbt
@@ -7743,6 +7746,7 @@ ui\fire\sources\textures\nexus_items\tutorials\_64_screenshot_invasion_privacy.x
 ui\fire\sources\textures\nexus_items\tutorials\_65_screenshot_maurice_side_mission.xbt
 ui\fire\sources\textures\nexus_items\tutorials\_66_screenshot_spot_a_song.xbt
 ui\fire\sources\textures\nexus_items\tutorials\_78_screenshot_advance_profiling.xbt
+ui\fire\sources\textures\nexus_items\tutorials\_82_screenshot_slotmachine_multiline.xbt
 ui\fire\sources\textures\nexus_items\tutorials\_84_screenshot_poker_game.xbt
 ui\fire\sources\textures\nexus_items\tutorials\_85_screenshot_weapon_traffiking.xbt
 ui\fire\sources\textures\nexus_items\tutorials\_86_screenshot_shell_game.xbt
