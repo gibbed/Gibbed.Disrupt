@@ -1,4 +1,4 @@
-; 8865/10237 (86%)
+; 8866/10237 (86%)
 credits\pc\credits.xml
 domino\library\common\checkpointrace.checkpointcontroller.debug.lua
 domino\library\common\checkpointrace.checkpointcontroller.lua
@@ -7907,6 +7907,7 @@ ui\fire\sources\textures\nexus_items\shelly\appicons\nvzn.xbt
 ui\fire\sources\textures\nexus_items\shelly\appicons\pillstore.xbt
 ui\fire\sources\textures\nexus_items\shelly\appicons\resultscompanionversus.xbt
 ui\fire\sources\textures\nexus_items\shelly\appicons\resultsdecryption.xbt
+ui\fire\sources\textures\nexus_items\shelly\appicons\resultsfreeroam.xbt
 ui\fire\sources\textures\nexus_items\shelly\appicons\resultshacking.xbt
 ui\fire\sources\textures\nexus_items\shelly\appicons\resultstailing.xbt
 ui\fire\sources\textures\nexus_items\shelly\appicons\songsneak.xbt
