@@ -1,0 +1,6 @@
+<file name="NexusWallaDatabase">
+	<alias>NexusWallaSpotDatabase_2ce33943</alias>
+	<object name="obj">
+		<inherit name="CNexusWallaDatabase" />
+	</object>
+</file>

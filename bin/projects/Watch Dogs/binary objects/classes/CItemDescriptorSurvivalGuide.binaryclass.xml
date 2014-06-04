@@ -1,0 +1,9 @@
+<class name="CItemDescriptorSurvivalGuide">
+	<inherit name="CItemDescriptor" />
+	<field name="sImageName" type="String" />
+	<field name="sVideoName" type="String" />
+	<field name="bForceDisplay" type="Boolean" />
+	<object name="IsForceDisplay">
+	</object>
+	<field name="bIsPausingGame" type="Boolean" />
+</class>

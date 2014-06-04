@@ -1,0 +1,14 @@
+<class name="CGoldRushTrackInfos">
+	<inherit name="CNomadDbObjectNamed" />
+	<field name="fGoldTime" desc="The player gets a Gold Medal if at the end the time left is more than this" type="Float" />
+	<field name="fSilverTime" desc="The player gets a Silver Medal if at the end the time left is more than this" type="Float" />
+	<field name="fBronzeTime" desc="The player gets a Bronze Medal if at the end the time left is more than this" type="Float" />
+	<field name="uiTrackId" type="UInt32" />
+	<object name="locstridTrackName">
+		<inherit name="CLocalizationId" />
+	</object>
+	<object name="locstridTrackDesc">
+		<inherit name="CLocalizationId" />
+	</object>
+	<field name="imageName" type="String" />
+</class>

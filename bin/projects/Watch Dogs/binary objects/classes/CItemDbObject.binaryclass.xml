@@ -8,5 +8,13 @@
 		         condition_field="^itemdescriptorItemDescriptor"
 		         condition_type="StringId"
 		         condition_value="ItemDescriptorCar" />
+		<inherit name="CItemDescriptorCloth"
+		         condition_field="^itemdescriptorItemDescriptor"
+		         condition_type="StringId"
+		         condition_value="ItemDescriptorCloth" />
+		<inherit name="CItemDescriptorSurvivalGuide"
+		         condition_field="^itemdescriptorItemDescriptor"
+		         condition_type="StringId"
+		         condition_value="ItemDescriptorSurvivalGuide" />
 	</object>
 </class>
