@@ -11,10 +11,10 @@
 		</enum>
 	</field>
 	<object name="locstridTitleRewardMessage">
-		<inherit name="LocalizationId" />
+		<inherit name="CLocalizationId" />
 	</object>
 	<object name="locstridDescriptionRewardMessage">
-		<inherit name="LocalizationId" />
+		<inherit name="CLocalizationId" />
 	</object>
 	<field name="sItemTextureName" desc="Icon to show on the hacking reward panel and reward item feed." type="String" />
 	<field name="bIsItemInterest" desc="civilian who has this reward item will be taged as person of interest" type="Boolean" />

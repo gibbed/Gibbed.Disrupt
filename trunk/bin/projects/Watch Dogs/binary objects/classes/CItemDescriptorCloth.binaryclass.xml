@@ -1,0 +1,18 @@
+<class name="CItemDescriptorCloth">
+	<inherit name="CItemDescriptor" />
+	<field name="graphickitmodelModel" type="BinHex" />
+	<field name="avatarbodypartHeadAccessoryPart" type="BinHex" />
+	<field name="avatarbodypartLowerBodyPart" type="BinHex" />
+	<field name="avatarbodypartUpperBodyPart" type="BinHex" />
+	<field name="avatarbodypartHandsPart" type="BinHex" />
+	<field name="bIsCompleteSet" type="Boolean" />
+	<field name="bIsDefaultMPMale" type="Boolean" />
+	<field name="bIsDefaultMPFemale" type="Boolean" />
+	<field name="bIsOnePiece" type="Boolean" />
+	<field name="bIsGoingOverHead" type="Boolean" />
+	<object name="ClothingParts">
+		<object name="Parts" desc="The list of item unlocked if the item is a complete set">
+			<field name="itemsItem" type="BinHex" />
+		</object>
+	</object>
+</class>

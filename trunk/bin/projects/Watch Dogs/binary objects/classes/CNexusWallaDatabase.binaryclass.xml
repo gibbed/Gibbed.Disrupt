@@ -1,0 +1,60 @@
+<class name="CNexusWallaDatabase">
+	<inherit name="CNomadDbObject" />
+	<object name="SpotData">
+		<field name="disNextSpotID" type="UInt32" />
+		<object name="Spots">
+			<object name="NexusWallaSpot">
+				<field name="entSpotEntity" type="BinHex" />
+				<field name="disSpotID" type="UInt32" />
+				<field name="disWorldPosition" type="Vector3" />
+				<object name="LocalisedInfo">
+					<object name="locstridLocalisedName">
+						<inherit name="CLocalizationId" />
+					</object>
+					<object name="locstridLocalisedDescripition">
+						<inherit name="CLocalizationId" />
+					</object>
+				</object>
+				<object name="DebugInfo">
+					<field name="sDebugName" type="String" />
+					<field name="sDebugDescripition" type="String" />
+				</object>
+				<object name="TextureInfo">
+					<field name="text_filePrimaryImageTexture" type="String" />
+					<field name="filePrimaryImageTexture" type="PathId" />
+					<field name="disPrimaryImageTextureString" type="String" />
+				</object>
+			</object>
+		</object>
+	</object>
+	<object name="Spawning">
+		<field name="text_archDefaultArchetype" type="String" />
+		<field name="archDefaultArchetype" type="PathId" />
+	</object>
+	<object name="Localisation">
+		<object name="locstridSpotCheckInDescription">
+			<inherit name="CLocalizationId" />
+		</object>
+		<object name="locstridMayorShipEarned">
+			<inherit name="CLocalizationId" />
+		</object>
+		<object name="locstridMayorShipAceived">
+			<inherit name="CLocalizationId" />
+		</object>
+		<object name="locstridMayorReward">
+			<inherit name="CLocalizationId" />
+		</object>
+		<object name="locstridCityTraveller">
+			<inherit name="CLocalizationId" />
+		</object>
+		<object name="locstridGiftReturned">
+			<inherit name="CLocalizationId" />
+		</object>
+	</object>
+	<object name="Token">
+		<field name="itemsToken" type="BinHex" />
+	</object>
+	<object name="PDA">
+		<field name="fPdaAutoCloseSquareDistance" type="Float" />
+	</object>
+</class>
