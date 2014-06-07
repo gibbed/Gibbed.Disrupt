@@ -1,0 +1,7 @@
+<file name="GraphicKit_Parts">
+	<object name="lib">
+		<object hash="72DE4948">
+			<inherit name="CGraphicKitPart" />
+		</object>
+	</object>
+</file>

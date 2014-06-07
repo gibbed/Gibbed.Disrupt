@@ -1,0 +1,11 @@
+<class name="SMultilanguageSpeechLength">
+	<inherit name="CNomadObject" />
+	<object name="LanguageMap">
+		<field hash="FFFFFFFF" type="String" />
+		<object name="Language">
+			<object hash="FFFFFFFF">
+				<inherit name="SDurationMap" />
+			</object>
+		</object>
+	</object>
+</class>

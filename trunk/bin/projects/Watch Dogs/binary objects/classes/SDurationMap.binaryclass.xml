@@ -1,0 +1,8 @@
+<class name="SDurationMap">
+	<inherit name="CNomadObject" />
+	<object name="DurationMap">
+		<!-- Yes, these are backwards. -->
+		<field name="SoundId" type="Float" />
+		<field name="Duration" type="UInt32" />
+	</object>
+</class>

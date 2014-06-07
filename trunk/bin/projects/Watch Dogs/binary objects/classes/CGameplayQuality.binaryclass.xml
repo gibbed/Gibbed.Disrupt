@@ -1,0 +1,4 @@
+<class name="CGameplayQuality">
+	<field name="Normal" type="Float" />
+	<field name="HighEnd" type="Float" />
+</class>

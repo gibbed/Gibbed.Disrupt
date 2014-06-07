@@ -1,0 +1,6 @@
+<class name="CGraphicKitPartAnchor">
+	<field name="BoneName" desc="Name of the bone onto which to attach." type="StringId" />
+	<field name="vectorTranslation" desc="Translation for the part (in meters)." type="Vector3" />
+	<field name="angvecRotation" desc="Rotation for the part (in degrees)." type="Vector3" />
+	<field name="vectorNonUniformScale" desc="Scaling factor for the part. Limited to very small values." type="Vector3" />
+</class>

@@ -1,0 +1,37 @@
+<class name="CGraphicKitPart">
+	<inherit name="CNomadDbObjectNamed" />
+	<field name="text_fileGeometry" type="String" />
+	<field name="fileGeometry" type="PathId" />
+	<field name="bOverrideAttributes" desc="Makes part type, gender, and accessory flag editable. Use only if necessary." type="Boolean" />
+	<field name="text_Type" type="String" />
+	<field name="Type" desc="Overridden part type. The name is case-sensitive." type="StringId" />
+	<field name="text_Gender" type="String" />
+	<field name="Gender" desc="Overridden part gender (male, female, unisex). The name is case-sensitive." type="StringId" />
+	<field name="text_SocialClass" type="String" />
+	<field name="SocialClass" desc="Overridden part social class (none, low, medium, high). The name is case-sensitive." type="StringId" />
+	<field name="bAccessory" desc="Is this part an accessory?" type="Boolean" />
+	<field name="agerangeAgeRange" desc="Set The age range for the head. Can be overriden in the model" type="StringId" />
+	<object name="BoneAnchor" type="Bone on which the part will be attached if it is not skinned.">
+		<inherit name="CGraphicKitPartAnchor" />
+	</object>
+	<object name="PoseDefinitionFiles" desc="List of possible pose definitions for this part.">
+	</object>
+	<object name="MaterialOverridesList" desc="List of possible material overrides for this part.">
+		<object name="MaterialOverridesEntry">
+			<field name="text_Name" type="String" />
+			<field name="Name" desc="Name ID for this material override. Must be unique in this part." type="StringId" />
+			<object name="MaterialOverrides">
+				<inherit name="CMaterialSlotsMap" />
+			</object>
+			<field name="agerangeAgeRange" desc="Set The age range for this material override. Only use for heads. Will override the part's age range" type="StringId" />
+		</object>
+	</object>
+	<object name="Tags">
+		<object name="Tag">
+			<field name="selTag" type="StringId" />
+		</object>
+	</object>
+	<object name="weight">
+		<inherit name="CGameplayQuality" />
+	</object>
+</class>

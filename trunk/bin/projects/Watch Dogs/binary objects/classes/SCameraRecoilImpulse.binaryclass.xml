@@ -1,0 +1,14 @@
+<class name="SCameraRecoilImpulse">
+	<field name="vec2ImpulsePeak" type="Vector2" />
+	<field name="vec2ImpulseCurve" type="Vector2" />
+	<field name="selImpulseDirection" type="Enum">
+		<enum name="enumImpulseDirection">
+			<element name="Random">0</element>
+			<element name="Decreasing">-1</element>
+			<element name="Increasing">1</element>
+		</enum>
+	</field>
+	<object name="curveAccumulationMultiplierCurve">
+		<inherit name="CCurveObj" />
+	</object>
+</class>
