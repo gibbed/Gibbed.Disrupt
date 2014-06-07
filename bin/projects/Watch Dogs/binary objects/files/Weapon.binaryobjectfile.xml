@@ -1,0 +1,7 @@
+<file name="Weapon">
+	<object name="lib">
+		<object hash="72DE4948">
+			<inherit name="SWeaponParameters" />
+		</object>
+	</object>
+</file>

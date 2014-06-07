@@ -1,0 +1,7 @@
+<file name="SpeechLength">
+	<object name="speech">
+		<object hash="FFFFFFFF">
+			<inherit name="SMultilanguageSpeechLength" />
+		</object>
+	</object>
+</file>

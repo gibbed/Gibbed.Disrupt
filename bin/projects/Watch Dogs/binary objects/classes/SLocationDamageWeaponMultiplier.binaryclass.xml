@@ -1,0 +1,29 @@
+<class name="SLocationDamageWeaponMultiplier">
+	<inherit name="CNomadObject" />
+	<field name="selLocation" type="Enum">
+		<enum name="enumLocation">
+			<element name="Torso">1</element>
+			<element name="Pelvis">2</element>
+			<element name="Shoulders">4</element>
+			<element name="LeftUpperArm">8</element>
+			<element name="LeftForeArm">16</element>
+			<element name="LeftHand">32</element>
+			<element name="RightUpperArm">64</element>
+			<element name="RightForeArm">128</element>
+			<element name="RightHand">256</element>
+			<element name="Head">512</element>
+			<element name="LeftThigh">1024</element>
+			<element name="LeftCalf">2048</element>
+			<element name="LeftFoot">4096</element>
+			<element name="RightThigh">8192</element>
+			<element name="RightCalf">16384</element>
+			<element name="RightFoot">32768</element>
+		</enum>
+	</field>
+	<object name="curveDamageMultOverDistance">
+		<inherit name="CCurveObj" />
+	</object>
+	<object name="curveAdrenalineDamageMultOverDistance">
+		<inherit name="CCurveObj" />
+	</object>
+</class>

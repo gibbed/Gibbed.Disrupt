@@ -1,0 +1,88 @@
+<class name="CMusicLibraryGlobalSettings">
+	<inherit name="CNomadDbObjectNamed" />
+	<object name="locstridProfilerSong" desc="String used to display the song name on the profiler of a music object.">
+		<inherit name="CLocalizationId" />
+	</object>
+	<object name="locstridProfilerArtist" desc="String used to display the artist name on the profiler of a music object.">
+		<inherit name="CLocalizationId" />
+	</object>
+	<field name="itemsMusicCollectibleToken" desc="Token that will be given when unlocking a song." type="StringId" />
+	<field name="itemsDummyMusicReward" desc="Item used to override the music library DB song inside, every time the music entity changes its song it overrides its reward." type="StringId" />
+	<field name="musicobjectdataMusicPlayerConfig" desc="Configuration for the music player related to the music system." type="StringId" />
+	<field name="fPlaylistPreviewDelay" desc="Delay to play the preview song on the playlist." type="Float" />
+	<field name="fMusicFadeOutOnMissionStart" desc="Fade out applied to audio files and music player when the mission starts." type="Float" />
+	<object name="DefaultMusicDBObjects">
+		<field name="musicobjectdataScoredAmb" type="StringId" />
+		<field name="musicobjectdataDiagetic3d" type="StringId" />
+		<field name="musicobjectdataDiagetig3dCar" type="StringId" />
+		<field name="musicobjectdataMusicPlayer" type="StringId" />
+		<field name="musicobjectdataMissionMusic" type="StringId" />
+	</object>
+	<object name="DefaultStore" desc="This songs will be flagged as default avalable to buy on the music store">
+		<object name="Song">
+			<field name="musiclibrarySong" type="StringId" />
+		</object>
+	</object>
+	<object name="DefaultPlayerMusicLibrary" desc="This songs will be added by default on the music library of the player">
+		<object name="Song">
+			<field name="musiclibrarySong" type="StringId" />
+		</object>
+	</object>
+	<object name="DefaultPlayerPlaylist" desc="This songs will be added by default on the playlist of the player">
+		<object name="Song">
+			<field name="musiclibrarySong" type="StringId" />
+		</object>
+	</object>
+	<object name="DPadRightControl">
+		<field name="sndSkipSongBip" type="StringId" />
+		<object name="locstridSkipActionName">
+			<inherit name="CLocalizationId" />
+		</object>
+		<object name="locstridPlayActionName">
+			<inherit name="CLocalizationId" />
+		</object>
+		<object name="locstridStopActionName">
+			<inherit name="CLocalizationId" />
+		</object>
+		<object name="locstridAutoplayActionName">
+			<inherit name="CLocalizationId" />
+		</object>
+		<field name="fFeedBackDuration" type="Float" />
+		<object name="locstridRadioBlogPlay">
+			<inherit name="CLocalizationId" />
+		</object>
+		<object name="locstridRadioBlogStop">
+			<inherit name="CLocalizationId" />
+		</object>
+	</object>
+	<object name="MediaPlayerLocalization">
+		<object name="locstridPlaylistOpenBio">
+			<inherit name="CLocalizationId" />
+		</object>
+		<object name="locstridPlaylistAddAllSongs">
+			<inherit name="CLocalizationId" />
+		</object>
+		<object name="locstridPlaylistRemoveAllSongs">
+			<inherit name="CLocalizationId" />
+		</object>
+	</object>
+	<object name="AudioFiles">
+		<field name="fAudioFileIntroductionDelay" desc="Delay to play the audio file while displaying the UI introduction." type="Float" />
+		<object name="locstridAudioFileTitle" desc="Tittle of the hacking panel audio file, it looks like 'Audio file: name of the file'">
+			<inherit name="CLocalizationId" />
+		</object>
+		<object name="locstridAudiofileSkip" desc="Secondary text of the hackin panel audio file on bottom side, it displays the skip button and the text 'SKIP AUDIO FILE'">
+			<inherit name="CLocalizationId" />
+		</object>
+		<object name="locstridAudiofileOpenMusicPlayer" desc="Notification data to display when the audio file is finished.">
+			<inherit name="CLocalizationId" />
+		</object>
+		<object name="locstridAudiofileUnlockMultipleFiles" desc="First line text when unlocking many audio files at once by using AudioFileController domino box.">
+			<inherit name="CLocalizationId" />
+		</object>
+		<field name="fMusicVolumeOnAudioFilePlaying" desc="The music will be set to this volume when playing an audio file in dB (decibels, from -96.0 to 0.0f)." type="Float" />
+		<field name="sndAudioFileInSoundId" desc="Sound to play when audio file is hacked." type="StringId" />
+		<field name="sndAudioFileOutSoundId" desc="Sound to play when audio file is finished." type="StringId" />
+		<field name="itemsMusicCollectibleToken" desc="Token that will be given when unlocking an audio file." type="StringId" />
+	</object>
+</class>

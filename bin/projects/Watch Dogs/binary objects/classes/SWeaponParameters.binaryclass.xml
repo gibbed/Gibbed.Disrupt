@@ -1,0 +1,243 @@
+<class name="SWeaponParameters">
+	<inherit name="CNomadDbObjectNamed" />
+	<field name="selShootingType" type="Enum">
+		<enum name="enumShootingType">
+			<element name="SingleShot">0</element>
+			<element name="Automatic">1</element>
+			<element name="Shotgun">2</element>
+			<element name="Sniper">3</element>
+			<element name="GrenadeLauncher">4</element>
+		</enum>
+	</field>
+	<field name="selWeaponPerkType" type="Enum">
+		<enum name="enumWeaponPerkType">
+			<element name="Pistol">0</element>
+			<element name="Shotgun">1</element>
+			<element name="SMG">2</element>
+			<element name="AssaultRifle">3</element>
+			<element name="Sniper">4</element>
+		</enum>
+	</field>
+	<field name="text_archGrenadeArchetype" type="String" />
+	<field name="archGrenadeArchetype" type="StringId" />
+	<field name="text_sProjectileBoneToBind" type="String" />
+	<field name="sProjectileBoneToBind" type="StringId" />
+	<field name="bManualEnableAutomatic" type="Boolean" />
+	<field name="iManualAutomaticBulletsMax" type="Int32" />
+	<field name="itemsBulletItem" type="StringId" />
+	<field name="fBulletsPerClip" type="UInt32" />
+	<field name="fRateOfFire" type="Float" />
+	<field name="fRateOfFireVehicleMultiplier" desc="Multiplier for RateOfFire when target is in a car" type="Float" />
+	<field name="iReloadAlertMinBullets" type="Int32" />
+	<field name="fShootingRange" type="Float" />
+	<field name="fPrecisionRange" type="Float" />
+	<field name="fPrecisionSpreadAngle" type="Float" />
+	<object name="curveBulletDamageDistance">
+		<inherit name="CCurveObj" />
+	</object>
+	<field name="bDestroysVehicleParts" type="Boolean" />
+	<object name="curveImpactStrengthDistance">
+		<inherit name="CCurveObj" />
+	</object>
+	<object name="curveRecoilTranslationX">
+		<inherit name="CCurveObj" />
+	</object>
+	<object name="curveRecoilTranslationY">
+		<inherit name="CCurveObj" />
+	</object>
+	<object name="curveRecoilTranslationZ">
+		<inherit name="CCurveObj" />
+	</object>
+	<object name="curveRecoilRotationX">
+		<inherit name="CCurveObj" />
+	</object>
+	<object name="curveRecoilRotationY">
+		<inherit name="CCurveObj" />
+	</object>
+	<object name="curveRecoilRotationZ">
+		<inherit name="CCurveObj" />
+	</object>
+	<object name="curveShootingCurve">
+		<inherit name="CCurveObj" />
+	</object>
+	<object name="curveBodyRecoilCurve">
+		<inherit name="CCurveObj" />
+	</object>
+	<field name="iPierceStrength" type="Int32" />
+	<field name="iMinPiercingStrengthToDamage" type="Int32" />
+	<field name="nTracesRatio" type="Int32" />
+	<field name="fAccuracyModifier" type="Float" />
+	<field name="fBulletSpreadAngle" type="Float" />
+	<field name="fbulletImpactDelay" type="Float" />
+	<object name="curveBulletImpactDelayOverDistanceCurve">
+		<inherit name="CCurveObj" />
+	</object>
+	<object name="curveAdrenalineBulletImpactDelayOverDistanceCurve">
+		<inherit name="CCurveObj" />
+	</object>
+	<object name="curveBulletDamageModifierByAngleCurve" desc="DamageMultiplicator based on NPC angle to camera (0 to 180 degrees)">
+		<inherit name="CCurveObj" />
+	</object>
+	<field name="bDisplayReticleBetweenRateOfFire" desc="Display reticle between each shot (fireRate)" type="Boolean" />
+	<field name="fLaserSightNoiseRangeX" type="Float" />
+	<field name="fLaserSightNoiseRangeY" type="Float" />
+	<field name="fLaserSightNoiseSpeedMultiplier" type="Float" />
+	<object name="AdrenalineSettings">
+		<field name="fAdrenalineRateOfFire" type="Float" />
+	</object>
+	<object name="AnimationInfo">
+		<field name="selWeaponGrip" type="Enum">
+			<enum name="enumWeaponGrip">
+				<element name="OneHanded">0</element>
+				<element name="TwoHanded">1</element>
+			</enum>
+		</field>
+		<field name="selWeaponType" type="Enum">
+			<enum name="enumWeaponType">
+				<element name="Pistol">1</element>
+				<element name="Uzi">2</element>
+				<element name="Rifle">3</element>
+				<element name="Shotgun">4</element>
+				<element name="GrenadeLauncher">6</element>
+			</enum>
+		</field>
+		<field name="selWeaponSpecific" type="Enum">
+			<enum name="enumWeaponSpecific">
+				<element name="Default">0</element>
+				<element name="DesertEagle">1</element>
+				<element name="Glock18">2</element>
+				<element name="USP45">3</element>
+				<element name="Commando552">4</element>
+				<element name="AK47">5</element>
+				<element name="G36">6</element>
+				<element name="M468">7</element>
+				<element name="MP5">8</element>
+				<element name="SCAR">9</element>
+				<element name="M3">10</element>
+				<element name="Moss500">11</element>
+				<element name="SPAS12">12</element>
+				<element name="Mac11">13</element>
+				<element name="MP7">14</element>
+				<element name="Skorpion">15</element>
+				<element name="M40A1">16</element>
+				<element name="SG550">17</element>
+				<element name="92FS">18</element>
+				<element name="GL94">19</element>
+				<element name="G106">20</element>
+				<element name="Revolver">21</element>
+				<element name="D12">22</element>
+				<element name="Goblin">23</element>
+				<element name="Sprayer">24</element>
+				<element name="Gold">25</element>
+				<element name="Vector">26</element>
+				<element name="SpecOps_1911">27</element>
+				<element name="SpecOps_SMG11">28</element>
+				<element name="SpecOps_Goblin">29</element>
+				<element name="SpecOps_Vector">30</element>
+				<element name="M8M">31</element>
+				<element name="M1014">32</element>
+				<element name="MP412">33</element>
+			</enum>
+		</field>
+	</object>
+	<object name="PartsRecoil">
+		<object name="SlidePart">
+			<inherit name="SProceduralBoneCurve" />
+		</object>
+	</object>
+	<object name="CameraAiming">
+		<field name="selAimingContext" type="Enum">
+			<enum name="enumAimingContext">
+			</enum>
+		</field>
+		<field name="selCoverAimingLeft" type="Enum">
+			<enum name="enumCoverAimingLeft">
+			</enum>
+		</field>
+		<field name="selCoverAimingRight" type="Enum">
+			<enum name="enumCoverAimingRight">
+			</enum>
+		</field>
+		<field name="selCoverAimingStraightLeft" type="Enum">
+			<enum name="enumCoverAimingStraightLeft">
+			</enum>
+		</field>
+		<field name="selCoverAimingStraightRight" type="Enum">
+			<enum name="enumCoverAimingStraightRight">
+			</enum>
+		</field>
+	</object>
+	<object name="CameraRecoil">
+		<object name="InitialPhaseImpulses">
+			<field name="fDuration" type="Float" />
+			<field name="vec2PitchLimits" type="Vector2" />
+			<field name="vec2YawLimits" type="Vector2" />
+			<object name="Normal">
+				<object name="Pitch">
+					<inherit name="SCameraRecoilImpulse" />
+				</object>
+				<object name="Yaw">
+					<inherit name="SCameraRecoilImpulse" />
+				</object>
+			</object>
+			<object name="Adrenaline">
+				<object name="Pitch">
+					<inherit name="SCameraRecoilImpulse" />
+				</object>
+				<object name="Yaw">
+					<inherit name="SCameraRecoilImpulse" />
+				</object>
+			</object>
+			<field name="fReductionDuration" type="Float" />
+			<field name="vec2ReductionCurve" type="Vector2" />
+		</object>
+		<object name="ClampedPhaseImpulses">
+			<field name="fDuration" type="Float" />
+			<field name="vec2PitchLimits" type="Vector2" />
+			<field name="vec2YawLimits" type="Vector2" />
+			<object name="Normal">
+				<object name="Pitch">
+					<inherit name="SCameraRecoilImpulse" />
+				</object>
+				<object name="Yaw">
+					<inherit name="SCameraRecoilImpulse" />
+				</object>
+			</object>
+			<object name="Adrenaline">
+				<object name="Pitch">
+					<inherit name="SCameraRecoilImpulse" />
+				</object>
+				<object name="Yaw">
+					<inherit name="SCameraRecoilImpulse" />
+				</object>
+			</object>
+			<field name="fReductionDuration" type="Float" />
+			<field name="vec2ReductionCurve" type="Vector2" />
+		</object>
+	</object>
+	<field name="fPelletCount" type="UInt32" />
+	<field name="fPelletSpreadAngle" type="Float" />
+	<object name="Sniper">
+		<field name="fCamShakeStrength" type="Float" />
+		<field name="fCamShakeDuration" type="Float" />
+		<field name="vec3CamShakeRotationRange" type="Vector3" />
+		<field name="iScopeMaterialOverrideIndex" type="Int32" />
+	</object>
+	<object name="FriendlyFireOptions">
+		<field name="bSkipCollisionsWithMobsterNPCs" type="Boolean" />
+		<field name="bSkipCollisionsWithMobsterVehicles" type="Boolean" />
+		<field name="bSkipCollisionsWithPoliceNPCs" type="Boolean" />
+		<field name="bSkipCollisionsWithPoliceVehicles" type="Boolean" />
+		<field name="bSkipCollisionsWithCivilians" type="Boolean" />
+		<field name="bSkipCollisionsWithTraffics" type="Boolean" />
+		<field name="bSkipCollisionsWithPlayers" type="Boolean" />
+	</object>
+	<object name="DamageMultiplier">
+		<field name="fVehicleMultplier" type="Float" />
+		<object name="LocationDamageMultiplier">
+			<object name="LocationMultiplier">
+				<inherit name="SLocationDamageWeaponMultiplier" />
+			</object>
+		</object>
+	</object>
+</class>

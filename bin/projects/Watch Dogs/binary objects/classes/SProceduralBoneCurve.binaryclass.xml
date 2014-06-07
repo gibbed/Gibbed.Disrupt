@@ -1,0 +1,12 @@
+<class name="SProceduralBoneCurve">
+	<field name="selProceduralType" type="Enum">
+		<enum name="enumProceduralType">
+			<element name="Translation">0</element>
+			<element name="Rotation">1</element>
+		</enum>
+	</field>
+	<field name="vectorProceduralAxis" type="Vector3" />
+	<object name="curveProceduralMovement">
+		<inherit name="CCurveObj" />
+	</object>
+</class>

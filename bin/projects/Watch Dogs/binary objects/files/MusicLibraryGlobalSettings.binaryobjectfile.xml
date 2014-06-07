@@ -1,0 +1,6 @@
+<file name="MusicLibraryGlobalSettings">
+	<alias>MusicLibraryGlobalSettings_CED50A4E</alias>
+	<object name="obj">
+		<inherit name="CMusicLibraryGlobalSettings" />
+	</object>
+</file>

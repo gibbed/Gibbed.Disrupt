@@ -1,0 +1,11 @@
+<class name="CMaterialSlotsMap">
+	<object name="MaterialSlots">
+		<object name="Material">
+			<field name="text_disSlotName" type="String" />
+			<field name="disSlotName" type="StringId" />
+			<field name="matMaterial" type="StringId" />
+			<field name="text_hidOriginalMaterial" type="String" />
+			<field name="hidOriginalMaterial" type="StringId" />
+		</object>
+	</object>
+</class>
