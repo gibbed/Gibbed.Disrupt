@@ -16,6 +16,7 @@
 			<element name="SMG">2</element>
 			<element name="AssaultRifle">3</element>
 			<element name="Sniper">4</element>
+			<element name="GrenadeLauncher">5</element>
 		</enum>
 	</field>
 	<field name="text_archGrenadeArchetype" type="String" />
