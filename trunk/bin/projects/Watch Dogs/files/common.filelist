@@ -1,4 +1,4 @@
-; 9127/10237 (89%)
+; 9149/10237 (89%)
 credits\pc\credits.xml
 domino\library\common\checkpointrace.checkpointcontroller.debug.lua
 domino\library\common\checkpointrace.checkpointcontroller.lua
@@ -673,6 +673,10 @@ domino\system\setsequenceentry.lua
 domino\system\setstring.lua
 domino\system\settimeofday.lua
 domino\system\setupfirstsphereenvelope.lua
+domino\system\setupinnersphereenvelope.lua
+domino\system\setupsafesphereenvelope.lua
+domino\system\setupsecondsphereenvelope.lua
+domino\system\setupthirdsphereenvelope.lua
 domino\system\setvehiclelock.lua
 domino\system\setvisiblegigroup.lua
 domino\system\shockwavecontroller.lua
@@ -5552,6 +5556,7 @@ generated\databases\generic\attractordescription.lib
 generated\databases\generic\attractorsbanksdatabaseobject.lib
 generated\databases\generic\augmentedrealityconfig_2ce33943.obj
 generated\databases\generic\avatarconfig_50bcb219.obj
+generated\databases\generic\avatarcustomizationconfig_89b01d2b.obj
 generated\databases\generic\badgesofglorymanager_2ce33943.obj
 generated\databases\generic\barkconfig_37fd2f17.obj
 generated\databases\generic\blackouteffect.lib
@@ -5795,6 +5800,7 @@ generated\databases\generic\musiclibrary_164a1d98.obj
 generated\databases\generic\musiclibrary_170a4c32.obj
 generated\databases\generic\musiclibrary_17e24651.obj
 generated\databases\generic\musiclibrary_17f546ba.obj
+generated\databases\generic\musiclibrary_197c7848.obj
 generated\databases\generic\musiclibrary_1bd4e331.obj
 generated\databases\generic\musiclibrary_1c257a5b.obj
 generated\databases\generic\musiclibrary_1cf15d8a.obj
@@ -5811,6 +5817,7 @@ generated\databases\generic\musiclibrary_2b9394b7.obj
 generated\databases\generic\musiclibrary_2f146885.obj
 generated\databases\generic\musiclibrary_2f7c8651.obj
 generated\databases\generic\musiclibrary_2fbfd6bc.obj
+generated\databases\generic\musiclibrary_307a8bb4.obj
 generated\databases\generic\musiclibrary_30946288.obj
 generated\databases\generic\musiclibrary_30e1c5d7.obj
 generated\databases\generic\musiclibrary_31444801.obj
@@ -5836,6 +5843,7 @@ generated\databases\generic\musiclibrary_3e6a3732.obj
 generated\databases\generic\musiclibrary_3e84aa5e.obj
 generated\databases\generic\musiclibrary_3ec378b5.obj
 generated\databases\generic\musiclibrary_3fae3b5e.obj
+generated\databases\generic\musiclibrary_40107f3b.obj
 generated\databases\generic\musiclibrary_40aa3aaa.obj
 generated\databases\generic\musiclibrary_4157fd7d.obj
 generated\databases\generic\musiclibrary_41fe9231.obj
@@ -5845,6 +5853,8 @@ generated\databases\generic\musiclibrary_4448afe0.obj
 generated\databases\generic\musiclibrary_4487c0ba.obj
 generated\databases\generic\musiclibrary_46437897.obj
 generated\databases\generic\musiclibrary_46935628.obj
+generated\databases\generic\musiclibrary_477dbb22.obj
+generated\databases\generic\musiclibrary_4793521e.obj
 generated\databases\generic\musiclibrary_47e6f541.obj
 generated\databases\generic\musiclibrary_48834e9d.obj
 generated\databases\generic\musiclibrary_4898f0a5.obj
@@ -5887,6 +5897,7 @@ generated\databases\generic\musiclibrary_65759fc3.obj
 generated\databases\generic\musiclibrary_6589a92a.obj
 generated\databases\generic\musiclibrary_65ce53d2.obj
 generated\databases\generic\musiclibrary_668a22cf.obj
+generated\databases\generic\musiclibrary_69168cc7.obj
 generated\databases\generic\musiclibrary_6b049bd8.obj
 generated\databases\generic\musiclibrary_6bd40729.obj
 generated\databases\generic\musiclibrary_6cd3d3a7.obj
@@ -5952,6 +5963,7 @@ generated\databases\generic\musiclibrary_9dc6c85f.obj
 generated\databases\generic\musiclibrary_9ed85c02.obj
 generated\databases\generic\musiclibrary_a00ea291.obj
 generated\databases\generic\musiclibrary_a02b7f19.obj
+generated\databases\generic\musiclibrary_a0a7ed16.obj
 generated\databases\generic\musiclibrary_a0e03ffd.obj
 generated\databases\generic\musiclibrary_a11b5092.obj
 generated\databases\generic\musiclibrary_a1fb5590.obj
@@ -5964,6 +5976,7 @@ generated\databases\generic\musiclibrary_a6969189.obj
 generated\databases\generic\musiclibrary_a71eb717.obj
 generated\databases\generic\musiclibrary_a746bb00.obj
 generated\databases\generic\musiclibrary_a78dfbe4.obj
+generated\databases\generic\musiclibrary_a973da0e.obj
 generated\databases\generic\musiclibrary_a9b8eeba.obj
 generated\databases\generic\musiclibrary_aa46cecc.obj
 generated\databases\generic\musiclibrary_aa6d9996.obj
@@ -5972,6 +5985,7 @@ generated\databases\generic\musiclibrary_aa89a196.obj
 generated\databases\generic\musiclibrary_aaa1b7f4.obj
 generated\databases\generic\musiclibrary_aaeaa2a0.obj
 generated\databases\generic\musiclibrary_ac61a788.obj
+generated\databases\generic\musiclibrary_ae1e1e17.obj
 generated\databases\generic\musiclibrary_aea8fb3c.obj
 generated\databases\generic\musiclibrary_af20bb3b.obj
 generated\databases\generic\musiclibrary_af599c51.obj
@@ -5994,6 +6008,7 @@ generated\databases\generic\musiclibrary_c0696f54.obj
 generated\databases\generic\musiclibrary_c1110cdd.obj
 generated\databases\generic\musiclibrary_c1b1b790.obj
 generated\databases\generic\musiclibrary_c3c404aa.obj
+generated\databases\generic\musiclibrary_c64afb18.obj
 generated\databases\generic\musiclibrary_c6dc7389.obj
 generated\databases\generic\musiclibrary_c7d508cf.obj
 generated\databases\generic\musiclibrary_c7e8c7c3.obj
@@ -6021,8 +6036,10 @@ generated\databases\generic\musiclibrary_d6fc6506.obj
 generated\databases\generic\musiclibrary_d7099207.obj
 generated\databases\generic\musiclibrary_d72c4f8f.obj
 generated\databases\generic\musiclibrary_d7744398.obj
+generated\databases\generic\musiclibrary_d7a0dd80.obj
 generated\databases\generic\musiclibrary_d8f7c38b.obj
 generated\databases\generic\musiclibrary_d90c0e17.obj
+generated\databases\generic\musiclibrary_d9192e81.obj
 generated\databases\generic\musiclibrary_da2c3a43.obj
 generated\databases\generic\musiclibrary_da7862bd.obj
 generated\databases\generic\musiclibrary_dae35519.obj
@@ -6031,6 +6048,7 @@ generated\databases\generic\musiclibrary_dd41fe5a.obj
 generated\databases\generic\musiclibrary_dd8e9100.obj
 generated\databases\generic\musiclibrary_de1b4469.obj
 generated\databases\generic\musiclibrary_de677118.obj
+generated\databases\generic\musiclibrary_de74ea98.obj
 generated\databases\generic\musiclibrary_debdeee1.obj
 generated\databases\generic\musiclibrary_debfde2c.obj
 generated\databases\generic\musiclibrary_deefa4fb.obj
@@ -6078,6 +6096,7 @@ generated\databases\generic\musiclibrary_fc2158a7.obj
 generated\databases\generic\musiclibrary_fcc4d827.obj
 generated\databases\generic\musiclibrary_fcc70268.obj
 generated\databases\generic\musiclibrary_fda57070.obj
+generated\databases\generic\musiclibrary_fe81e364.obj
 generated\databases\generic\musiclibraryglobalsettings_ced50a4e.obj
 generated\databases\generic\musicobjects.lib
 generated\databases\generic\musicplaylists.lib
@@ -6100,6 +6119,7 @@ generated\databases\generic\peopleconfig_2ce33943.obj
 generated\databases\generic\peoplespawninfo.lib
 generated\databases\generic\perdistricteventlimitations.lib
 generated\databases\generic\perkidentifierdbobject.lib
+generated\databases\generic\perksmultiplayer.lib
 generated\databases\generic\perkssingleplayer.lib
 generated\databases\generic\perksystemconfig_d9552a97.obj
 generated\databases\generic\personalchallengesimpleconfig_2ce33943.obj
@@ -6898,6 +6918,7 @@ ui\fire\bin\menu_poker.feu
 ui\fire\bin\menu_selfshadow.feu
 ui\fire\bin\menu_shell.feu
 ui\fire\bin\menu_slotmachine.feu
+ui\fire\bin\menu_ugcplay.feu
 ui\fire\bin\menuapp.feu
 ui\fire\bin\mp_backdoor.feu
 ui\fire\bin\mp_contractmodule.feu
@@ -6913,6 +6934,7 @@ ui\fire\bin\mp_scoreboard.feu
 ui\fire\bin\musicplayer.feu
 ui\fire\bin\nvzn.feu
 ui\fire\bin\outershell.feu
+ui\fire\bin\pdaugchud.feu
 ui\fire\bin\resultsapp.feu
 ui\fire\bin\savegamedisclaimer.feu
 ui\fire\bin\shelly.feu
