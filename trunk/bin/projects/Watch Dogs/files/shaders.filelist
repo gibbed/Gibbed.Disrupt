@@ -1,4 +1,4 @@
-; 386/775 (49%)
+; 393/775 (50%)
 engine\shaders\ambient.inc.fx
 engine\shaders\artisticconstants.inc.fx
 engine\shaders\bits.inc.fx
@@ -35,6 +35,7 @@ engine\shaders\globalsemantics.inc.fx
 engine\shaders\helpers.inc.fx
 engine\shaders\highfreqnormalmask.inc.fx
 engine\shaders\improvedprecision.inc.fx
+engine\shaders\instancing.inc.fx
 engine\shaders\instancingprojecteddecal.inc.fx
 engine\shaders\legacyforwardlighting.inc.fx
 engine\shaders\lighting.inc.fx
@@ -350,7 +351,9 @@ engine\shaders\proceduralshadowcaster.inc.fx
 engine\shaders\profile.inc.fx
 engine\shaders\profileorbis.inc.fx
 engine\shaders\profileps3.inc.fx
+engine\shaders\profilewin32.inc.fx
 engine\shaders\profilexbox360.inc.fx
+engine\shaders\realtreedecompression.inc.fx
 engine\shaders\realtreehleaves.inc.fx
 engine\shaders\realtreeleaves.inc.fx
 engine\shaders\realtreetrunk.inc.fx
@@ -362,6 +365,9 @@ engine\shaders\sampledepthps3.inc.fx
 engine\shaders\sampledepthxbox360.inc.fx
 engine\shaders\samplerstates.xml
 engine\shaders\sampleshadow.inc.fx
+engine\shaders\sampleshadowd3d10.inc.fx
+engine\shaders\sampleshadowps3.inc.fx
+engine\shaders\sampleshadowxbox360.inc.fx
 engine\shaders\shadow.inc.fx
 engine\shaders\shadowcolorrt.inc.fx
 engine\shaders\skinning.inc.fx
@@ -381,6 +387,7 @@ engine\shaders\velocitybufferdefines.inc.fx
 engine\shaders\vertexcompression.inc.fx
 engine\shaders\vertexdeclaration.inc.fx
 engine\shaders\videotexture.inc.fx
+engine\shaders\water.inc.fx
 engine\shaders\weather.inc.fx
 engine\shaders\wind.inc.fx
 engine\shaders\worldtextures.inc.fx
