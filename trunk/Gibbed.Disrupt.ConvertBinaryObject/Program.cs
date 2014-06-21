@@ -82,15 +82,13 @@ namespace Gibbed.Disrupt.ConvertBinaryObject
                     extension = extension.ToLowerInvariant();
                 }
 
-                if (extension == ".fcb" ||
-                    extension == ".obj" ||
-                    extension == ".lib")
-                {
-                    mode = Mode.Export;
-                }
-                else if (extension == ".xml")
+                if (extension == ".xml")
                 {
                     mode = Mode.Import;
+                }
+                else
+                {
+                    mode = Mode.Export;
                 }
             }
 

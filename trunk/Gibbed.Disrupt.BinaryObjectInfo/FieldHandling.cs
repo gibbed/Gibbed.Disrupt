@@ -58,6 +58,7 @@ namespace Gibbed.Disrupt.BinaryObjectInfo
             _Handlers[FieldType.Vector2] = new FieldHandlers.Vector2Handler();
             _Handlers[FieldType.Vector3] = new FieldHandlers.Vector3Handler();
             _Handlers[FieldType.Vector4] = new FieldHandlers.Vector4Handler();
+            _Handlers[FieldType.Quaternion] = new FieldHandlers.Vector4Handler();
             _Handlers[FieldType.String] = new FieldHandlers.StringHandler();
             _Handlers[FieldType.Enum] = new FieldHandlers.EnumHandler();
             _Handlers[FieldType.StringId] = new FieldHandlers.Ids.StringIdHandler();

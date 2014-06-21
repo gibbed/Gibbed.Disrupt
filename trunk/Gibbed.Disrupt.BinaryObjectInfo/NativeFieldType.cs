@@ -22,32 +22,25 @@
 
 namespace Gibbed.Disrupt.BinaryObjectInfo
 {
-    public enum FieldType
+    public enum NativeFieldType
     {
-        Invalid = 0,
-        BinHex,
-
-        Boolean, // bool
-        UInt8, // unsigned char
-        Int8,
-        UInt16, // unsigned short
-        Int16, // signed short
-        UInt32, // unsigned int
-        Int32, // signed int
-        UInt64, // unsigned long long
-        Int64, // signed long long
-        Float, // float
-        Vector2, // ndVec2
-        Vector3, // ndVec3
-        Vector4, // ndVec4
-        Quaternion, // ndQuat
-        String, // ndString
-        Enum, // enum
-        StringId, // CStringID
-        NoCaseStringId, // CNoCaseStringID
-        PathId, // CPathID
-
-        Rml,
-        Array32,
+        Unknown = 0,
+        Boolean = 1,
+        UInt8 = 2,
+        UInt16 = 3,
+        UInt32 = 4,
+        Float = 5,
+        StringId = 6,
+        String = 7,
+        Vector2 = 8,
+        Vector3 = 9,
+        Vector4 = 10,
+        Quaternion = 11,
+        Color3 = 12,
+        Color4 = 13,
+        PathId = 14,
+        EntityId = 15,
+        NoCaseStringId = 17,
+        SomeId = 18,
     }
 }
