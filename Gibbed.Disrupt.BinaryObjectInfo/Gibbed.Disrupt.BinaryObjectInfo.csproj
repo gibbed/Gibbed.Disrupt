@@ -70,6 +70,7 @@
     <Compile Include="InfoManager.cs" />
     <Compile Include="LoadException.cs" />
     <Compile Include="NamedDefinitionDictionary.cs" />
+    <Compile Include="NativeFieldType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="FieldHandlers\Array32Handler.cs" />
     <Compile Include="FieldHandlers\Helpers.cs" />

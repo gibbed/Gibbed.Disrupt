@@ -69,19 +69,28 @@ namespace Gibbed.Disrupt.FileFormats
             }
 
             if (read >= 8 &&
-                guess[4] == 0x68 &&
-                guess[5] == 0x4D &&
-                guess[6] == 0x76 &&
-                guess[7] == 0x4E)
+                guess[4] == 'h' &&
+                guess[5] == 'M' &&
+                guess[6] == 'v' &&
+                guess[7] == 'N')
             {
                 return new Tuple<string, string>("gfx", "hMvN");
             }
 
+            if (read >= 8 &&
+                guess[4] == 'Q' &&
+                guess[5] == 'E' &&
+                guess[6] == 'S' &&
+                guess[7] == 0)
+            {
+                return new Tuple<string, string>("game", "cseq");
+            }
+
             if (read >= 20 &&
-                guess[16] == 0x57 &&
+                guess[16] == 'W' &&
                 guess[17] == 0xE0 &&
                 guess[18] == 0xE0 &&
-                guess[19] == 0x57)
+                guess[19] == 'W')
             {
                 return new Tuple<string, string>("gfx", "hkx");
             }
@@ -108,6 +117,11 @@ namespace Gibbed.Disrupt.FileFormats
                 if (magic == 0x53504B02) // 'SPK\2'
                 {
                     return new Tuple<string, string>("sfx", "spk");
+                }
+
+                if (magic == 0x00032A02)
+                {
+                    return new Tuple<string, string>("sfx", "sbao");
                 }
 
                 if (magic == 0x4643626E) // 'FCbn'
@@ -215,7 +229,7 @@ namespace Gibbed.Disrupt.FileFormats
 
             if (read >= 1 && text.StartsWith("<Sequence>") == true)
             {
-                return new Tuple<string, string>("game", "cseq");
+                return new Tuple<string, string>("game", "seq");
             }
 
             return null;

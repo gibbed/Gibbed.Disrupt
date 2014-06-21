@@ -68,6 +68,11 @@ namespace Gibbed.Disrupt.BinaryObjectInfo.FieldHandlers.UInts
 
         public override T Deserialize(byte[] buffer, int offset, int count, out int read)
         {
+            if (count > this.MaximumBytes)
+            {
+                throw new InvalidOperationException("too many bytes for type");
+            }
+
             if (count == 0)
             {
                 read = 0;
