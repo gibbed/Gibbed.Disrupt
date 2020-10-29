@@ -1,0 +1,14 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net472</TargetFramework>
+    <Company>Gibbed</Company>
+    <Authors>Gibbed</Authors>
+    <Description>http://gib.me/</Description>
+    <Copyright>Copyright © Gibbed 2020</Copyright>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Gibbed.Disrupt.ConvertXml\Gibbed.Disrupt.ConvertXml.csproj" />
+    <ProjectReference Include="..\Gibbed.Disrupt.FileFormats\Gibbed.Disrupt.FileFormats.csproj" />
+    <ProjectReference Include="..\Gibbed.IO\Gibbed.IO.csproj" />
+  </ItemGroup>
+</Project>

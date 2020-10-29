@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net472</TargetFramework>
+    <Company>Gibbed</Company>
+    <Authors>Gibbed</Authors>
+    <Description>http://gib.me/</Description>
+    <Copyright>Copyright © Gibbed 2020</Copyright>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Gibbed.IO\Gibbed.IO.csproj" />
+    <ProjectReference Include="..\Gibbed.ProjectData\Gibbed.ProjectData.csproj" />
+  </ItemGroup>
+</Project>
