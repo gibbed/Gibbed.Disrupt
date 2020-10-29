@@ -121,10 +121,10 @@ namespace Gibbed.Disrupt.Unpack
                 Console.WriteLine("Reading FAT...");
             }
 
-            BigFile fat;
+            BigFileV3 fat;
             using (var input = File.OpenRead(fatPath))
             {
-                fat = new BigFile();
+                fat = new BigFileV3();
                 fat.Deserialize(input);
             }
 
@@ -225,7 +225,7 @@ namespace Gibbed.Disrupt.Unpack
 
         private static bool GetEntryName(
             Stream input,
-            BigFile fat,
+            BigFileV3 fat,
             Big.Entry entry,
             ProjectData.HashList<uint> hashes,
             bool extractUnknowns,

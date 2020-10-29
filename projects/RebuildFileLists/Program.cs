@@ -152,7 +152,7 @@ namespace RebuildFileLists
                     fatPath += ".bak";
                 }
 
-                var fat = new BigFile();
+                var fat = new BigFileV3();
                 using (var input = File.OpenRead(fatPath))
                 {
                     fat.Deserialize(input);

@@ -224,7 +224,7 @@ namespace Gibbed.Disrupt.Pack
                 }
             }
 
-            var fat = new BigFile()
+            var fat = new BigFileV3()
             {
                 Version = packageVersion,
                 Target = packageTarget,
