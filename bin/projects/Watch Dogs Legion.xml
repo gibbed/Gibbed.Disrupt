@@ -1,0 +1,17 @@
+<project>
+	<name>Watch Dogs Legion</name>
+	<dependencies>
+		<dependency>Shared</dependency>
+	</dependencies>
+	<list_location>Watch Dogs Legion</list_location>
+	<install_locations>
+		<install_location>
+			<action type="registryview" view="Registry32" hive="LocalMachine" subkey="SOFTWARE\Ubisoft\Launcher\Installs\3353" value="InstallDir" />
+			<action type="combine">data_win64</action>
+		</install_location>
+		<install_location>
+			<action type="registryview" view="Registry64" hive="LocalMachine" subkey="SOFTWARE\Ubisoft\Launcher\Installs\3353" value="InstallDir" />
+			<action type="combine">data_win64</action>
+		</install_location>
+	</install_locations>
+</project>
