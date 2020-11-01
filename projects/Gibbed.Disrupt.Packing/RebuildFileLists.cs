@@ -119,7 +119,14 @@ namespace Gibbed.Disrupt.Packing
 
             Console.WriteLine("Searching for archives...");
             var fatPaths = new List<string>();
-            fatPaths.AddRange(Directory.GetFiles(installPath, "*.fat", SearchOption.AllDirectories));
+            fatPaths.AddRange(Directory.GetFiles(installPath, "*.fat.bak", SearchOption.AllDirectories));
+            foreach (var fatPath in Directory.GetFiles(installPath, "*.fat", SearchOption.AllDirectories))
+            {
+                if (fatPaths.Contains(fatPath + ".bak") == false)
+                {
+                    fatPaths.Add(fatPath);
+                }
+            }
 
             var outputPaths = new List<string>();
 
@@ -130,6 +137,11 @@ namespace Gibbed.Disrupt.Packing
             for (int i = 0; i < fatPaths.Count; i++)
             {
                 var fatPath = fatPaths[i];
+                var inputPath = fatPath;
+                if (fatPath.EndsWith(".bak") == true)
+                {
+                    fatPath = fatPath.Substring(0, fatPath.Length - 4);
+                }
 
                 var outputPath = GetListPath(installPath, fatPath);
                 if (outputPath == null)
@@ -147,13 +159,8 @@ namespace Gibbed.Disrupt.Packing
 
                 outputPaths.Add(outputPath);
 
-                if (File.Exists(fatPath + ".bak") == true)
-                {
-                    fatPath += ".bak";
-                }
-
                 var fat = new TArchive();
-                using (var input = File.OpenRead(fatPath))
+                using (var input = File.OpenRead(inputPath))
                 {
                     fat.Deserialize(input);
                 }
