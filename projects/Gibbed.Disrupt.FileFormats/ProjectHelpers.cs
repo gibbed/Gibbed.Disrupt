@@ -28,6 +28,7 @@ namespace Gibbed.Disrupt.FileFormats
 {
     public static class ProjectHelpers
     {
+        /*
         private static readonly Dictionary<ulong, uint> _KnownHashOverrideLookup;
         private static readonly Dictionary<ulong, uint> _UnknownHashOverrideLookup;
 
@@ -167,6 +168,7 @@ namespace Gibbed.Disrupt.FileFormats
 
             return hash32;
         }
+        */
 
         public static string Modifier(string s)
         {

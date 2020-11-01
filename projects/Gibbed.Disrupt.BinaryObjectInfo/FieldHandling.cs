@@ -65,6 +65,9 @@ namespace Gibbed.Disrupt.BinaryObjectInfo
                 [FieldType.StringId] = new FieldHandlers.Ids.StringIdHandler(),
                 [FieldType.NoCaseStringId] = new FieldHandlers.Ids.NoCaseStringIdHandler(),
                 [FieldType.PathId] = new FieldHandlers.Ids.PathIdHandler(),
+                [FieldType.StringId64] = new FieldHandlers.Ids.StringId64Handler(),
+                [FieldType.NoCaseStringId64] = new FieldHandlers.Ids.NoCaseStringId64Handler(),
+                [FieldType.PathId64] = new FieldHandlers.Ids.PathId64Handler(),
                 [FieldType.Rml] = new FieldHandlers.RmlHandler(),
                 [FieldType.Array32] = new FieldHandlers.Array32Handler()
             };

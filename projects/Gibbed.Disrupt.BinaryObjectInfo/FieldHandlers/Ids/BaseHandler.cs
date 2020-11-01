@@ -36,7 +36,6 @@ namespace Gibbed.Disrupt.BinaryObjectInfo.FieldHandlers.Ids
             {
                 return (int)this.Hash(text);
             }
-
             if (uint.TryParse(
                 text.Substring(2),
                 NumberStyles.AllowHexSpecifier,

@@ -20,16 +20,36 @@
  *    distribution.
  */
 
-using Gibbed.Disrupt.FileFormats;
+using System;
+using System.Globalization;
+using Gibbed.Disrupt.BinaryObjectInfo.Definitions;
 
 namespace Gibbed.Disrupt.BinaryObjectInfo.FieldHandlers.Ids
 {
-    internal class PathIdHandler : BaseHandler
+    internal abstract class Base64Handler : Ints.Int64Handler
     {
-        protected override uint Hash(string text)
+        protected abstract ulong Hash(string text);
+
+        public override long Parse(FieldDefinition def, string text)
         {
-            text = ProjectHelpers.Modifier(text);
-            return BigFileV3.ComputeNameHash(text);
+            if (text.StartsWith("0x") == false)
+            {
+                return (long)this.Hash(text);
+            }
+            if (ulong.TryParse(
+                text.Substring(2),
+                NumberStyles.AllowHexSpecifier,
+                CultureInfo.InvariantCulture,
+                out var value) == false)
+            {
+                throw new FormatException("failed to parse hex Id");
+            }
+            return (long)value;
+        }
+
+        public override string Compose(FieldDefinition def, long value)
+        {
+            return "0x" + ((ulong)value).ToString("X16", CultureInfo.InvariantCulture);
         }
     }
 }

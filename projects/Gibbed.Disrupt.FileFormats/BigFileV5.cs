@@ -247,7 +247,7 @@ namespace Gibbed.Disrupt.FileFormats
             return true;
         }
 
-        public ulong ComputeNameHash(string s)
+        public static ulong ComputeNameHash(string s)
         {
             if (s == null || s.Length == 0)
             {
@@ -263,14 +263,29 @@ namespace Gibbed.Disrupt.FileFormats
             return hash;
         }
 
-        public bool TryParseNameHash(string s, out ulong value)
+        public static bool TryParseNameHash(string s, out ulong value)
         {
             return ulong.TryParse(s, NumberStyles.AllowHexSpecifier, CultureInfo.InvariantCulture, out value);
         }
 
-        public string RenderNameHash(ulong value)
+        public static string RenderNameHash(ulong value)
         {
             return string.Format(CultureInfo.InvariantCulture, "{0:X16}", value);
+        }
+
+        ulong Big.IArchive<ulong>.ComputeNameHash(string s)
+        {
+            return ComputeNameHash(s);
+        }
+
+        bool Big.IArchive<ulong>.TryParseNameHash(string s, out ulong value)
+        {
+            return TryParseNameHash(s, out value);
+        }
+
+        string Big.IArchive<ulong>.RenderNameHash(ulong value)
+        {
+            return RenderNameHash(value);
         }
 
         private static Big.IEntrySerializer<ulong> GetEntrySerializer(int version)

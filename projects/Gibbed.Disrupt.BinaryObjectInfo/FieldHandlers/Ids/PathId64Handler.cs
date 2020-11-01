@@ -24,12 +24,12 @@ using Gibbed.Disrupt.FileFormats;
 
 namespace Gibbed.Disrupt.BinaryObjectInfo.FieldHandlers.Ids
 {
-    internal class PathIdHandler : BaseHandler
+    internal class PathId64Handler : Base64Handler
     {
-        protected override uint Hash(string text)
+        protected override ulong Hash(string text)
         {
             text = ProjectHelpers.Modifier(text);
-            return BigFileV3.ComputeNameHash(text);
+            return BigFileV5.ComputeNameHash(text);
         }
     }
 }

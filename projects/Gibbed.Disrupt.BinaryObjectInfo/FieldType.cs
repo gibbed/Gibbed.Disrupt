@@ -29,7 +29,7 @@ namespace Gibbed.Disrupt.BinaryObjectInfo
 
         Boolean, // bool
         UInt8, // unsigned char
-        Int8,
+        Int8, // char
         UInt16, // unsigned short
         Int16, // signed short
         UInt32, // unsigned int
@@ -46,6 +46,9 @@ namespace Gibbed.Disrupt.BinaryObjectInfo
         StringId, // CStringID
         NoCaseStringId, // CNoCaseStringID
         PathId, // CPathID
+        StringId64, // CStringID WDL
+        NoCaseStringId64, // CNoCaseStringID WDL
+        PathId64, // CPathID WDL
 
         Rml,
         Array32,

@@ -288,7 +288,7 @@ namespace Gibbed.Disrupt.FileFormats
             return true;
         }
 
-        public uint ComputeNameHash(string s)
+        public static uint ComputeNameHash(string s)
         {
             if (s == null || s.Length == 0)
             {
@@ -297,14 +297,29 @@ namespace Gibbed.Disrupt.FileFormats
             return (uint)Hashing.FNV1a64.Compute(s.ToLowerInvariant());
         }
 
-        public bool TryParseNameHash(string s, out uint value)
+        public static bool TryParseNameHash(string s, out uint value)
         {
             return uint.TryParse(s, NumberStyles.AllowHexSpecifier, CultureInfo.InvariantCulture, out value);
         }
 
-        public string RenderNameHash(uint value)
+        public static string RenderNameHash(uint value)
         {
             return string.Format(CultureInfo.InvariantCulture, "{0:X8}", value);
+        }
+
+        uint Big.IArchive<uint>.ComputeNameHash(string s)
+        {
+            return ComputeNameHash(s);
+        }
+
+        bool Big.IArchive<uint>.TryParseNameHash(string s, out uint value)
+        {
+            return TryParseNameHash(s, out value);
+        }
+
+        string Big.IArchive<uint>.RenderNameHash(uint value)
+        {
+            return RenderNameHash(value);
         }
 
         private static Big.IEntrySerializer<uint> GetEntrySerializer(int version)
