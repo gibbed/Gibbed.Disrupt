@@ -1,0 +1,17 @@
+<project>
+	<name>Watch Dogs 2</name>
+	<dependencies>
+		<dependency>Shared</dependency>
+	</dependencies>
+	<list_location>Watch Dogs 2</list_location>
+	<install_locations>
+		<install_location>
+			<action type="registryview" view="Registry32" hive="LocalMachine" subkey="SOFTWARE\Ubisoft\Launcher\Installs\2688" value="InstallDir" />
+			<action type="combine">data_win64</action>
+		</install_location>
+		<install_location>
+			<action type="registryview" view="Registry64" hive="LocalMachine" subkey="SOFTWARE\Ubisoft\Launcher\Installs\2688" value="InstallDir" />
+			<action type="combine">data_win64</action>
+		</install_location>
+	</install_locations>
+</project>
