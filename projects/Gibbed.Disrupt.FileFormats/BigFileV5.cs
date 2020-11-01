@@ -102,7 +102,7 @@ namespace Gibbed.Disrupt.FileFormats
             var endian = magic == Signature ? Endian.Little : Endian.Big;
 
             var version = input.ReadValueS32(endian);
-            if (version != 13)
+            if (version != 11 && version != 13)
             {
                 throw new FormatException("unsupported version");
             }
@@ -112,15 +112,18 @@ namespace Gibbed.Disrupt.FileFormats
             var platform = (byte)((flags >> 8) & 0xFF);
             var flags02 = (byte)((flags >> 16) & 0xFF);
 
-            if (flags != 0x00460801)
+            if ((version == 11 && flags != 0x00460000 && flags != 0x00460601) ||
+                (version == 13 && flags != 0x00460801))
             {
                 throw new FormatException("unknown flags");
             }
 
+            /*
             if (target != 1)
             {
                 throw new FormatException("unsupported or invalid platform");
             }
+            */
 
             /*if (IsValidTargetPlatform(target, platform, flags02) == false)
             {
@@ -157,10 +160,13 @@ namespace Gibbed.Disrupt.FileFormats
                 entries.Add(entry);
             }
 
-            var unknownCount = input.ReadValueU32(endian);
-            for (uint i = 0; i < unknownCount; i++)
+            if (version >= 12)
             {
-                throw new NotImplementedException();
+                var unknownCount = input.ReadValueU32(endian);
+                for (uint i = 0; i < unknownCount; i++)
+                {
+                    throw new NotImplementedException();
+                }
             }
 
             var localizationCount = input.ReadValueU32(endian);
@@ -178,7 +184,7 @@ namespace Gibbed.Disrupt.FileFormats
 
             foreach (var entry in entries)
             {
-                SanityCheckEntry(entry, target);
+                SanityCheckEntry(entry, version, target);
             }
 
             this._Endian = endian;
@@ -190,13 +196,23 @@ namespace Gibbed.Disrupt.FileFormats
             this._Entries.AddRange(entries);
         }
 
-        internal static void SanityCheckEntry(BigEntry entry, byte platform)
+        internal static void SanityCheckEntry(BigEntry entry, int version, byte target)
         {
             if (entry.CompressionScheme == Big.CompressionScheme.None)
             {
-                if (entry.UncompressedSize != entry.CompressedSize)
+                if (version < 12)
                 {
-                    throw new FormatException("got entry with no compression with mismatched sizes");
+                    if (entry.UncompressedSize != 0)
+                    {
+                        throw new FormatException("got entry with no compression with a non-zero uncompressed size");
+                    }
+                }
+                else
+                {
+                    if (entry.UncompressedSize != entry.CompressedSize)
+                    {
+                        throw new FormatException("got entry with no compression with mismatched sizes");
+                    }
                 }
             }
             else if (entry.CompressionScheme == Big.CompressionScheme.LZ4LW)
@@ -302,6 +318,7 @@ namespace Gibbed.Disrupt.FileFormats
             _EntrySerializers = new ReadOnlyDictionary<int, Big.IEntrySerializer<ulong>>(
                 new Dictionary<int, Big.IEntrySerializer<ulong>>()
                 {
+                    [11] = new Big.EntrySerializerV11(),
                     [13] = new Big.EntrySerializerV13(),
                 });
         }
