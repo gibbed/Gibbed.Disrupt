@@ -14,6 +14,9 @@
 	path = projects/Gibbed.ProjectData
 	url = https://github.com/gibbed/Gibbed.ProjectData.git
 	branch = vs2017
+[submodule "bin/projects/Watch Dogs/files"]
+	path = bin/projects/Watch Dogs/files
+	url = https://github.com/gibbed/WDFileLists.git
 [submodule "bin/projects/Watch Dogs 2/files"]
 	path = bin/projects/Watch Dogs 2/files
 	url = https://github.com/gibbed/WD2FileLists.git
