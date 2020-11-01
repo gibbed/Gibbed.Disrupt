@@ -254,7 +254,55 @@ namespace Gibbed.Disrupt.Packing
 
         private static void DecompressLZ4LW(IEntry entry, Stream input, Stream output)
         {
-            throw new NotImplementedException();
+            var maybeTailSize = ReadPackedS32(input, out var headerSize);
+
+            var decoder = new LZ4LW.LZ4LWDecoderStream(input, entry.CompressedSize - headerSize);
+
+            var remaining = entry.UncompressedSize;
+
+            var buffer = new byte[2048];
+            while (remaining > 0)
+            {
+                int read;
+                try
+                {
+                    read = decoder.Read(buffer, 0, buffer.Length);
+                }
+                catch (Exception)
+                {
+                    break;
+                }
+                if (read == 0)
+                {
+                    break;
+                }
+                output.Write(buffer, 0, read);
+                remaining -= read;
+            }
+            output.Flush();
+            if (remaining != 0)
+            {
+                //throw new InvalidOperationException();
+            }
+        }
+
+        private static int ReadPackedS32(Stream input, out int read)
+        {
+            read = 1;
+            byte b = input.ReadValueU8();
+            int value = b & 0x7F;
+            int shift = 7;
+            while ((b & 0x80) != 0)
+            {
+                if (shift > 21)
+                {
+                    throw new InvalidOperationException();
+                }
+                read++;
+                b = input.ReadValueU8();
+                value |= (b & 0x7F) << shift;
+            }
+            return value;
         }
     }
 }

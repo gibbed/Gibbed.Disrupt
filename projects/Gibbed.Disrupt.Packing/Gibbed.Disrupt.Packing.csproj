@@ -13,6 +13,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Gibbed.Disrupt.FileFormats\Gibbed.Disrupt.FileFormats.csproj" />
     <ProjectReference Include="..\Gibbed.IO\Gibbed.IO.csproj" />
+    <ProjectReference Include="..\Gibbed.LZ4LW\Gibbed.LZ4LW.csproj" />
     <ProjectReference Include="..\Gibbed.ProjectData\Gibbed.ProjectData.csproj" />
     <ProjectReference Include="..\NDesk.Options\NDesk.Options.csproj" />
     <ProjectReference Include="..\XCompression\XCompression.csproj" />
