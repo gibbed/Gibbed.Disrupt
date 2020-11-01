@@ -9,6 +9,7 @@
 *.user
 *.userosscache
 *.sln.docstates
+bin/projects/**/files/test*.filelist
 private/
 
 # User-specific files (MonoDevelop/Xamarin Studio)
