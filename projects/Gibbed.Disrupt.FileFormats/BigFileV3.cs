@@ -210,11 +210,11 @@ namespace Gibbed.Disrupt.FileFormats
             this._Entries.AddRange(entries);
         }
 
-        internal static void SanityCheckEntry(BigEntry entry, byte platform)
+        internal static void SanityCheckEntry(BigEntry entry, byte target)
         {
             if (entry.CompressionScheme == Big.CompressionScheme.None)
             {
-                if (platform != 2 && entry.UncompressedSize != 0)
+                if (target != 2 && entry.UncompressedSize != 0)
                 {
                     throw new FormatException("got entry with no compression with a non-zero uncompressed size");
                 }
