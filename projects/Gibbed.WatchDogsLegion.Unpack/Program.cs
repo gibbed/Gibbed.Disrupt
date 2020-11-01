@@ -20,14 +20,15 @@
  *    distribution.
  */
 
-using System.IO;
-using Gibbed.IO;
+using Gibbed.Disrupt.FileFormats;
 
-namespace Gibbed.Disrupt.FileFormats.Big
+namespace Gibbed.WatchDogsLegion.Unpack
 {
-    internal interface IEntrySerializer<T>
+    internal class Program
     {
-        void Serialize(Stream output, Entry<T> entry, Endian endian);
-        void Deserialize(Stream input, Endian endian, out Entry<T> entry);
+        public static void Main(string[] args)
+        {
+            Disrupt.Packing.Unpack<BigFileV5, ulong>.Main(args, "Watch Dogs Legion");
+        }
     }
 }

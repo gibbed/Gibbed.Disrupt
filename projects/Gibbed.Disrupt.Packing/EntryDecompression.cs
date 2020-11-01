@@ -29,11 +29,11 @@ using ICSharpCode.SharpZipLib.Zip.Compression.Streams;
 using LZO = MiniLZO.LZO;
 using LZOErrorCode = MiniLZO.ErrorCode;
 
-namespace Gibbed.Disrupt.Unpack
+namespace Gibbed.Disrupt.Packing
 {
-    public static class EntryDecompression
+    internal static class EntryDecompression
     {
-        public static void Decompress(Entry entry, Stream input, Stream output)
+        public static void Decompress(IEntry entry, Stream input, Stream output)
         {
             input.Seek(entry.Offset, SeekOrigin.Begin);
 
@@ -49,9 +49,13 @@ namespace Gibbed.Disrupt.Unpack
             {
                 DecompressZlib(entry, input, output);
             }
-            else if (entry.CompressionScheme == CompressionScheme.Xbox)
+            else if (entry.CompressionScheme == CompressionScheme.XMemCompress)
             {
                 DecompressXMemCompress(entry, input, output);
+            }
+            else if (entry.CompressionScheme == CompressionScheme.LZ4LW)
+            {
+                DecompressLZ4LW(entry, input, output);
             }
             else
             {
@@ -59,7 +63,7 @@ namespace Gibbed.Disrupt.Unpack
             }
         }
 
-        private static void DecompressLZO(Entry entry, Stream input, Stream output)
+        private static void DecompressLZO(IEntry entry, Stream input, Stream output)
         {
             var compressedBytes = new byte[entry.CompressedSize];
             if (input.Read(compressedBytes, 0, compressedBytes.Length) != compressedBytes.Length)
@@ -90,7 +94,7 @@ namespace Gibbed.Disrupt.Unpack
             output.Write(uncompressedBytes, 0, uncompressedBytes.Length);
         }
 
-        private static void DecompressZlib(Entry entry, Stream input, Stream output)
+        private static void DecompressZlib(IEntry entry, Stream input, Stream output)
         {
             if (entry.CompressedSize < 16)
             {
@@ -152,7 +156,7 @@ namespace Gibbed.Disrupt.Unpack
             }
         }
 
-        private static void DecompressXMemCompress(Entry entry, Stream input, Stream output)
+        private static void DecompressXMemCompress(IEntry entry, Stream input, Stream output)
         {
             var magic = input.ReadValueU32(Endian.Big);
             if (magic != 0x0FF512EE)
@@ -245,6 +249,11 @@ namespace Gibbed.Disrupt.Unpack
                     remaining -= actualUncompressedChunkSize;
                 }
             }
+        }
+
+        private static void DecompressLZ4LW(IEntry entry, Stream input, Stream output)
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -27,10 +27,12 @@ using System.Linq;
 using Gibbed.Disrupt.FileFormats;
 using Gibbed.ProjectData;
 using NDesk.Options;
+using Big = Gibbed.Disrupt.FileFormats.Big;
 
-namespace RebuildFileLists
+namespace Gibbed.Disrupt.Packing
 {
-    internal class Program
+    public static class RebuildFileLists<TArchive, THash>
+        where TArchive : Big.IArchive<THash>, new()
     {
         private static string GetExecutableName()
         {
@@ -55,15 +57,13 @@ namespace RebuildFileLists
             return outputPath;
         }
 
-        public static void Main(string[] args)
+        public static void Main(string[] args, string projectName)
         {
             bool showHelp = false;
-            string currentProject = null;
 
             var options = new OptionSet()
             {
                 { "h|help", "show this message and exit", v => showHelp = v != null },
-                { "p|project=", "override current project", v => currentProject = v },
             };
 
             List<string> extras;
@@ -91,7 +91,7 @@ namespace RebuildFileLists
 
             Console.WriteLine("Loading project...");
 
-            var manager = Manager.Load(currentProject);
+            var manager = Manager.Load(projectName);
             if (manager.ActiveProject == null)
             {
                 Console.WriteLine("Nothing to do: no active project loaded.");
@@ -100,7 +100,7 @@ namespace RebuildFileLists
 
             var project = manager.ActiveProject;
             var version = -1;
-            HashList<uint> knownHashes = null;
+            HashList<THash> knownHashes = null;
 
             var installPath = project.InstallPath;
             var listsPath = project.ListsPath;
@@ -152,7 +152,7 @@ namespace RebuildFileLists
                     fatPath += ".bak";
                 }
 
-                var fat = new BigFileV3();
+                var fat = new TArchive();
                 using (var input = File.OpenRead(fatPath))
                 {
                     fat.Deserialize(input);
@@ -161,7 +161,7 @@ namespace RebuildFileLists
                 if (version == -1)
                 {
                     version = fat.Version;
-                    knownHashes = manager.LoadListsFileNames(fat.Version);
+                    manager.LoadListsFileNames(fat.Version, fat.ComputeNameHash, out knownHashes);
                 }
                 else if (version != fat.Version)
                 {
@@ -181,7 +181,8 @@ namespace RebuildFileLists
                     outputPath);
             }
 
-            using (var output = new StreamWriter(Path.Combine(Path.Combine(listsPath, "files"), "status.txt")))
+            var statusPath = Path.Combine(listsPath, "files", "status.txt");
+            using (var output = new StreamWriter(statusPath))
             {
                 output.WriteLine(
                     "{0}",
@@ -190,12 +191,14 @@ namespace RebuildFileLists
                         Known = tracking.Names.Distinct().Count(),
                         Total = tracking.Hashes.Distinct().Count(),
                     });
+
+                // TODO(gibbed): breakdown all archives individually
             }
         }
 
         private static void HandleEntries(
-            IEnumerable<uint> entries,
-            HashList<uint> knownHashes,
+            IEnumerable<THash> entries,
+            HashList<THash> knownHashes,
             Tracking tracking,
             Breakdown breakdown,
             string outputPath)
@@ -244,6 +247,33 @@ namespace RebuildFileLists
                 {
                     output.Write(writer.GetStringBuilder());
                 }
+            }
+        }
+
+        internal class Tracking
+        {
+            public readonly List<THash> Hashes = new List<THash>();
+            public readonly List<string> Names = new List<string>();
+        }
+
+        internal class Breakdown
+        {
+            public long Known = 0;
+            public long Total = 0;
+
+            public int Percent
+            {
+                get
+                {
+                    return this.Total == 0
+                        ? 0
+                        : (int)Math.Floor(((float)this.Known / this.Total) * 100.0f);
+                }
+            }
+
+            public override string ToString()
+            {
+                return $"{this.Known}/{this.Total} ({this.Percent}%)";
             }
         }
     }

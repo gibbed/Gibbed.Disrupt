@@ -30,16 +30,17 @@ using Gibbed.Disrupt.FileFormats;
 using NDesk.Options;
 using Big = Gibbed.Disrupt.FileFormats.Big;
 
-namespace Gibbed.Disrupt.Unpack
+namespace Gibbed.Disrupt.Packing
 {
-    internal class Program
+    public static class Unpack<TArchive, THash>
+        where TArchive : Big.IArchive<THash>, new()
     {
         private static string GetExecutableName()
         {
             return Path.GetFileName(System.Reflection.Assembly.GetExecutingAssembly().Location);
         }
 
-        public static void Main(string[] args)
+        public static void Main(string[] args, string projectName)
         {
             bool showHelp = false;
             bool extractUnknowns = true;
@@ -110,7 +111,7 @@ namespace Gibbed.Disrupt.Unpack
                 Console.WriteLine("Loading project...");
             }
 
-            var manager = ProjectData.Manager.Load();
+            var manager = ProjectData.Manager.Load(projectName);
             if (manager.ActiveProject == null)
             {
                 Console.WriteLine("Warning: no active project loaded.");
@@ -121,21 +122,23 @@ namespace Gibbed.Disrupt.Unpack
                 Console.WriteLine("Reading FAT...");
             }
 
-            BigFileV3 fat;
+            TArchive fat;
             using (var input = File.OpenRead(fatPath))
             {
-                fat = new BigFileV3();
+                fat = new TArchive();
                 fat.Deserialize(input);
             }
 
-            var hashes = manager.LoadListsFileNames(fat.Version);
-
-            using (var input = File.OpenRead(datPath))
+            if (extractFiles == true)
             {
-                if (extractFiles == true)
-                {
-                    Big.Entry[] entries = fat.Entries.OrderBy(e => e.Offset).ToArray();
+                manager.LoadListsFileNames(
+                    fat.Version,
+                    fat.ComputeNameHash,
+                    out ProjectData.HashList<THash> hashes);
 
+                using (var input = File.OpenRead(datPath))
+                {
+                    var entries = fat.Entries.OrderBy(e => e.Offset).ToArray();
                     if (entries.Length > 0)
                     {
                         if (verbose == true)
@@ -147,7 +150,7 @@ namespace Gibbed.Disrupt.Unpack
                         long total = entries.Length;
                         var padding = total.ToString(CultureInfo.InvariantCulture).Length;
 
-                        var duplicates = new Dictionary<ulong, int>();
+                        var duplicates = new Dictionary<THash, int>();
 
                         foreach (var entry in entries)
                         {
@@ -155,9 +158,9 @@ namespace Gibbed.Disrupt.Unpack
 
                             if (GetEntryName(
                                 input,
-                                fat,
                                 entry,
                                 hashes,
+                                fat.RenderNameHash,
                                 extractUnknowns,
                                 onlyUnknowns,
                                 out var entryName) == false)
@@ -225,13 +228,18 @@ namespace Gibbed.Disrupt.Unpack
 
         private static bool GetEntryName(
             Stream input,
-            BigFileV3 fat,
-            Big.Entry entry,
-            ProjectData.HashList<uint> hashes,
+            Big.Entry<THash> entry,
+            ProjectData.HashList<THash> hashes,
+            Func<THash, string> renderHash,
             bool extractUnknowns,
             bool onlyUnknowns,
             out string entryName)
         {
+            if (renderHash == null)
+            {
+                throw new ArgumentNullException(nameof(renderHash));
+            }
+
             entryName = hashes[entry.NameHash];
 
             if (entryName == null)
@@ -270,7 +278,7 @@ namespace Gibbed.Disrupt.Unpack
                     extension = tuple?.Item2;
                 }
 
-                entryName = entry.NameHash.ToString("X8");
+                entryName = renderHash(entry.NameHash);
 
                 if (string.IsNullOrEmpty(extension) == false)
                 {

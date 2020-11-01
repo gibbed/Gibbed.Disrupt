@@ -20,13 +20,15 @@
  *    distribution.
  */
 
-using System.Collections.Generic;
+using Gibbed.Disrupt.FileFormats;
 
-namespace RebuildFileLists
+namespace Gibbed.WatchDogs.Unpack
 {
-    internal class Tracking
+    internal class Program
     {
-        public readonly List<uint> Hashes = new List<uint>();
-        public readonly List<string> Names = new List<string>();
+        public static void Main(string[] args)
+        {
+            Disrupt.Packing.Unpack<BigFileV3, uint>.Main(args, "Watch Dogs");
+        }
     }
 }

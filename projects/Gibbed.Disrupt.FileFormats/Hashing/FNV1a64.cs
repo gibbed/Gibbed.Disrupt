@@ -20,14 +20,36 @@
  *    distribution.
  */
 
-using System.IO;
-using Gibbed.IO;
+using System;
 
-namespace Gibbed.Disrupt.FileFormats.Big
+namespace Gibbed.Disrupt.FileFormats.Hashing
 {
-    internal interface IEntrySerializer<T>
+    public static class FNV1a64
     {
-        void Serialize(Stream output, Entry<T> entry, Endian endian);
-        void Deserialize(Stream input, Endian endian, out Entry<T> entry);
+        public static ulong Compute(string value)
+        {
+            return Compute(value, 0xCBF29CE484222325ul);
+        }
+
+        public static ulong Compute(string value, ulong seed)
+        {
+            if (value == null)
+            {
+                throw new ArgumentNullException("value");
+            }
+
+            if (value.Length == 0)
+            {
+                return 0;
+            }
+
+            var hash = seed;
+            foreach (char t in value)
+            {
+                hash *= 0x100000001B3ul;
+                hash ^= t;
+            }
+            return hash;
+        }
     }
 }

@@ -20,57 +20,57 @@
  *    distribution.
  */
 
+using System;
 using System.IO;
 using Gibbed.IO;
 
 namespace Gibbed.Disrupt.FileFormats.Big
 {
-    internal class EntrySerializerV8 : IEntrySerializer
+    internal class EntrySerializerV07 : IEntrySerializer<uint>
     {
         // hhhhhhhh hhhhhhhh hhhhhhhh hhhhhhhh
-        // uuuuuuuu uuuuuuuu uuuuuuuu uuuuusss
-        // oooccccc cccccccc cccccccc cccccccc
+        // uuuuuuuu uuuuuuuu uuuuuuuu uuuuuuss
+        // oocccccc cccccccc cccccccc cccccccc
         // oooooooo oooooooo oooooooo oooooooo
 
         // [h] hash = 32 bits
-        // [u] uncompressed size = 29 bits
-        // [s] compression scheme = 3 bits
-        // [o] offset = 35 bits
-        // [c] compressed size = 29 bits
+        // [u] uncompressed size = 30 bits
+        // [s] compression scheme = 2 bits
+        // [o] offset = 34 bits
+        // [c] compressed size = 30 bits
 
-        public void Serialize(Stream output, Entry entry, Endian endian)
+        public void Serialize(Stream output, Entry<uint> entry, Endian endian)
         {
-            var a = entry.NameHash;
-
-            uint b = 0;
-            b |= (entry.UncompressedSize & 0x1FFFFFFFu) << 3;
-            b |= (uint)(((byte)entry.CompressionScheme << 0) & 0x00000007u);
-
-            uint c = 0;
-            c |= (uint)(entry.Offset & 0x00000007u) << 29;
-            c |= (entry.CompressedSize & 0x1FFFFFFFu) << 0;
-
-            var d = (uint)((entry.Offset >> 3) & 0x1FFFFFFF);
-
-            output.WriteValueU32(a, endian);
-            output.WriteValueU32(b, endian);
-            output.WriteValueU32(c, endian);
-            output.WriteValueU32(d, endian);
+            throw new NotImplementedException();
         }
 
-        public void Deserialize(Stream input, Endian endian, out Entry entry)
+        public void Deserialize(Stream input, Endian endian, out Entry<uint> entry)
         {
             var a = input.ReadValueU32(endian);
             var b = input.ReadValueU32(endian);
             var c = input.ReadValueU32(endian);
             var d = input.ReadValueU32(endian);
 
-            entry.NameHash = a;
-            entry.UncompressedSize = (b >> 3) & 0x1FFFFFFFu;
-            entry.CompressionScheme = (CompressionScheme)((b >> 0) & 0x00000007u);
-            entry.Offset = (long)d << 3;
-            entry.Offset |= (c >> 29) & 0x00000007u;
-            entry.CompressedSize = (c >> 0) & 0x1FFFFFFFu;
+            entry = new Entry<uint>()
+            {
+                NameHash = a,
+                UncompressedSize = (int)((b >> 2) & 0x3FFFFFFFu),
+                Offset = (long)d << 2 | ((c >> 30) & 0x3u),
+                CompressionScheme = ToCompressionScheme((byte)((b >> 0) & 0x3u)),
+                CompressedSize = (int)((c >> 0) & 0x3FFFFFFFu),
+            };
+        }
+
+        private static CompressionScheme ToCompressionScheme(byte id)
+        {
+            switch (id)
+            {
+                case 0: return CompressionScheme.None;
+                case 1: return CompressionScheme.LZO1x;
+                case 2: return CompressionScheme.Zlib;
+                case 3: return CompressionScheme.XMemCompress;
+            }
+            throw new NotSupportedException();
         }
     }
 }

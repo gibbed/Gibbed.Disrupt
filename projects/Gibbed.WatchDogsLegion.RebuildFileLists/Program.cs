@@ -20,20 +20,15 @@
  *    distribution.
  */
 
-namespace Gibbed.Disrupt.FileFormats.Big
+using Gibbed.Disrupt.FileFormats;
+
+namespace Gibbed.WatchDogsLegion.RebuildFileLists
 {
-    public enum Target : uint
+    internal static class Program
     {
-        // ReSharper disable InconsistentNaming
-        Any = 0,
-        Win32 = 1,
-        Xbox360 = 2,
-        PS3 = 3,
-        Win64 = 4,
-        // PS4 = ???,
-        // XboxOne = ???,
-        // WiiU = ???,
-        Invalid = 0xFFFFFFFFu,
-        // ReSharper restore InconsistentNaming
+        public static void Main(string[] args)
+        {
+            Disrupt.Packing.RebuildFileLists<BigFileV5, ulong>.Main(args, "Watch Dogs Legion");
+        }
     }
 }

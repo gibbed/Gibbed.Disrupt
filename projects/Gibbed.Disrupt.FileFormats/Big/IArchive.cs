@@ -20,36 +20,24 @@
  *    distribution.
  */
 
-using System;
+using System.Collections.Generic;
+using System.IO;
 
-namespace Gibbed.Disrupt.FileFormats.Hashing
+namespace Gibbed.Disrupt.FileFormats.Big
 {
-    public static class FNV64
+    public interface IArchive<T>
     {
-        public static ulong Compute(string value)
-        {
-            return Compute(value, 0xCBF29CE484222325ul);
-        }
+        int Version { get; set; }
+        byte Target { get; set; }
+        byte Platform { get; set; }
 
-        public static ulong Compute(string value, ulong seed)
-        {
-            if (value == null)
-            {
-                throw new ArgumentNullException("value");
-            }
+        List<Entry<T>> Entries { get; }
 
-            if (value.Length == 0)
-            {
-                return 0;
-            }
+        void Serialize(Stream output);
+        void Deserialize(Stream input);
 
-            var hash = seed;
-            foreach (char t in value)
-            {
-                hash *= 0x100000001B3ul;
-                hash ^= t;
-            }
-            return hash;
-        }
+        T ComputeNameHash(string s);
+        bool TryParseNameHash(string s, out T value);
+        string RenderNameHash(T value);
     }
 }

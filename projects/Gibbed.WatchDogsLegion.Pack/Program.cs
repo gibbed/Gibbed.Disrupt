@@ -20,13 +20,15 @@
  *    distribution.
  */
 
-namespace Gibbed.Disrupt.FileFormats.Big
+using Gibbed.Disrupt.FileFormats;
+
+namespace Gibbed.WatchDogsLegion.Pack
 {
-    public enum Platform : uint
+    internal class Program
     {
-        // ReSharper disable InconsistentNaming
-        Any = 0,
-        Invalid = 0xFFFFFFFFu,
-        // ReSharper restore InconsistentNaming
+        private static void Main(string[] args)
+        {
+            Disrupt.Packing.Pack<BigFileV5, ulong>.Main(args);
+        }
     }
 }

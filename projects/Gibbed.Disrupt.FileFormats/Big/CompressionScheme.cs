@@ -22,13 +22,14 @@
 
 namespace Gibbed.Disrupt.FileFormats.Big
 {
-    public enum CompressionScheme : byte
+    public enum CompressionScheme
     {
-        // ReSharper disable InconsistentNaming
         None = 0,
-        LZO1x = 1,
-        Zlib = 2,
-        Xbox = 3,
-        // ReSharper restore InconsistentNaming
+        LZO1x,
+        Zlib,
+        XMemCompress,
+        LZMA,
+        LZ4LW,
+        Oodle,
     }
 }

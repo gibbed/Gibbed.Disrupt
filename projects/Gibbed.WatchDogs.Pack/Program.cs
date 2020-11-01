@@ -20,35 +20,15 @@
  *    distribution.
  */
 
-using System;
+using Gibbed.Disrupt.FileFormats;
 
-namespace RebuildFileLists
+namespace Gibbed.WatchDogs.Pack
 {
-    internal class Breakdown
+    internal class Program
     {
-        public long Known = 0;
-        public long Total = 0;
-
-        public int Percent
+        private static void Main(string[] args)
         {
-            get
-            {
-                if (this.Total == 0)
-                {
-                    return 0;
-                }
-
-                return (int)Math.Floor(((float)this.Known /
-                                        (float)this.Total) * 100.0);
-            }
-        }
-
-        public override string ToString()
-        {
-            return string.Format("{0}/{1} ({2}%)",
-                                 this.Known,
-                                 this.Total,
-                                 this.Percent);
+            Disrupt.Packing.Pack<BigFileV3, uint>.Main(args);
         }
     }
 }

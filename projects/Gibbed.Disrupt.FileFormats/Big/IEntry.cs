@@ -20,14 +20,15 @@
  *    distribution.
  */
 
-using System.IO;
-using Gibbed.IO;
+using System;
 
 namespace Gibbed.Disrupt.FileFormats.Big
 {
-    internal interface IEntrySerializer<T>
+    public interface IEntry
     {
-        void Serialize(Stream output, Entry<T> entry, Endian endian);
-        void Deserialize(Stream input, Endian endian, out Entry<T> entry);
+        int UncompressedSize { get; set; }
+        long Offset { get; set; }
+        int CompressedSize { get; set; }
+        CompressionScheme CompressionScheme { get; set; }
     }
 }

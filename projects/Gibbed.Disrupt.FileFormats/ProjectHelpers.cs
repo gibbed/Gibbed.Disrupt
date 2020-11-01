@@ -20,6 +20,7 @@
  *    distribution.
  */
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -32,7 +33,7 @@ namespace Gibbed.Disrupt.FileFormats
 
         private static ulong BaseHasher(string s)
         {
-            return Hashing.FNV64.Compute(Modifier(s).ToLowerInvariant());
+            return Hashing.FNV1a64.Compute(Modifier(s).ToLowerInvariant());
         }
 
         static ProjectHelpers()
@@ -141,14 +142,14 @@ namespace Gibbed.Disrupt.FileFormats
             };
         }
 
-        public static uint Hasher(string s)
+        private static uint Hasher32(string s)
         {
             if (s == null || s.Length == 0)
             {
                 return 0xFFFFFFFFu;
             }
 
-            var hash64 = Hashing.FNV64.Compute(s.ToLowerInvariant());
+            var hash64 = Hashing.FNV1a64.Compute(s.ToLowerInvariant());
             if (_KnownHashOverrideLookup.ContainsKey(hash64) == true)
             {
                 return _KnownHashOverrideLookup[hash64];
@@ -172,16 +173,22 @@ namespace Gibbed.Disrupt.FileFormats
             return s.Replace(@"/", @"\");
         }
 
-        public static ProjectData.HashList<uint> LoadListsFileNames(this ProjectData.Manager manager,
-                                                                    int bigVersion)
+        public static void LoadListsFileNames<T>(
+            this ProjectData.Manager manager,
+            int bigVersion,
+            Func<string, T> hasher,
+            out ProjectData.HashList<T> hashList)
         {
-            return manager.LoadLists("*.filelist", Hasher, Modifier);
+            hashList = manager.LoadLists("*.filelist", hasher, Modifier);
         }
 
-        public static ProjectData.HashList<uint> LoadListsFileNames(this ProjectData.Project project,
-                                                                    int bigVersion)
+        public static void LoadListsFileNames<T>(
+            this ProjectData.Project project,
+            int bigVersion,
+            Func<string, T> hasher,
+            out ProjectData.HashList<T> hashList)
         {
-            return project.LoadLists("*.filelist", Hasher, Modifier);
+            hashList = project.LoadLists("*.filelist", hasher, Modifier);
         }
     }
 }

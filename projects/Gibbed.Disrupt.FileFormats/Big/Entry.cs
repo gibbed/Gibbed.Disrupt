@@ -20,32 +20,32 @@
  *    distribution.
  */
 
+using System;
+
 namespace Gibbed.Disrupt.FileFormats.Big
 {
-    public struct Entry
+    public struct Entry<T> : IEquatable<Entry<T>>, IEntry
     {
-        public uint NameHash;
-        public uint UncompressedSize;
-        public uint CompressedSize;
-        public long Offset;
-        public CompressionScheme CompressionScheme;
+        public T NameHash { get; set; }
+        public int UncompressedSize { get; set; }
+        public long Offset { get; set; }
+        public int CompressedSize { get; set; }
+        public CompressionScheme CompressionScheme { get; set; }
 
         public override string ToString()
         {
-            if (this.CompressionScheme == CompressionScheme.None)
-            {
-                return string.Format("{0:X8} @ {1}, {2} bytes",
-                                     this.NameHash,
-                                     this.Offset,
-                                     this.CompressedSize);
-            }
+            return this.CompressionScheme == CompressionScheme.None
+                ? $"{this.NameHash:X} @{this.Offset}, {this.CompressedSize} bytes"
+                : $"{this.NameHash:X} @{this.Offset}, {this.UncompressedSize} bytes ({this.CompressedSize} compressed bytes, scheme {this.CompressionScheme})";
+        }
 
-            return string.Format("{0:X8} @ {1}, {2} bytes ({3} compressed bytes, scheme {4})",
-                                 this.NameHash,
-                                 this.Offset,
-                                 this.UncompressedSize,
-                                 this.CompressedSize,
-                                 this.CompressionScheme);
+        public bool Equals(Entry<T> other)
+        {
+            return this.NameHash.Equals(other) == true &&
+                   this.UncompressedSize == other.UncompressedSize &&
+                   this.Offset == other.Offset &&
+                   this.CompressedSize == other.CompressedSize &&
+                   this.CompressionScheme == other.CompressionScheme;
         }
 
         public override bool Equals(object obj)
@@ -55,25 +55,17 @@ namespace Gibbed.Disrupt.FileFormats.Big
                 return false;
             }
 
-            return (Entry)obj == this;
+            return (Entry<T>)obj == this;
         }
 
-        public static bool operator ==(Entry a, Entry b)
+        public static bool operator ==(Entry<T> a, Entry<T> b)
         {
-            return a.NameHash == b.NameHash &&
-                   a.UncompressedSize == b.UncompressedSize &&
-                   a.CompressedSize == b.CompressedSize &&
-                   a.Offset == b.Offset &&
-                   a.CompressionScheme == b.CompressionScheme;
+            return a.Equals(b) == true;
         }
 
-        public static bool operator !=(Entry a, Entry b)
+        public static bool operator !=(Entry<T> a, Entry<T> b)
         {
-            return a.NameHash != b.NameHash ||
-                   a.UncompressedSize != b.UncompressedSize ||
-                   a.CompressedSize != b.CompressedSize ||
-                   a.Offset != b.Offset ||
-                   a.CompressionScheme != b.CompressionScheme;
+            return a.Equals(b) == false;
         }
 
         public override int GetHashCode()
@@ -83,8 +75,8 @@ namespace Gibbed.Disrupt.FileFormats.Big
                 int hash = 17;
                 hash = hash * 23 + this.NameHash.GetHashCode();
                 hash = hash * 23 + this.UncompressedSize.GetHashCode();
-                hash = hash * 23 + this.CompressedSize.GetHashCode();
                 hash = hash * 23 + this.Offset.GetHashCode();
+                hash = hash * 23 + this.CompressedSize.GetHashCode();
                 hash = hash * 23 + this.CompressionScheme.GetHashCode();
                 return hash;
             }

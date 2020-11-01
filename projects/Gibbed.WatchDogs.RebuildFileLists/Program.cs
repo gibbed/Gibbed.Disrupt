@@ -20,13 +20,15 @@
  *    distribution.
  */
 
-namespace Gibbed.Disrupt.Pack
+using Gibbed.Disrupt.FileFormats;
+
+namespace Gibbed.WatchDogs.RebuildFileLists
 {
-    internal struct PendingEntry
+    internal static class Program
     {
-        public string Name;
-        public uint NameHash;
-        public string FullPath;
-        public string PartPath;
+        public static void Main(string[] args)
+        {
+            Gibbed.Disrupt.Packing.RebuildFileLists<BigFileV3, uint>.Main(args, "Watch Dogs");
+        }
     }
 }

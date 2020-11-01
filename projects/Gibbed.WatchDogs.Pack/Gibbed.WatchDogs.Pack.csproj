@@ -6,15 +6,13 @@
     <Authors>Gibbed</Authors>
     <Description>http://gib.me/</Description>
     <Copyright>Copyright © Gibbed 2020</Copyright>
+    <PlatformTarget>x86</PlatformTarget>
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <OutputPath>..\..\bin\</OutputPath>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Gibbed.Disrupt.FileFormats\Gibbed.Disrupt.FileFormats.csproj" />
-    <ProjectReference Include="..\Gibbed.IO\Gibbed.IO.csproj" />
-    <ProjectReference Include="..\Gibbed.ProjectData\Gibbed.ProjectData.csproj" />
-    <ProjectReference Include="..\NDesk.Options\NDesk.Options.csproj" />
+    <ProjectReference Include="..\Gibbed.Disrupt.Packing\Gibbed.Disrupt.Packing.csproj" />
   </ItemGroup>
 </Project>

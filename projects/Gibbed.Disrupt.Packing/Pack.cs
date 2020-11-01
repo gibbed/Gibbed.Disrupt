@@ -30,9 +30,10 @@ using Gibbed.IO;
 using NDesk.Options;
 using Big = Gibbed.Disrupt.FileFormats.Big;
 
-namespace Gibbed.Disrupt.Pack
+namespace Gibbed.Disrupt.Packing
 {
-    internal class Program
+    public static partial class Pack<TArchive, THash>
+        where TArchive: Big.IArchive<THash>, new()
     {
         private static string GetExecutableName()
         {
@@ -48,48 +49,49 @@ namespace Gibbed.Disrupt.Pack
             return value;
         }
 
-        private static Big.Target ParsePackageTarget(string text)
+        private static byte ParsePackageTarget(string text)
         {
-            if (Enum.TryParse(text, true, out Big.Target value) == false)
+            if (byte.TryParse(text, out byte value) == false)
             {
                 throw new FormatException("invalid package target");
             }
             return value;
         }
 
-        private static Big.Platform TargetToPlatform(Big.Target packageTarget)
+        private static byte TargetToPlatform(byte packageTarget)
         {
             switch (packageTarget)
             {
-                case Big.Target.Any:
-                {
-                    return Big.Platform.Any;
-                }
-
-                case Big.Target.Win64:
-                {
-                    return (Big.Platform)5;
-                }
+                case 0: return 0;
+                case 4: return 5;
             }
 
             throw new NotSupportedException();
         }
 
-        private static void Main(string[] args)
+        internal struct PendingEntry
+        {
+            public string Name;
+            public THash NameHash;
+            public string FullPath;
+            public string PartPath;
+        }
+
+        public static void Main(string[] args)
         {
             bool showHelp = false;
             bool verbose = false;
             bool compress = false;
 
             int packageVersion = 8;
-            Big.Target packageTarget = Big.Target.Win64;
+            byte packageTarget = 4;
 
             var options = new OptionSet()
             {
                 { "v|verbose", "be verbose", v => verbose = v != null },
                 { "c|compress", "compress data with LZO1x", v => compress = v != null },
-                { "pv|package-version", "package version (default 8)", v => packageVersion = ParsePackageVersion(v) },
-                { "pt|package-target", "package platform (default Win64)", v => packageTarget = ParsePackageTarget(v) },
+                { "pv|package-version=", "package version (default 8)", v => packageVersion = ParsePackageVersion(v) },
+                { "pt|package-target=", "package platform (default Win64)", v => packageTarget = ParsePackageTarget(v) },
                 { "h|help", "show this message and exit", v => showHelp = v != null },
             };
 
@@ -144,7 +146,14 @@ namespace Gibbed.Disrupt.Pack
                 inputPaths.AddRange(extras.Skip(1));
             }
 
-            var pendingEntries = new SortedDictionary<uint, PendingEntry>();
+            var pendingEntries = new SortedDictionary<THash, PendingEntry>();
+
+            var fat = new TArchive()
+            {
+                Version = packageVersion,
+                Target = packageTarget,
+                Platform = TargetToPlatform(packageTarget),
+            };
 
             if (verbose == true)
             {
@@ -198,17 +207,24 @@ namespace Gibbed.Disrupt.Pack
                         }
 
                         pendingEntry.Name = null;
-                        pendingEntry.NameHash = uint.Parse(partName, NumberStyles.AllowHexSpecifier);
+
+                        if (fat.TryParseNameHash(partName, out pendingEntry.NameHash) == false)
+                        {
+                            throw new InvalidOperationException();
+                        }
                     }
                     else
                     {
                         pendingEntry.Name = string.Join("\\", pieces.Skip(index).ToArray()).ToLowerInvariant();
-                        pendingEntry.NameHash = ProjectHelpers.Hasher(ProjectHelpers.Modifier(pendingEntry.Name));
+                        pendingEntry.NameHash = fat.ComputeNameHash(ProjectHelpers.Modifier(pendingEntry.Name));
                     }
 
                     if (pendingEntries.ContainsKey(pendingEntry.NameHash) == true)
                     {
-                        Console.WriteLine("Ignoring duplicate of {0:X}: {1}", pendingEntry.NameHash, partPath);
+                        Console.WriteLine(
+                            "Ignoring duplicate of {0}: {1}",
+                            fat.RenderNameHash(pendingEntry.NameHash),
+                            partPath);
 
                         if (verbose == true)
                         {
@@ -224,16 +240,9 @@ namespace Gibbed.Disrupt.Pack
                 }
             }
 
-            var fat = new BigFileV3()
-            {
-                Version = packageVersion,
-                Target = packageTarget,
-                Platform = TargetToPlatform(packageTarget),
-            };
-
             // reasonable default?
             // need to figure out what this value actually does
-            if (packageTarget == Big.Target.Win64)
+            /*if (packageTarget == Big.Target.Win64)
             {
                 fat.Unknown70 = 0x32;
             }
@@ -245,7 +254,7 @@ namespace Gibbed.Disrupt.Pack
             else
             {
                 throw new InvalidOperationException("unknown target");
-            }
+            }*/
 
             using (var output = File.Create(datPath))
             {
@@ -266,7 +275,7 @@ namespace Gibbed.Disrupt.Pack
                             pendingEntry.PartPath);
                     }
 
-                    var entry = new Big.Entry();
+                    var entry = new Big.Entry<THash>();
                     entry.NameHash = pendingEntry.NameHash;
                     entry.Offset = output.Position;
 
