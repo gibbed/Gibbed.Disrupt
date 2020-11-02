@@ -158,6 +158,7 @@ namespace Gibbed.Disrupt.Packing
 
                             if (GetEntryName(
                                 input,
+                                fat,
                                 entry,
                                 hashes,
                                 fat.RenderNameHash,
@@ -218,7 +219,7 @@ namespace Gibbed.Disrupt.Packing
 
                             using (var output = File.Create(entryPath))
                             {
-                                EntryDecompression.Decompress(entry, input, output);
+                                EntryDecompression.Decompress(fat, entry, input, output);
                             }
                         }
                     }
@@ -228,6 +229,7 @@ namespace Gibbed.Disrupt.Packing
 
         private static bool GetEntryName(
             Stream input,
+            Big.IArchive<THash> archive,
             Big.Entry<THash> entry,
             ProjectData.HashList<THash> hashes,
             Func<THash, string> renderHash,
@@ -255,7 +257,8 @@ namespace Gibbed.Disrupt.Packing
                     var guess = new byte[64];
                     int read = 0;
 
-                    if (entry.CompressionScheme == Big.CompressionScheme.None)
+                    var compressionScheme = archive.ToCompressionScheme(entry.CompressionScheme);
+                    if (compressionScheme == Big.CompressionScheme.None)
                     {
                         if (entry.CompressedSize > 0)
                         {
@@ -267,7 +270,7 @@ namespace Gibbed.Disrupt.Packing
                     {
                         using (var temp = new MemoryStream())
                         {
-                            EntryDecompression.Decompress(entry, input, temp);
+                            EntryDecompression.Decompress(archive, entry, input, temp);
                             temp.Position = 0;
                             read = temp.Read(guess, 0, (int)Math.Min(temp.Length, guess.Length));
                         }

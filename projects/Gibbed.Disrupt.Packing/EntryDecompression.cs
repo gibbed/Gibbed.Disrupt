@@ -33,27 +33,28 @@ namespace Gibbed.Disrupt.Packing
 {
     internal static class EntryDecompression
     {
-        public static void Decompress(IEntry entry, Stream input, Stream output)
+        public static void Decompress<T>(IArchive<T> archive, IEntry entry, Stream input, Stream output)
         {
             input.Seek(entry.Offset, SeekOrigin.Begin);
 
-            if (entry.CompressionScheme == CompressionScheme.None)
+            var compressionScheme = archive.ToCompressionScheme(entry.CompressionScheme);
+            if (compressionScheme == CompressionScheme.None)
             {
                 output.WriteFromStream(input, entry.CompressedSize);
             }
-            else if (entry.CompressionScheme == CompressionScheme.LZO1x)
+            else if (compressionScheme == CompressionScheme.LZO1x)
             {
                 DecompressLZO(entry, input, output);
             }
-            else if (entry.CompressionScheme == CompressionScheme.Zlib)
+            else if (compressionScheme == CompressionScheme.Zlib)
             {
                 DecompressZlib(entry, input, output);
             }
-            else if (entry.CompressionScheme == CompressionScheme.XMemCompress)
+            else if (compressionScheme == CompressionScheme.XMemCompress)
             {
                 DecompressXMemCompress(entry, input, output);
             }
-            else if (entry.CompressionScheme == CompressionScheme.LZ4LW)
+            else if (compressionScheme == CompressionScheme.LZ4LW)
             {
                 DecompressLZ4LW(entry, input, output);
             }

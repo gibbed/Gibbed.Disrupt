@@ -28,8 +28,9 @@ namespace Gibbed.Disrupt.FileFormats.Big
     public interface IArchive<T>
     {
         int Version { get; set; }
-        byte Target { get; set; }
-        byte Platform { get; set; }
+        Platform Platform { get; set; }
+        byte CompressionVersion { get; set; }
+        byte NameHashVersion { get; set; }
 
         List<Entry<T>> Entries { get; }
 
@@ -39,5 +40,8 @@ namespace Gibbed.Disrupt.FileFormats.Big
         T ComputeNameHash(string s);
         bool TryParseNameHash(string s, out T value);
         string RenderNameHash(T value);
+
+        CompressionScheme ToCompressionScheme(byte id);
+        byte FromCompressionSCheme(CompressionScheme compressionScheme);
     }
 }

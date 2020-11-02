@@ -20,15 +20,14 @@
  *    distribution.
  */
 
-using System;
+using System.Collections.Generic;
 
 namespace Gibbed.Disrupt.FileFormats.Big
 {
-    public interface IEntry
+    public interface IDependentArchive<T> : IArchive<T>
     {
-        int UncompressedSize { get; set; }
-        long Offset { get; set; }
-        int CompressedSize { get; set; }
-        byte CompressionScheme { get; set; }
+        T ArchiveHash { get; set; }
+        bool HasArchiveHash { get; }
+        List<Dependency<T>> Dependencies { get; }
     }
 }

@@ -58,19 +58,8 @@ namespace Gibbed.Disrupt.FileFormats.Big
                 CompressedSize = (int)((b >> 0) & 0x3FFFFFFFu),
                 Offset = (long)c << 2 | ((b >> 30) & 0x3u),
                 UncompressedSize = (int)((d >> 2) & 0x3FFFFFFFu),
-                CompressionScheme = ToCompressionScheme((byte)((d >> 0) & 0x3u)),
+                CompressionScheme = (byte)((d >> 0) & 0x3u),
             };
-        }
-
-        private static CompressionScheme ToCompressionScheme(byte id)
-        {
-            switch (id)
-            {
-                case 0: return CompressionScheme.None;
-                case 1: return CompressionScheme.LZMA;
-                case 2: return CompressionScheme.LZ4LW;
-            }
-            throw new NotSupportedException();
         }
     }
 }

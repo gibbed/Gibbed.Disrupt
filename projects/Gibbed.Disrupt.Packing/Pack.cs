@@ -40,32 +40,34 @@ namespace Gibbed.Disrupt.Packing
             return Path.GetFileName(System.Reflection.Assembly.GetExecutingAssembly().Location);
         }
 
-        private static int ParsePackageVersion(string text)
+        private static int ParseVersion(string text)
         {
             if (int.TryParse(text, out var value) == false)
             {
-                throw new FormatException("invalid package version");
+                throw new FormatException("invalid version");
             }
             return value;
         }
 
-        private static byte ParsePackageTarget(string text)
+        private static Big.Platform ParsePlatform(string text)
         {
-            if (byte.TryParse(text, out byte value) == false)
+            if (Enum.TryParse(text, true, out Big.Platform value) == false)
             {
-                throw new FormatException("invalid package target");
+                throw new FormatException("invalid platform");
             }
             return value;
         }
 
-        private static byte TargetToPlatform(byte packageTarget)
+        private static byte GetCompressionVersionForPlatform(Big.Platform platform)
         {
-            switch (packageTarget)
+            switch (platform)
             {
-                case 0: return 0;
-                case 4: return 5;
+                case Big.Platform.Any: return 0;
+                case Big.Platform.Xenon: return 5;
+                case Big.Platform.PS3: return 4;
+                case Big.Platform.Win64: return 5;
+                case Big.Platform.WiiU: return 5;
             }
-
             throw new NotSupportedException();
         }
 
@@ -83,15 +85,15 @@ namespace Gibbed.Disrupt.Packing
             bool verbose = false;
             bool compress = false;
 
-            int packageVersion = 8;
-            byte packageTarget = 4;
+            int? version = null;
+            var platform = Big.Platform.Win64;
 
             var options = new OptionSet()
             {
                 { "v|verbose", "be verbose", v => verbose = v != null },
                 { "c|compress", "compress data with LZO1x", v => compress = v != null },
-                { "pv|package-version=", "package version (default 8)", v => packageVersion = ParsePackageVersion(v) },
-                { "pt|package-target=", "package platform (default Win64)", v => packageTarget = ParsePackageTarget(v) },
+                { "pv|package-version=", "package version", v => version = ParseVersion(v) },
+                { "pt|package-target=", "package platform (default Win64)", v => platform = ParsePlatform(v) },
                 { "h|help", "show this message and exit", v => showHelp = v != null },
             };
 
@@ -150,9 +152,9 @@ namespace Gibbed.Disrupt.Packing
 
             var fat = new TArchive()
             {
-                Version = packageVersion,
-                Target = packageTarget,
-                Platform = TargetToPlatform(packageTarget),
+                Version = version.Value,
+                Platform = platform,
+                CompressionVersion = GetCompressionVersionForPlatform(platform),
             };
 
             if (verbose == true)
@@ -281,7 +283,7 @@ namespace Gibbed.Disrupt.Packing
 
                     using (var input = File.OpenRead(pendingEntry.FullPath))
                     {
-                        EntryCompression.Compress(fat.Target, ref entry, input, compress, output);
+                        EntryCompression.Compress(fat.Platform, ref entry, input, compress, output);
                         output.Seek(output.Position.Align(16), SeekOrigin.Begin);
                     }
 

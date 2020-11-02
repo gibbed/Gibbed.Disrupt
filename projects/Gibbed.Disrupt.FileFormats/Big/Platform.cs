@@ -20,15 +20,26 @@
  *    distribution.
  */
 
-using System;
-
 namespace Gibbed.Disrupt.FileFormats.Big
 {
-    public interface IEntry
+    // Names in this enumeration should match what we see the game use for the
+    // game folder. data_win64, data_orbis, etc.
+    //
+    // The numeric IDs of this enumeration do *not* match the actual IDs you
+    // see in game files. This is a custom set to include all platforms across
+    // archive versions.
+    public enum Platform : byte
     {
-        int UncompressedSize { get; set; }
-        long Offset { get; set; }
-        int CompressedSize { get; set; }
-        byte CompressionScheme { get; set; }
+        Any = 0,
+        Win32, // data_win32 *UNUSED*
+        Win64, // data_win64
+        Xenon, // no platform directory : Xbox 360
+        PS3, // data_ps3
+        WiiU, // no platform directory : Wii U
+        Durango, // data_durango : Xbox 1
+        Orbis, // data_orbis : PS4
+        Scarlett, // data_scarlett : Xbox Series X
+        Prospero, // data_prospero : PS5
+        Yeti, // data_yeti : Stadia
     }
 }

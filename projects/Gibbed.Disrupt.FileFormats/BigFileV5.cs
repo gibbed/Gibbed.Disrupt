@@ -25,28 +25,31 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Globalization;
 using System.IO;
-using System.Linq;
 using Gibbed.IO;
+using BigDependency = Gibbed.Disrupt.FileFormats.Big.Dependency<ulong>;
 using BigEntry = Gibbed.Disrupt.FileFormats.Big.Entry<ulong>;
 
 namespace Gibbed.Disrupt.FileFormats
 {
-    public class BigFileV5 : Big.IArchive<ulong>
+    public class BigFileV5 : Big.IDependentArchive<ulong>
     {
         public const uint Signature = 0x46415435; // 'FAT5'
 
         #region Fields
         private Endian _Endian;
         private int _Version;
-        private byte _Target;
-        private byte _Platform;
-        private byte _Unknown70;
+        private Big.Platform _Platform;
+        private byte _CompressionVersion;
+        private byte _NameHashVersion;
+        private ulong _ArchiveHash;
+        private readonly List<BigDependency> _Dependencies;
         private readonly List<BigEntry> _Entries;
         #endregion
 
         public BigFileV5()
         {
             this._Endian = Endian.Little;
+            this._Dependencies = new List<BigDependency>();
             this._Entries = new List<BigEntry>();
         }
 
@@ -63,22 +66,38 @@ namespace Gibbed.Disrupt.FileFormats
             set { this._Version = value; }
         }
 
-        public byte Target
-        {
-            get { return this._Target; }
-            set { this._Target = value; }
-        }
-
-        public byte Platform
+        public Big.Platform Platform
         {
             get { return this._Platform; }
             set { this._Platform = value; }
         }
 
-        public byte Unknown70
+        public byte CompressionVersion
         {
-            get { return this._Unknown70; }
-            set { this._Unknown70 = value; }
+            get { return this._CompressionVersion; }
+            set { this._CompressionVersion = value; }
+        }
+
+        public byte NameHashVersion
+        {
+            get { return this._NameHashVersion; }
+            set { this._NameHashVersion = value; }
+        }
+
+        public ulong ArchiveHash
+        {
+            get { return this._ArchiveHash; }
+            set { this._ArchiveHash = value; }
+        }
+
+        public bool HasArchiveHash
+        {
+            get { return this.ArchiveHash != ulong.MaxValue; }
+        }
+
+        public List<BigDependency> Dependencies
+        {
+            get { return this._Dependencies; }
         }
 
         public List<BigEntry> Entries
@@ -108,43 +127,35 @@ namespace Gibbed.Disrupt.FileFormats
             }
 
             var flags = input.ReadValueU32(endian);
-            var target = (byte)(flags & 0xFF);
-            var platform = (byte)((flags >> 8) & 0xFF);
-            var flags02 = (byte)((flags >> 16) & 0xFF);
+            var platform = ToPlatform((byte)(flags & 0xFF));
+            var compressionVersion = (byte)((flags >> 8) & 0xFF);
+            var nameHashVersion = (byte)((flags >> 16) & 0xFF);
 
-            if ((version == 11 && flags != 0x00460000 && flags != 0x00460601) ||
-                (version == 13 && flags != 0x00460801))
+            if ((flags & 0xFF000000u) != 0)
             {
                 throw new FormatException("unknown flags");
             }
 
-            /*
-            if (target != 1)
+            if (IsKnownVersion(version, platform, compressionVersion, nameHashVersion) == false)
             {
-                throw new FormatException("unsupported or invalid platform");
+                throw new FormatException("unknown version/platform/CV/NHV combination");
             }
-            */
 
-            /*if (IsValidTargetPlatform(target, platform, flags02) == false)
-            {
-                throw new FormatException("invalid flags");
-            }*/
-
-            var unknown50 = input.ReadValueU64(endian); // probably a name hash of some sort
+            var archiveHash = input.ReadValueU64(endian);
 
             var entrySerializer = GetEntrySerializer(version);
 
-            var duplicateCount = input.ReadValueU32(endian);
-            var duplicates = new KeyValuePair<ulong, ulong>[duplicateCount];
-            for (uint i = 0; i < duplicateCount; i++)
+            var dependencyCount = input.ReadValueU32(endian);
+            var dependencies = new BigDependency[dependencyCount];
+            for (uint i = 0; i < dependencyCount; i++)
             {
                 // version >=13, 16 bytes (8+8)
                 // version <13, 32 bytes (8+8+??)
                 if (version == 13)
                 {
-                    var key = input.ReadValueU64(endian);
-                    var value = input.ReadValueU64(endian);
-                    duplicates[i] = new KeyValuePair<ulong, ulong>(key, value);
+                    var dependencyArchiveHash = input.ReadValueU64(endian);
+                    var dependencyNameHash = input.ReadValueU64(endian);
+                    dependencies[i] = new BigDependency(dependencyArchiveHash, dependencyNameHash);
                 }
                 else
                 {
@@ -153,17 +164,17 @@ namespace Gibbed.Disrupt.FileFormats
             }
 
             var entryCount = input.ReadValueU32(endian);
-            var entries = new List<BigEntry>();
+            var entries = new BigEntry[entryCount];
             for (uint i = 0; i < entryCount; i++)
             {
                 entrySerializer.Deserialize(input, endian, out var entry);
-                entries.Add(entry);
+                entries[i] = entry;
             }
 
             if (version >= 12)
             {
-                var unknownCount = input.ReadValueU32(endian);
-                for (uint i = 0; i < unknownCount; i++)
+                var duplicateCount = input.ReadValueU32(endian);
+                for (uint i = 0; i < duplicateCount; i++)
                 {
                     throw new NotImplementedException();
                 }
@@ -184,21 +195,26 @@ namespace Gibbed.Disrupt.FileFormats
 
             foreach (var entry in entries)
             {
-                SanityCheckEntry(entry, version, target);
+                SanityCheckEntry(entry, version, platform, compressionVersion);
             }
 
             this._Endian = endian;
             this._Version = version;
-            this._Target = target;
             this._Platform = platform;
-            this._Unknown70 = flags02;
+            this._CompressionVersion = compressionVersion;
+            this._NameHashVersion = nameHashVersion;
+            this._ArchiveHash = archiveHash;
+            this._Dependencies.Clear();
+            this._Dependencies.AddRange(dependencies);
             this._Entries.Clear();
             this._Entries.AddRange(entries);
         }
 
-        internal static void SanityCheckEntry(BigEntry entry, int version, byte target)
+        internal static void SanityCheckEntry(BigEntry entry, int version, Big.Platform platform, byte compressionVersion)
         {
-            if (entry.CompressionScheme == Big.CompressionScheme.None)
+            var compressionScheme = ToCompressionScheme(entry.CompressionScheme, compressionVersion);
+
+            if (compressionScheme == Big.CompressionScheme.None)
             {
                 if (version < 12)
                 {
@@ -215,7 +231,15 @@ namespace Gibbed.Disrupt.FileFormats
                     }
                 }
             }
-            else if (entry.CompressionScheme == Big.CompressionScheme.LZ4LW)
+            else if (compressionScheme == Big.CompressionScheme.LZ4LW)
+            {
+                if (entry.CompressedSize == 0 && entry.UncompressedSize > 0)
+                {
+                    throw new FormatException(
+                        "got entry with compression with a zero compressed size and a non-zero uncompressed size");
+                }
+            }
+            else if (compressionScheme == Big.CompressionScheme.LZMA)
             {
                 if (entry.CompressedSize == 0 && entry.UncompressedSize > 0)
                 {
@@ -229,38 +253,36 @@ namespace Gibbed.Disrupt.FileFormats
             }
         }
 
-        private static bool IsValidTargetPlatform(byte target, byte platform, byte unknown70)
+        private static bool IsKnownVersion(
+            int version,
+            Big.Platform platform,
+            byte compressionVersion,
+            byte nameHashVersion)
         {
-            if (target == 0) // Any
-            {
-                if (platform != 0) // Any
-                {
-                    return false;
-                }
+            var value = MakeKnownVersion(version, platform, compressionVersion, nameHashVersion);
+            return _KnownVersions.Contains(value) == true;
+        }
 
-                if (unknown70 != 0x32)
-                {
-                    return false;
-                }
-            }
-            else if (target == 1) // Win64
+        public static Big.Platform ToPlatform(byte id)
+        {
+            switch (id)
             {
-                if (platform != 8)
-                {
-                    return false;
-                }
-
-                if (unknown70 != 0x46)
-                {
-                    return false;
-                }
+                case 0: return Big.Platform.Any;
+                case 1: return Big.Platform.Win64;
+                case 3: return Big.Platform.Orbis;
             }
-            else
+            throw new NotSupportedException("unknown platform");
+        }
+
+        public static byte FromPlatform(Big.Platform platform)
+        {
+            switch (platform)
             {
-                return false;
+                case Big.Platform.Any: return 0;
+                case Big.Platform.Win64: return 1;
+                case Big.Platform.Orbis: return 3;
             }
-
-            return true;
+            throw new NotSupportedException("unknown platform");
         }
 
         public static ulong ComputeNameHash(string s)
@@ -304,6 +326,28 @@ namespace Gibbed.Disrupt.FileFormats
             return RenderNameHash(value);
         }
 
+        private static Big.CompressionScheme ToCompressionScheme(byte id, byte version)
+        {
+            switch (version)
+            {
+                case 0: return Big.CompressionSchemeV0.ToCompressionScheme(id);
+                case 6: return Big.CompressionSchemeV6.ToCompressionScheme(id);
+                case 8: return Big.CompressionSchemeV8.ToCompressionScheme(id);
+                case 9: return Big.CompressionSchemeV9.ToCompressionScheme(id);
+            }
+            throw new NotSupportedException();
+        }
+
+        public Big.CompressionScheme ToCompressionScheme(byte id)
+        {
+            return ToCompressionScheme(id, this._CompressionVersion);
+        }
+
+        public byte FromCompressionSCheme(Big.CompressionScheme compressionScheme)
+        {
+            throw new NotImplementedException();
+        }
+
         private static Big.IEntrySerializer<ulong> GetEntrySerializer(int version)
         {
             return _EntrySerializers.TryGetValue(version, out var entrySerializer) == true
@@ -311,16 +355,37 @@ namespace Gibbed.Disrupt.FileFormats
                 : throw new InvalidOperationException("entry serializer is missing");
         }
 
+        private static readonly ReadOnlyCollection<ulong> _KnownVersions;
         private static readonly ReadOnlyDictionary<int, Big.IEntrySerializer<ulong>> _EntrySerializers;
 
         static BigFileV5()
         {
+            _KnownVersions = new ReadOnlyCollection<ulong>(new ulong[]
+            {
+                // Watch Dogs 2
+                MakeKnownVersion(11, Big.Platform.Any, 0, 70),
+                MakeKnownVersion(11, Big.Platform.Win64, 6, 70),
+                MakeKnownVersion(11, Big.Platform.Orbis, 9, 70),
+                // Watch Dogs: Legion
+                MakeKnownVersion(13, Big.Platform.Win64, 8, 70),
+            });
+
             _EntrySerializers = new ReadOnlyDictionary<int, Big.IEntrySerializer<ulong>>(
                 new Dictionary<int, Big.IEntrySerializer<ulong>>()
                 {
                     [11] = new Big.EntrySerializerV11(),
                     [13] = new Big.EntrySerializerV13(),
                 });
+        }
+
+        private static ulong MakeKnownVersion(int version, Big.Platform platform, byte compressionVersion, byte nameHashVersion)
+        {
+            ulong value = 0;
+            value |= (uint)version;
+            value |= ((ulong)compressionVersion) << 32;
+            value |= ((ulong)nameHashVersion) << 40;
+            value |= ((ulong)platform) << 48;
+            return value;
         }
     }
 }

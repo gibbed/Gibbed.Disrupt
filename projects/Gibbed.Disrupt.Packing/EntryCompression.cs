@@ -35,7 +35,7 @@ namespace Gibbed.Disrupt.Packing
         internal static class EntryCompression
         {
             public static void Compress(
-                byte target,
+                Platform platform,
                 ref Entry<THash> entry,
                 Stream input,
                 bool compress,
@@ -43,20 +43,20 @@ namespace Gibbed.Disrupt.Packing
             {
                 if (input.Length == 0)
                 {
-                    entry.CompressionScheme = CompressionScheme.None;
+                    entry.CompressionScheme = 0 /* CompressionScheme.None */;
                     entry.UncompressedSize = 0;
                     entry.CompressedSize = 0;
                 }
                 else if (compress == false)
                 {
-                    entry.CompressionScheme = CompressionScheme.None;
+                    entry.CompressionScheme = 0 /* CompressionScheme.None */;
                     entry.UncompressedSize = 0;
                     entry.CompressedSize = (int)input.Length;
                     output.WriteFromStream(input, input.Length);
                 }
                 else
                 {
-                    if (target == 4)
+                    if (platform == Platform.Win64)
                     {
                         throw new NotImplementedException();
                         //CompressLZO(ref entry, input, output);
@@ -94,15 +94,17 @@ namespace Gibbed.Disrupt.Packing
 
                 if (actualCompressedSize < uncompressedSize)
                 {
-                    entry.CompressionScheme = CompressionScheme.LZO1x;
+                    throw new NotImplementedException();
+                    entry.CompressionScheme = byte.MaxValue /* CompressionScheme.LZO1x */;
                     entry.UncompressedSize = uncompressedSize;
                     entry.CompressedSize = actualCompressedSize;
                     output.Write(compressedData, 0, actualCompressedSize);
                 }
                 else
                 {
+                    throw new NotImplementedException();
                     input.Seek(0, SeekOrigin.Begin);
-                    entry.CompressionScheme = CompressionScheme.None;
+                    entry.CompressionScheme = 0 /* CompressionScheme.None */;
                     entry.UncompressedSize = 0;
                     entry.CompressedSize = (int)input.Length;
                     output.WriteFromStream(input, input.Length);

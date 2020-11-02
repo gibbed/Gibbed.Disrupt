@@ -24,28 +24,26 @@ using System;
 
 namespace Gibbed.Disrupt.FileFormats.Big
 {
-    public struct Entry<T> : IEquatable<Entry<T>>, IEntry
+    public struct Dependency<T> : IEquatable<Dependency<T>>
     {
+        public T ArchiveHash { get; set; }
         public T NameHash { get; set; }
-        public int UncompressedSize { get; set; }
-        public long Offset { get; set; }
-        public int CompressedSize { get; set; }
-        public byte CompressionScheme { get; set; }
+
+        public Dependency(T archiveHash, T nameHash)
+        {
+            this.ArchiveHash = archiveHash;
+            this.NameHash = nameHash;
+        }
 
         public override string ToString()
         {
-            return this.CompressionScheme ==0
-                ? $"{this.NameHash:X} @{this.Offset}, {this.CompressedSize} bytes"
-                : $"{this.NameHash:X} @{this.Offset}, {this.UncompressedSize} bytes ({this.CompressedSize} compressed bytes, scheme #{this.CompressionScheme})";
+            return $"{this.ArchiveHash:X} {this.NameHash:X}";
         }
 
-        public bool Equals(Entry<T> other)
+        public bool Equals(Dependency<T> other)
         {
-            return this.NameHash.Equals(other) == true &&
-                   this.UncompressedSize == other.UncompressedSize &&
-                   this.Offset == other.Offset &&
-                   this.CompressedSize == other.CompressedSize &&
-                   this.CompressionScheme == other.CompressionScheme;
+            return this.ArchiveHash.Equals(other.ArchiveHash) == true &&
+                   this.NameHash.Equals(other.NameHash) == true;
         }
 
         public override bool Equals(object obj)
@@ -55,15 +53,15 @@ namespace Gibbed.Disrupt.FileFormats.Big
                 return false;
             }
 
-            return (Entry<T>)obj == this;
+            return (Dependency<T>)obj == this;
         }
 
-        public static bool operator ==(Entry<T> a, Entry<T> b)
+        public static bool operator ==(Dependency<T> a, Dependency<T> b)
         {
             return a.Equals(b) == true;
         }
 
-        public static bool operator !=(Entry<T> a, Entry<T> b)
+        public static bool operator !=(Dependency<T> a, Dependency<T> b)
         {
             return a.Equals(b) == false;
         }
@@ -73,11 +71,8 @@ namespace Gibbed.Disrupt.FileFormats.Big
             unchecked
             {
                 int hash = 17;
+                hash = hash * 23 + this.ArchiveHash.GetHashCode();
                 hash = hash * 23 + this.NameHash.GetHashCode();
-                hash = hash * 23 + this.UncompressedSize.GetHashCode();
-                hash = hash * 23 + this.Offset.GetHashCode();
-                hash = hash * 23 + this.CompressedSize.GetHashCode();
-                hash = hash * 23 + this.CompressionScheme.GetHashCode();
                 return hash;
             }
         }

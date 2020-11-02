@@ -24,6 +24,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text;
 using Gibbed.Disrupt.FileFormats;
 using Gibbed.ProjectData;
 using NDesk.Options;
@@ -127,6 +128,7 @@ namespace Gibbed.Disrupt.Packing
                     fatPaths.Add(fatPath);
                 }
             }
+            fatPaths.Sort();
 
             var outputPaths = new List<string>();
 
@@ -181,15 +183,14 @@ namespace Gibbed.Disrupt.Packing
                 }
 
                 HandleEntries(
-                    fat.Entries.Select(e => e.NameHash).Distinct(),
+                    fat,
                     knownHashes,
                     tracking,
-                    breakdown,
                     outputPath);
             }
 
             var statusPath = Path.Combine(listsPath, "files", "status.txt");
-            using (var output = new StreamWriter(statusPath))
+            using (var output = new StreamWriter(statusPath, false, new UTF8Encoding(false)))
             {
                 output.WriteLine(
                     "{0}",
@@ -204,16 +205,19 @@ namespace Gibbed.Disrupt.Packing
         }
 
         private static void HandleEntries(
-            IEnumerable<THash> entries,
+            TArchive fat,
             HashList<THash> knownHashes,
             Tracking tracking,
-            Breakdown breakdown,
             string outputPath)
         {
             var localBreakdown = new Breakdown();
 
             var localNames = new List<string>();
-            var localHashes = entries.ToArray();
+            var localHashes = fat.Entries
+                .Select(e => e.NameHash)
+                .Concat(GetDependentHashes(fat))
+                .Distinct()
+                .ToArray();
             foreach (var hash in localHashes)
             {
                 var name = knownHashes[hash];
@@ -230,9 +234,6 @@ namespace Gibbed.Disrupt.Packing
             var distinctLocalNames = localNames.Distinct().ToArray();
             localBreakdown.Known += distinctLocalNames.Length;
 
-            breakdown.Known += localBreakdown.Known;
-            breakdown.Total += localBreakdown.Total;
-
             var outputParent = Path.GetDirectoryName(outputPath);
             if (string.IsNullOrEmpty(outputParent) == false)
             {
@@ -242,17 +243,53 @@ namespace Gibbed.Disrupt.Packing
             using (var writer = new StringWriter())
             {
                 writer.WriteLine("; {0}", localBreakdown);
-
+                if (fat is Big.IDependentArchive<THash> dependentFat)
+                {
+                    if (dependentFat.HasArchiveHash == true || dependentFat.Dependencies.Count > 0)
+                    {
+                        writer.WriteLine(";");
+                    }
+                    if (dependentFat.HasArchiveHash == true)
+                    {
+                        writer.WriteLine("; archive={0}",
+                            knownHashes[dependentFat.ArchiveHash] ??
+                                fat.RenderNameHash(dependentFat.ArchiveHash));
+                    }
+                    foreach (var dependency in dependentFat.Dependencies)
+                    {
+                        writer.WriteLine("; dependency={0} @ {1}",
+                            knownHashes[dependency.ArchiveHash] ??
+                                fat.RenderNameHash(dependency.ArchiveHash),
+                            knownHashes[dependency.NameHash] ??
+                                fat.RenderNameHash(dependency.NameHash));
+                    }
+                }
                 foreach (string name in distinctLocalNames.OrderBy(dn => dn))
                 {
                     writer.WriteLine(name);
                 }
-
                 writer.Flush();
 
-                using (var output = new StreamWriter(outputPath))
+                using (var output = new StreamWriter(outputPath, false, new UTF8Encoding(false)))
                 {
                     output.Write(writer.GetStringBuilder());
+                }
+            }
+        }
+
+        private static IEnumerable<THash> GetDependentHashes(TArchive fat)
+        {
+            if (fat is Big.IDependentArchive<THash> dependentFat)
+            {
+                if (dependentFat.HasArchiveHash == true)
+                {
+                    yield return dependentFat.ArchiveHash;
+                }
+
+                foreach (var dependency in dependentFat.Dependencies)
+                {
+                    yield return dependency.ArchiveHash;
+                    yield return dependency.NameHash;
                 }
             }
         }

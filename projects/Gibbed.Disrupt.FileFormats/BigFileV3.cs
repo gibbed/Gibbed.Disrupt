@@ -37,9 +37,9 @@ namespace Gibbed.Disrupt.FileFormats
         #region Fields
         private Endian _Endian;
         private int _Version;
-        private byte _Target;
-        private byte _Platform;
-        private byte _Unknown70;
+        private Big.Platform _Platform;
+        private byte _CompressionVersion;
+        private byte _NameHashVersion;
         private readonly List<BigEntry> _Entries;
         #endregion
 
@@ -62,27 +62,22 @@ namespace Gibbed.Disrupt.FileFormats
             set { this._Version = value; }
         }
 
-        // Any = 0
-        // Win32 = 1
-        // Xbox360 = 2
-        // PS3 = 3
-        // Win64 = 4
-        public byte Target
-        {
-            get { return this._Target; }
-            set { this._Target = value; }
-        }
-
-        public byte Platform
+        public Big.Platform Platform
         {
             get { return this._Platform; }
             set { this._Platform = value; }
         }
 
-        public byte Unknown70
+        public byte CompressionVersion
         {
-            get { return this._Unknown70; }
-            set { this._Unknown70 = value; }
+            get { return this._CompressionVersion; }
+            set { this._CompressionVersion = value; }
+        }
+
+        public byte NameHashVersion
+        {
+            get { return this._NameHashVersion; }
+            set { this._NameHashVersion = value; }
         }
 
         public List<BigEntry> Entries => this._Entries;
@@ -98,31 +93,22 @@ namespace Gibbed.Disrupt.FileFormats
                 throw new FormatException("unsupported version");
             }
 
-            var target = this._Target;
             var platform = this._Platform;
-            var flags02 = this._Unknown70;
+            var compressionVersion = this._CompressionVersion;
+            var nameHashVersion = this._NameHashVersion;
 
-            if (target != 0 && // Any
-                target != 1 && // Win32
-                target != 2 && // Xbox360
-                target != 3 && // PS3
-                target != 4) // Win64
+            if (IsKnownVersion(version, platform, compressionVersion, nameHashVersion) == false)
             {
-                throw new FormatException("unsupported or invalid platform");
-            }
-
-            if (IsValidTargetPlatform(target, platform, flags02) == false)
-            {
-                throw new FormatException("invalid flags");
+                throw new FormatException("unknown version/platform/CV/NHV combination");
             }
 
             output.WriteValueU32(Signature, endian);
             output.WriteValueS32(version, endian);
 
             uint flags = 0;
-            flags |= (uint)target << 0;
-            flags |= (uint)platform << 8;
-            flags |= (uint)flags02 << 16;
+            flags |= (uint)FromPlatform(platform) << 0;
+            flags |= (uint)compressionVersion << 8;
+            flags |= (uint)nameHashVersion << 16;
             output.WriteValueU32(flags, endian);
 
             var entrySerializer = GetEntrySerializer(version);
@@ -151,27 +137,18 @@ namespace Gibbed.Disrupt.FileFormats
             }
 
             var flags = input.ReadValueU32(endian);
-            var target = (byte)(flags & 0xFF);
-            var platform = (byte)((flags >> 8) & 0xFF);
-            var flags02 = (byte)((flags >> 16) & 0xFF);
+            var platform = ToPlatform((byte)(flags & 0xFF));
+            var compressionVersion = (byte)((flags >> 8) & 0xFF);
+            var nameHashVersion = (byte)((flags >> 16) & 0xFF);
 
-            if ((flags & ~0xFFFFFFu) != 0)
+            if ((flags & 0xFF000000u) != 0)
             {
                 throw new FormatException("unknown flags");
             }
 
-            if (target != 0 && // Any
-                target != 1 && // Win32
-                target != 2 && // Xbox360
-                target != 3 && // PS3
-                target != 4) // Win64
+            if (IsKnownVersion(version, platform, compressionVersion, nameHashVersion) == false)
             {
-                throw new FormatException("unsupported or invalid platform");
-            }
-
-            if (IsValidTargetPlatform(target, platform, flags02) == false)
-            {
-                throw new FormatException("invalid flags");
+                throw new FormatException("unknown version/platform/CV/NHV combination");
             }
 
             var entrySerializer = GetEntrySerializer(version);
@@ -198,29 +175,31 @@ namespace Gibbed.Disrupt.FileFormats
 
             foreach (var entry in this.Entries)
             {
-                SanityCheckEntry(entry, target);
+                SanityCheckEntry(entry, platform, compressionVersion);
             }
 
             this._Endian = endian;
             this._Version = version;
-            this._Target = target;
             this._Platform = platform;
-            this._Unknown70 = flags02;
+            this._CompressionVersion = compressionVersion;
+            this._NameHashVersion = nameHashVersion;
             this._Entries.Clear();
             this._Entries.AddRange(entries);
         }
 
-        internal static void SanityCheckEntry(BigEntry entry, byte target)
+        internal static void SanityCheckEntry(BigEntry entry, Big.Platform platform, byte compressionVersion)
         {
-            if (entry.CompressionScheme == Big.CompressionScheme.None)
+            var compressionScheme = ToCompressionScheme(entry.CompressionScheme, compressionVersion);
+
+            if (compressionScheme == Big.CompressionScheme.None)
             {
-                if (target != 2 && entry.UncompressedSize != 0)
+                if (platform != Big.Platform.Xenon && entry.UncompressedSize != 0)
                 {
                     throw new FormatException("got entry with no compression with a non-zero uncompressed size");
                 }
             }
-            else if (entry.CompressionScheme == Big.CompressionScheme.LZO1x ||
-                     entry.CompressionScheme == Big.CompressionScheme.Zlib)
+            else if (compressionScheme == Big.CompressionScheme.LZO1x ||
+                     compressionScheme == Big.CompressionScheme.Zlib)
             {
                 if (entry.CompressedSize == 0 && entry.UncompressedSize > 0)
                 {
@@ -228,7 +207,7 @@ namespace Gibbed.Disrupt.FileFormats
                         "got entry with compression with a zero compressed size and a non-zero uncompressed size");
                 }
             }
-            else if (entry.CompressionScheme == Big.CompressionScheme.XMemCompress)
+            else if (compressionScheme == Big.CompressionScheme.XMemCompress)
             {
                 if (entry.CompressedSize == 0 && entry.UncompressedSize > 0)
                 {
@@ -242,50 +221,42 @@ namespace Gibbed.Disrupt.FileFormats
             }
         }
 
-        private static bool IsValidTargetPlatform(byte target, byte platform, byte unknown70)
+        private static bool IsKnownVersion(
+            int version,
+            Big.Platform platform,
+            byte compressionVersion,
+            byte nameHashVersion)
         {
-            if (target == 0) // Any
-            {
-                if (platform != 0) // Any
-                {
-                    return false;
-                }
+            var value = MakeKnownVersion(version, platform, compressionVersion, nameHashVersion);
+            return _KnownVersions.Contains(value) == true;
+        }
 
-                if (unknown70 != 0x32)
-                {
-                    return false;
-                }
-            }
-            else if (target == 4) // Win64
+        public static Big.Platform ToPlatform(byte id)
+        {
+            switch (id)
             {
-                if (platform != 5)
-                {
-                    return false;
-                }
-
-                if (unknown70 != 0x32)
-                {
-                    return false;
-                }
+                case 0: return Big.Platform.Any;
+                case 1: return Big.Platform.Win32;
+                case 2: return Big.Platform.Xenon;
+                case 3: return Big.Platform.PS3;
+                case 4: return Big.Platform.Win64;
+                case 8: return Big.Platform.WiiU;
             }
-            else if (target == 2) // Xbox360
+            throw new NotSupportedException("unknown platform");
+        }
+
+        public static byte FromPlatform(Big.Platform platform)
+        {
+            switch (platform)
             {
-                if (platform != 5)
-                {
-                    return false;
-                }
-
-                if (unknown70 != 0x37)
-                {
-                    return false;
-                }
+                case Big.Platform.Any: return 0;
+                case Big.Platform.Win32: return 1;
+                case Big.Platform.Xenon: return 2;
+                case Big.Platform.PS3: return 3;
+                case Big.Platform.Win64: return 4;
+                case Big.Platform.WiiU: return 8;
             }
-            else
-            {
-                return false;
-            }
-
-            return true;
+            throw new NotSupportedException("unknown platform");
         }
 
         public static uint ComputeNameHash(string s)
@@ -322,6 +293,27 @@ namespace Gibbed.Disrupt.FileFormats
             return RenderNameHash(value);
         }
 
+        private static Big.CompressionScheme ToCompressionScheme(byte id, byte version)
+        {
+            switch (version)
+            {
+                case 0: return Big.CompressionSchemeV0.ToCompressionScheme(id);
+                case 4: return Big.CompressionSchemeV4.ToCompressionScheme(id);
+                case 5: return Big.CompressionSchemeV5.ToCompressionScheme(id);
+            }
+            throw new NotSupportedException();
+        }
+
+        public Big.CompressionScheme ToCompressionScheme(byte id)
+        {
+            return ToCompressionScheme(id, this._CompressionVersion);
+        }
+
+        public byte FromCompressionSCheme(Big.CompressionScheme compressionScheme)
+        {
+            throw new NotImplementedException();
+        }
+
         private static Big.IEntrySerializer<uint> GetEntrySerializer(int version)
         {
             return _EntrySerializers.TryGetValue(version, out var entrySerializer) == true
@@ -329,16 +321,41 @@ namespace Gibbed.Disrupt.FileFormats
                 : throw new InvalidOperationException("entry serializer is missing");
         }
 
+        private static readonly ReadOnlyCollection<ulong> _KnownVersions;
         private static readonly ReadOnlyDictionary<int, Big.IEntrySerializer<uint>> _EntrySerializers;
 
         static BigFileV3()
         {
+            _KnownVersions = new ReadOnlyCollection<ulong>(new ulong[]
+            {
+                // Watch Dogs, Windows 64-bit
+                MakeKnownVersion(8, Big.Platform.Any, 0, 50),
+                MakeKnownVersion(8, Big.Platform.Win64, 5, 50),
+                // Watch Dogs, Xbox 360 and PS3
+                MakeKnownVersion(8, Big.Platform.Any, 0, 55),
+                MakeKnownVersion(8, Big.Platform.Xenon, 5, 55),
+                MakeKnownVersion(8, Big.Platform.PS3, 4, 55),
+                // Watch Dogs, Wii U
+                MakeKnownVersion(8, Big.Platform.Any, 0, 58),
+                MakeKnownVersion(8, Big.Platform.WiiU, 5, 58),
+            });
+
             _EntrySerializers = new ReadOnlyDictionary<int, Big.IEntrySerializer<uint>>(
                 new Dictionary<int, Big.IEntrySerializer<uint>>()
             {
                 [7] = new Big.EntrySerializerV07(),
                 [8] = new Big.EntrySerializerV08(),
             });
+        }
+
+        private static ulong MakeKnownVersion(int version, Big.Platform platform, byte compressionVersion, byte nameHashVersion)
+        {
+            ulong value = 0;
+            value |= (uint)version;
+            value |= ((ulong)compressionVersion) << 32;
+            value |= ((ulong)nameHashVersion) << 40;
+            value |= ((ulong)platform) << 48;
+            return value;
         }
     }
 }

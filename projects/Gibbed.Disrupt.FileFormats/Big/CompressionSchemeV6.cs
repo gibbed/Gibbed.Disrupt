@@ -24,11 +24,17 @@ using System;
 
 namespace Gibbed.Disrupt.FileFormats.Big
 {
-    public interface IEntry
+    internal class CompressionSchemeV6
     {
-        int UncompressedSize { get; set; }
-        long Offset { get; set; }
-        int CompressedSize { get; set; }
-        byte CompressionScheme { get; set; }
+        public static CompressionScheme ToCompressionScheme(byte id)
+        {
+            switch (id)
+            {
+                case 0: return CompressionScheme.None;
+                case 1: return CompressionScheme.LZMA;
+                case 2: return CompressionScheme.LZ4LW;
+            }
+            throw new NotSupportedException();
+        }
     }
 }

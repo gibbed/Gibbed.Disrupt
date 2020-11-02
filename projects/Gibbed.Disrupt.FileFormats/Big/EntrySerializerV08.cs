@@ -45,7 +45,7 @@ namespace Gibbed.Disrupt.FileFormats.Big
 
             uint b = 0;
             b |= ((uint)entry.UncompressedSize & 0x1FFFFFFFu) << 3;
-            b |= (uint)((FromCompressionScheme(entry.CompressionScheme) << 0) & 0x00000007u);
+            b |= (uint)((entry.CompressionScheme << 0) & 0x00000007u);
 
             uint c = 0;
             c |= (uint)(entry.Offset & 0x00000007u) << 29;
@@ -71,33 +71,9 @@ namespace Gibbed.Disrupt.FileFormats.Big
                 NameHash = a,
                 UncompressedSize = (int)((b >> 3) & 0x1FFFFFFFu),
                 Offset = (long)d << 3 | ((c >> 29) & 0x7u),
-                CompressionScheme = ToCompressionScheme((byte)((b >> 0) & 0x7u)),
+                CompressionScheme = (byte)((b >> 0) & 0x7u),
                 CompressedSize = (int)((c >> 0) & 0x1FFFFFFFu),
             };
-        }
-
-        private static byte FromCompressionScheme(CompressionScheme scheme)
-        {
-            switch (scheme)
-            {
-                case CompressionScheme.None: return 0;
-                case CompressionScheme.LZO1x: return 1;
-                case CompressionScheme.Zlib: return 2;
-                case CompressionScheme.XMemCompress: return 3;
-            }
-            throw new NotSupportedException();
-        }
-
-        private static CompressionScheme ToCompressionScheme(byte id)
-        {
-            switch (id)
-            {
-                case 0: return CompressionScheme.None;
-                case 1: return CompressionScheme.LZO1x;
-                case 2: return CompressionScheme.Zlib;
-                case 3: return CompressionScheme.XMemCompress;
-            }
-            throw new NotSupportedException();
         }
     }
 }
