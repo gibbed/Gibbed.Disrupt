@@ -28,7 +28,10 @@ namespace Gibbed.WatchDogs.RebuildFileLists
     {
         public static void Main(string[] args)
         {
-            Gibbed.Disrupt.Packing.RebuildFileLists<BigFileV3, uint>.Main(args, "Watch Dogs");
+            Disrupt.Packing.RebuildFileLists<BigFileV3, uint>.Main(
+                args,
+                "Watch Dogs",
+                Packing.HashOverrides.TryGet);
         }
     }
 }

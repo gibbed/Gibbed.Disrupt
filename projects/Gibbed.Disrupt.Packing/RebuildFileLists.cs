@@ -60,6 +60,11 @@ namespace Gibbed.Disrupt.Packing
 
         public static void Main(string[] args, string projectName)
         {
+            Main(args, projectName, null);
+        }
+
+        public static void Main(string[] args, string projectName, Big.TryGetHashOverride<THash> tryGetHashOverride)
+        {
             bool showHelp = false;
 
             var options = new OptionSet()
@@ -100,7 +105,7 @@ namespace Gibbed.Disrupt.Packing
             }
 
             var project = manager.ActiveProject;
-            var version = -1;
+            byte? nameHashVersion = null;
             HashList<THash> knownHashes = null;
 
             var installPath = project.InstallPath;
@@ -167,12 +172,17 @@ namespace Gibbed.Disrupt.Packing
                     fat.Deserialize(input);
                 }
 
-                if (version == -1)
+                if (nameHashVersion == null)
                 {
-                    version = fat.Version;
-                    manager.LoadListsFileNames(fat.Version, fat.ComputeNameHash, out knownHashes);
+                    nameHashVersion = fat.NameHashVersion;
+
+                    Console.WriteLine("Loading file lists for version {0}...", nameHashVersion);
+
+                    THash wrappedComputeNameHash(string s) =>
+                        fat.ComputeNameHash(s, tryGetHashOverride);
+                    manager.LoadListsFileNames(wrappedComputeNameHash, out knownHashes);
                 }
-                else if (version != fat.Version)
+                else if (nameHashVersion != fat.NameHashVersion)
                 {
                     throw new InvalidOperationException();
                 }

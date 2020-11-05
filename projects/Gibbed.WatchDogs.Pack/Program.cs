@@ -28,7 +28,7 @@ namespace Gibbed.WatchDogs.Pack
     {
         private static void Main(string[] args)
         {
-            Disrupt.Packing.Pack<BigFileV3, uint>.Main(args);
+            Disrupt.Packing.Pack<BigFileV3, uint>.Main(args, Packing.HashOverrides.TryGet);
         }
     }
 }

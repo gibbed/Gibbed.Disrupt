@@ -28,7 +28,10 @@ namespace Gibbed.WatchDogs.Unpack
     {
         public static void Main(string[] args)
         {
-            Disrupt.Packing.Unpack<BigFileV3, uint>.Main(args, "Watch Dogs");
+            Disrupt.Packing.Unpack<BigFileV3, uint>.Main(
+                args,
+                "Watch Dogs",
+                Packing.HashOverrides.TryGet);
         }
     }
 }

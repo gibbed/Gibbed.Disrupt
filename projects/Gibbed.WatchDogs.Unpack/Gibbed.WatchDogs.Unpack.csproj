@@ -14,5 +14,6 @@
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\Gibbed.Disrupt.Packing\Gibbed.Disrupt.Packing.csproj" />
+    <ProjectReference Include="..\Gibbed.WatchDogs.Packing\Gibbed.WatchDogs.Packing.csproj" />
   </ItemGroup>
 </Project>

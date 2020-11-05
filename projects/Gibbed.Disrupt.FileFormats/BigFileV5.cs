@@ -285,8 +285,12 @@ namespace Gibbed.Disrupt.FileFormats
             throw new NotSupportedException("unknown platform");
         }
 
-        public static ulong ComputeNameHash(string s)
+        public static ulong ComputeNameHash(string s, Big.TryGetHashOverride<ulong> tryGetOverride)
         {
+            if (tryGetOverride != null)
+            {
+                throw new InvalidOperationException();
+            }
             if (s == null || s.Length == 0)
             {
                 return ulong.MaxValue;
@@ -311,9 +315,9 @@ namespace Gibbed.Disrupt.FileFormats
             return string.Format(CultureInfo.InvariantCulture, "{0:X16}", value);
         }
 
-        ulong Big.IArchive<ulong>.ComputeNameHash(string s)
+        ulong Big.IArchive<ulong>.ComputeNameHash(string s, Big.TryGetHashOverride<ulong> tryGetOverride)
         {
-            return ComputeNameHash(s);
+            return ComputeNameHash(s, tryGetOverride);
         }
 
         bool Big.IArchive<ulong>.TryParseNameHash(string s, out ulong value)

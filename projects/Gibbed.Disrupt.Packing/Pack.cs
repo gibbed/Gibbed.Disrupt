@@ -81,6 +81,11 @@ namespace Gibbed.Disrupt.Packing
 
         public static void Main(string[] args)
         {
+            Main(args, null);
+        }
+
+        public static void Main(string[] args, Big.TryGetHashOverride<THash> tryGetHashOverride)
+        {
             bool showHelp = false;
             bool verbose = false;
             bool compress = false;
@@ -218,7 +223,9 @@ namespace Gibbed.Disrupt.Packing
                     else
                     {
                         pendingEntry.Name = string.Join("\\", pieces.Skip(index).ToArray()).ToLowerInvariant();
-                        pendingEntry.NameHash = fat.ComputeNameHash(ProjectHelpers.Modifier(pendingEntry.Name));
+                        pendingEntry.NameHash = fat.ComputeNameHash(
+                            ProjectHelpers.Modifier(pendingEntry.Name),
+                            tryGetHashOverride);
                     }
 
                     if (pendingEntries.ContainsKey(pendingEntry.NameHash) == true)

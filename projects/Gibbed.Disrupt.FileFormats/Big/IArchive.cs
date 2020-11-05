@@ -25,6 +25,9 @@ using System.IO;
 
 namespace Gibbed.Disrupt.FileFormats.Big
 {
+    public delegate bool TryGetHashOverride<T>(ulong hash, out T hashOverride);
+    public delegate T ComputeNameHash<T>(string s, TryGetHashOverride<T> tryGetHashOverride);
+
     public interface IArchive<T>
     {
         int Version { get; set; }
@@ -37,7 +40,7 @@ namespace Gibbed.Disrupt.FileFormats.Big
         void Serialize(Stream output);
         void Deserialize(Stream input);
 
-        T ComputeNameHash(string s);
+        T ComputeNameHash(string s, TryGetHashOverride<T> getOverride);
         bool TryParseNameHash(string s, out T value);
         string RenderNameHash(T value);
 

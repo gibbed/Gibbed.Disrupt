@@ -47,6 +47,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gibbed.WatchDogs2.Pack", "p
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gibbed.WatchDogs2.RebuildFileLists", "projects\Gibbed.WatchDogs2.RebuildFileLists\Gibbed.WatchDogs2.RebuildFileLists.csproj", "{6B9C63E0-C928-4D8D-8BCA-9DA8A8527656}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gibbed.WatchDogs.Packing", "projects\Gibbed.WatchDogs.Packing\Gibbed.WatchDogs.Packing.csproj", "{1B4380AD-B934-4D66-BAE2-3DDEF800E524}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -125,6 +127,10 @@ Global
 		{6B9C63E0-C928-4D8D-8BCA-9DA8A8527656}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6B9C63E0-C928-4D8D-8BCA-9DA8A8527656}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6B9C63E0-C928-4D8D-8BCA-9DA8A8527656}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1B4380AD-B934-4D66-BAE2-3DDEF800E524}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1B4380AD-B934-4D66-BAE2-3DDEF800E524}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1B4380AD-B934-4D66-BAE2-3DDEF800E524}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1B4380AD-B934-4D66-BAE2-3DDEF800E524}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -143,6 +149,7 @@ Global
 		{F5B8B7BC-4150-4A5C-9FE2-485E78C1D391} = {E5DBD0EC-E87A-4015-9462-4765FF00AD15}
 		{2463AA0F-D446-4E42-86BB-38932745ECBF} = {E5DBD0EC-E87A-4015-9462-4765FF00AD15}
 		{6B9C63E0-C928-4D8D-8BCA-9DA8A8527656} = {E5DBD0EC-E87A-4015-9462-4765FF00AD15}
+		{1B4380AD-B934-4D66-BAE2-3DDEF800E524} = {4D674AA6-4B2A-4F66-AEB5-DDCEAC30AD09}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {75FF0F31-A5FA-4670-BB11-1BB440961336}

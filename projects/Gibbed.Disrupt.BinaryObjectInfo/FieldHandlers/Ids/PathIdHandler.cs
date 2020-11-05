@@ -29,7 +29,8 @@ namespace Gibbed.Disrupt.BinaryObjectInfo.FieldHandlers.Ids
         protected override uint Hash(string text)
         {
             text = ProjectHelpers.Modifier(text);
-            return BigFileV3.ComputeNameHash(text);
+            // TODO(gibbed): fix override
+            return BigFileV3.ComputeNameHash(text, null);
         }
     }
 }

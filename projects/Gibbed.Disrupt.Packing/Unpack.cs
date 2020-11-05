@@ -42,6 +42,11 @@ namespace Gibbed.Disrupt.Packing
 
         public static void Main(string[] args, string projectName)
         {
+            Main(args, projectName, null);
+        }
+
+        public static void Main(string[] args, string projectName, Big.TryGetHashOverride<THash> tryGetHashOverride)
+        {
             bool showHelp = false;
             bool extractUnknowns = true;
             bool onlyUnknowns = false;
@@ -131,10 +136,9 @@ namespace Gibbed.Disrupt.Packing
 
             if (extractFiles == true)
             {
-                manager.LoadListsFileNames(
-                    fat.Version,
-                    fat.ComputeNameHash,
-                    out ProjectData.HashList<THash> hashes);
+                THash wrappedComputeNameHash(string s) =>
+                    fat.ComputeNameHash(s, tryGetHashOverride);
+                manager.LoadListsFileNames(wrappedComputeNameHash, out var hashes);
 
                 using (var input = File.OpenRead(datPath))
                 {

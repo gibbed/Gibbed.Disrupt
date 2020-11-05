@@ -259,13 +259,25 @@ namespace Gibbed.Disrupt.FileFormats
             throw new NotSupportedException("unknown platform");
         }
 
-        public static uint ComputeNameHash(string s)
+        public static uint ComputeNameHash(string s, Big.TryGetHashOverride<uint> tryGetOverride)
         {
             if (s == null || s.Length == 0)
             {
                 return 0xFFFFFFFFu;
             }
-            return (uint)Hashing.FNV1a64.Compute(s.ToLowerInvariant());
+
+            var hash64 = Hashing.FNV1a64.Compute(s.ToLowerInvariant());
+            if (tryGetOverride != null && tryGetOverride(hash64, out var hashOverride) == true)
+            {
+                return hashOverride;
+            }
+
+            var hash32 = (uint)hash64;
+            if ((hash32 & 0xFFFF0000) == 0xFFFF0000)
+            {
+                return hash32 & ~(1u << 16);
+            }
+            return hash32;
         }
 
         public static bool TryParseNameHash(string s, out uint value)
@@ -278,9 +290,9 @@ namespace Gibbed.Disrupt.FileFormats
             return string.Format(CultureInfo.InvariantCulture, "{0:X8}", value);
         }
 
-        uint Big.IArchive<uint>.ComputeNameHash(string s)
+        uint Big.IArchive<uint>.ComputeNameHash(string s, Big.TryGetHashOverride<uint> tryGetOverride)
         {
-            return ComputeNameHash(s);
+            return ComputeNameHash(s, tryGetOverride);
         }
 
         bool Big.IArchive<uint>.TryParseNameHash(string s, out uint value)
