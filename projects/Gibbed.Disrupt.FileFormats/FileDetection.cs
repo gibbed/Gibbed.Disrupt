@@ -256,8 +256,9 @@ namespace Gibbed.Disrupt.FileFormats
                 case 0x4C504D54: /* 'LPMT'    */ return new Tuple<string, string>("bin", "lpmt");
                 case 0x424B4844: /* 'BKHD'    */ return new Tuple<string, string>("bin", "bkhd");
                 case 0x434B5441: /* 'CKTA'    */ return new Tuple<string, string>("bin", "ckta");
-                case 0x4F54544F: /* 'OTTO'    */ return new Tuple<string, string>("bin", "otto");
+                case 0x4F54544F: /* 'OTTO'    */ return new Tuple<string, string>("fonts", "otf");
                 case 0x4D475246: /* 'MGRF'    */ return new Tuple<string, string>("bin", "mgrf");
+                case 0x43425844: /* 'DXBC'    */ return new Tuple<string, string>("shaders", "bin");
                 case 0x00014C53: /*           */ return new Tuple<string, string>("languages", "loc");
                 case 0x00032A02: /*           */ return new Tuple<string, string>("sfx", "sbao");
                 case 0x0000389C: /*           */ return new Tuple<string, string>("eight", "bin");
